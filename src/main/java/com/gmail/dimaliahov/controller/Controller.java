@@ -53,9 +53,7 @@ public class Controller {
 				roleAdmin = true;
 				break;
 			}
-
 		}
-
 		if (roleAdmin) {
 			AdminUserDto resultAdmin = AdminUserDto.fromUser(user);
 			return new ResponseEntity<>(resultAdmin, HttpStatus.OK);
