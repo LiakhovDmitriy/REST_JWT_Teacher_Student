@@ -58,7 +58,6 @@ public class Controller {
 
 		if (roleAdmin) {
 			AdminUserDto resultAdmin = AdminUserDto.fromUser(user);
-			System.out.println("Test");
 			return new ResponseEntity<>(resultAdmin, HttpStatus.OK);
 		}
 
@@ -66,7 +65,7 @@ public class Controller {
 	}
 
 	@PostMapping ("login")
-	public ResponseEntity login (@RequestBody AuthenticationRequestDto requestDto) {
+	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDto requestDto) {
 		try {
 			String username = requestDto.getUsername();
 			String password = requestDto.getPassword();
