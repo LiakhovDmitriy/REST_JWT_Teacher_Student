@@ -1,16 +1,11 @@
 package com.gmail.dimaliahov.model;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
-@Table (name = "lessons")
+@Table (name = "lesson")
 public class Lessons extends BaseEntety{
 
 	@Column (name = "idTeacher")
@@ -25,15 +20,18 @@ public class Lessons extends BaseEntety{
 	@Column (name = "price")
 	private int price;
 
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "lessons" )
-	private List<User> users = new ArrayList<>();
+	@ManyToMany(mappedBy = "lesson" )
+//	@JoinTable (name = "user_lessons",
+//			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
+//			inverseJoinColumns = {@JoinColumn (name = "lessons_id", referencedColumnName = "id")})
+	private Set<User> user = new HashSet<>();
 
 	public Lessons () {
 		super();
 	}
 
 	public void setUserToLesson(User user){
-		users.add(user);
+		this.user.add(user);
 	}
 
 
@@ -76,12 +74,12 @@ public class Lessons extends BaseEntety{
 
 	}
 
-	public List<User> getUsers () {
-		return users;
+	public Set<User> getUser () {
+		return user;
 	}
 
-	public Lessons setUsers (List<User> users) {
-		this.users = users;
+	public Lessons setUser (Set<User> users) {
+		this.user = users;
 		return this;
 
 	}

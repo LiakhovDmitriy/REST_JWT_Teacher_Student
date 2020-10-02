@@ -5,7 +5,7 @@
 
     <!--   USERS table -->
     <changeSet id="1.0.0" author="dmitriy.liachov">
-        <createTable tableName="users">
+        <createTable tableName="user">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -47,7 +47,7 @@
 
     <!--   ROLES table -->
     <changeSet id="1.0.1" author="dmitriy.liachov">
-        <createTable tableName="roles">
+        <createTable tableName="role">
 
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -72,41 +72,9 @@
         </createTable>
     </changeSet>
 
-    <!-- user_roles - таблиця промежуточная  -->
-    <changeSet id="1.0.2" author="dmitriy.liachov">
-        <createTable tableName="user_roles">
-            <column name="user_id" type="BIGINT">
-            </column>
-            <column name="role_id" type="BIGINT">
-            </column>
-        </createTable>
-    </changeSet>
-
-    <!-- user_roles - настройка таблицы  -->
-    <changeSet id="1.0.3" author="dmitriy.liachov">
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="user_roles"
-                                 constraintName="fk_user_roles_user"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="users"/>
-    </changeSet>
-
-    <!-- user_roles - настройка таблицы  -->
-    <changeSet id="1.0.4" author="dmitriy.liachov">
-        <addForeignKeyConstraint baseColumnNames="role_id"
-                                 baseTableName="user_roles"
-                                 constraintName="fk_user_roles_roles"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="roles"/>
-    </changeSet>
-
     <!--    Lessons table-->
-    <changeSet id="1.0.5" author="dmitriy.liachov">
-        <createTable tableName="lessons">
+    <changeSet id="1.0.2" author="dmitriy.liachov">
+        <createTable tableName="lesson">
 
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -143,52 +111,94 @@
         </createTable>
     </changeSet>
 
+
+    <!-- user_roles - таблиця промежуточная  -->
+    <changeSet id="1.0.3" author="dmitriy.liachov">
+        <createTable tableName="role_user">
+            <column name="user_id" type="BIGINT">
+            </column>
+            <column name="role_id" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
     <!-- user_lessons - таблиця промежуточная  -->
-    <changeSet id="1.0.6" author="dmitriy.liachov">
-        <createTable tableName="user_lessons">
+    <changeSet id="1.0.4" author="dmitriy.liachov">
+        <createTable tableName="user_lesson">
 
-            <column name="user_id" type="BIGINT"></column>
+            <column name="user_id" type="BIGINT">
+            </column>
 
-            <column name="lessons_id" type="BIGINT"></column>
+            <column name="lesson_id" type="BIGINT">
+            </column>
 
         </createTable>
     </changeSet>
 
-    <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.7" author="dmitriy.liachov">
+    <changeSet id="1.0.5" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="user_lessons"
-                                 constraintName="fk_user_lessons_user"
+                                 baseTableName="role_user"
+                                 constraintName="fk_role_user_user"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="users"/>
+                                 referencedTableName="user"/>
+    </changeSet>
+
+    <changeSet id="1.0.6" author="dmitriy.liachov">
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="role_user"
+                                 constraintName="fk_role_user_role"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+    </changeSet>
+
+
+    <!-- user_lessons - настройка таблицы  -->
+    <changeSet id="1.0.7" author="dmitriy.liachov">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_lesson"
+                                 constraintName="fk_user_lesson_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
     <changeSet id="1.0.8" author="dmitriy.liachov">
-        <addForeignKeyConstraint baseColumnNames="lessons_id"
-                                 baseTableName="user_lessons"
-                                 constraintName="fk_user_lessons_lessons"
+        <addForeignKeyConstraint baseColumnNames="lesson_id"
+                                 baseTableName="user_lesson"
+                                 constraintName="fk_user_lesson_lesson"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
-                                 referencedTableName="lessons"/>
+                                 referencedTableName="lesson"/>
     </changeSet>
+
+
+
+
+
 
     <!--Данные в таблицу записываем-->
     <changeSet id="1.0.9" author="dmitriy.liachov">
-        <insert tableName="roles">
+
+        <insert tableName="role">
             <column name="name" value="ROLE_STUDENT"/>
         </insert>
-        <insert tableName="roles">
+
+        <insert tableName="role">
             <column name="name" value="ROLE_TEACHER"/>
         </insert>
-        <insert tableName="roles">
+
+        <insert tableName="role">
             <column name="name" value="ROLE_ADMIN"/>
         </insert>
 
-        <insert tableName="users">
+        <insert tableName="user">
             <column name="username" value="student"/>
             <column name="email" value="emailS@gmail.com"/>
             <column name="first_name" value="FirstNameS"/>
@@ -198,7 +208,8 @@
             <column name="updated" value="2020-09-22 16:26:10"/>
             <column name="status" value="ACTIVE"/>
         </insert>
-        <insert tableName="users">
+
+        <insert tableName="user">
             <column name="username" value="tacher"/>
             <column name="email" value="emailT@gmail.com"/>
             <column name="first_name" value="FirstNameT"/>
@@ -208,7 +219,8 @@
             <column name="updated" value="2020-09-22 16:26:10"/>
             <column name="status" value="ACTIVE"/>
         </insert>
-        <insert tableName="users">
+
+        <insert tableName="user">
             <column name="username" value="admin"/>
             <column name="email" value="emailA@gmail.com"/>
             <column name="first_name" value="FirstNameA"/>
@@ -219,22 +231,20 @@
             <column name="status" value="ACTIVE"/>
         </insert>
 
-        <insert tableName="user_roles">
+        <insert tableName="role_user">
             <column name="user_id" value="1"/>
             <column name="role_id" value="1"/>
         </insert>
-        <insert tableName="user_roles">
+
+        <insert tableName="role_user">
             <column name="user_id" value="2"/>
             <column name="role_id" value="2"/>
         </insert>
-        <insert tableName="user_roles">
+
+        <insert tableName="role_user">
             <column name="user_id" value="3"/>
             <column name="role_id" value="3"/>
         </insert>
-
-
-
-
     </changeSet>
 
 </databaseChangeLog>

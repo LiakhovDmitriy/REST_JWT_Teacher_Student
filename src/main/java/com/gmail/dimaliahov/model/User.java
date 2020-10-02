@@ -3,11 +3,10 @@ package com.gmail.dimaliahov.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
-@Table (name = "users")
+@Table (name = "user")
 @Data
 public class User extends BaseEntety {
 
@@ -27,28 +26,28 @@ public class User extends BaseEntety {
 	private String password;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable (name = "user_roles",
+	@JoinTable (name = "role_user",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "role_id", referencedColumnName = "id")})
-	private List<Role> roles = new ArrayList<>();
+	private List<Role> role = new ArrayList<>();
 
 
-	@ManyToMany
-	@JoinTable (name = "user_lessons",
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable (name = "user_lesson",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
-			inverseJoinColumns = {@JoinColumn (name = "lessons_id", referencedColumnName = "id")})
-	private List<Lessons> lessons = new ArrayList<>();
+			inverseJoinColumns = {@JoinColumn (name = "lesson_id", referencedColumnName = "id")})
+	private Set<Lessons> lesson = new HashSet<>();
 
 	public User () {
 		super();
 	}
 
 	public void setRoleToUser (Role role) {
-		this.roles.add(role);
+		this.role.add(role);
 	}
 
 	public void setLessonToUser (Lessons lessons) {
-		this.lessons.add(lessons);
+		this.lesson.add(lessons);
 	}
 
 //	GETTER AND SETTER
@@ -109,4 +108,6 @@ public class User extends BaseEntety {
 				", email='" + email + '\'' +
 				'}';
 	}
+
+
 }

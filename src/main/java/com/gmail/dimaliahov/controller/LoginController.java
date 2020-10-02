@@ -50,8 +50,8 @@ public class LoginController {
 		UserDto result = UserDto.fromUser(user);
 
 		boolean roleAdmin = false;
-		for (int i = 0; user.getRoles().size() > i; i++) {
-			Role r = user.getRoles().get(i);
+		for (int i = 0; user.getRole().size() > i; i++) {
+			Role r = user.getRole().get(i);
 			if(r.getName().equals("ROLE_ADMIN")){
 				roleAdmin = true;
 				break;
@@ -77,7 +77,7 @@ public class LoginController {
 				throw new UsernameNotFoundException("User with username: " + username + " not found");
 			}
 
-			String token = jwtTokenProvider.createToken(username, user.getRoles());
+			String token = jwtTokenProvider.createToken(username, user.getRole());
 
 			Map<Object, Object> response = new HashMap<>();
 			response.put("username", username);

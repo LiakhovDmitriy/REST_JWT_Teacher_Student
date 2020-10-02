@@ -2,21 +2,23 @@ package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.CreateLessonDTO;
 import com.gmail.dimaliahov.model.Lessons;
-import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
-import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
+import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping (value = "/api/student/")
@@ -25,12 +27,14 @@ public class StudentController {
 
 	private final LessonService lessonService;
 	private final UserService userService;
+	private final UserRepository userRepository;
 
 
 	@Autowired
-	public StudentController (LessonService lessonService, UserService userService) {
+	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository) {
 		this.lessonService = lessonService;
 		this.userService = userService;
+		this.userRepository = userRepository;
 	}
 
 	@PostMapping (value = "create")
@@ -42,20 +46,16 @@ public class StudentController {
 		User user = userService.findById(userID);
 
 		lessonService.createLesson(nLesson);
-		nLesson.setUserToLesson(user);
+
 		user.setLessonToUser(nLesson);
-		List<Lessons> k = new ArrayList<>();
-		k.add(nLesson);
-		user.setLessons(k);
-
-
-		System.out.println(user.getLessons());
+		nLesson.setUserToLesson(user);
+		userRepository.save(user);
 
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 		Map<Object, Object> response = new HashMap<>();
-		response.put("msg", "The lesson was created by - " + user.getUsername() + "; he chose a teacher - " + userService.findById(nLesson.getIdTeacher()).getUsername() );
+		response.put("msg", "The lesson was created by - " + user.getUsername() + "; he chose a teacher - " + userService.findById(nLesson.getIdTeacher()).getUsername());
 		response.put("timeStart", format.format(nLesson.getDateStart()));
 		response.put("timeEnd", format.format(nLesson.getDateEnd()));
 		return ResponseEntity.ok(response);
