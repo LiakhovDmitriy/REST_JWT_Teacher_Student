@@ -41,11 +41,14 @@
             <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
     </changeSet>
+
     <!--   ROLES table -->
     <changeSet id="1.0.1" author="dmitriy.liachov">
         <createTable tableName="roles">
+
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -65,6 +68,7 @@
             <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
     </changeSet>
 
@@ -73,13 +77,12 @@
         <createTable tableName="user_roles">
             <column name="user_id" type="BIGINT">
             </column>
-
             <column name="role_id" type="BIGINT">
             </column>
         </createTable>
     </changeSet>
-    <!-- user_roles - настройка таблицы  -->
 
+    <!-- user_roles - настройка таблицы  -->
     <changeSet id="1.0.3" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_roles"
@@ -89,8 +92,8 @@
                                  referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
-    <!-- user_roles - настройка таблицы  -->
 
+    <!-- user_roles - настройка таблицы  -->
     <changeSet id="1.0.4" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="user_roles"
@@ -101,23 +104,16 @@
                                  referencedTableName="roles"/>
     </changeSet>
 
-    <!--Данные в таблицу записываем-->
-    <changeSet id="1.0.5" author="dmitriy.liachov">
-        <insert tableName="roles">
-            <column name="name" value="ROLE_USER"/>
-        </insert>
-
-        <insert tableName="roles">
-            <column name="name" value="ROLE_ADMIN"/>
-        </insert>
-    </changeSet>
-
-
     <!--    Lessons table-->
-    <changeSet id="1.0.6" author="dmitriy.liachov">
+    <changeSet id="1.0.5" author="dmitriy.liachov">
         <createTable tableName="lessons">
+
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="idTeacher" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
             </column>
 
             <column name="dateStart" type="TIMESTAMP">
@@ -143,22 +139,23 @@
             <column name="status" type="VARCHAR(25)" defaultValue="CONSIDERATION">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
     </changeSet>
 
     <!-- user_lessons - таблиця промежуточная  -->
-    <changeSet id="1.0.7" author="dmitriy.liachov">
+    <changeSet id="1.0.6" author="dmitriy.liachov">
         <createTable tableName="user_lessons">
-            <column name="user_id" type="BIGINT">
-            </column>
 
-            <column name="lessons_id" type="BIGINT">
-            </column>
+            <column name="user_id" type="BIGINT"></column>
+
+            <column name="lessons_id" type="BIGINT"></column>
+
         </createTable>
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.8" author="dmitriy.liachov">
+    <changeSet id="1.0.7" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_lessons"
                                  constraintName="fk_user_lessons_user"
@@ -169,7 +166,7 @@
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.9" author="dmitriy.liachov">
+    <changeSet id="1.0.8" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="lessons_id"
                                  baseTableName="user_lessons"
                                  constraintName="fk_user_lessons_lessons"
@@ -179,5 +176,65 @@
                                  referencedTableName="lessons"/>
     </changeSet>
 
+    <!--Данные в таблицу записываем-->
+    <changeSet id="1.0.9" author="dmitriy.liachov">
+        <insert tableName="roles">
+            <column name="name" value="ROLE_STUDENT"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_TEACHER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="username" value="student"/>
+            <column name="email" value="emailS@gmail.com"/>
+            <column name="first_name" value="FirstNameS"/>
+            <column name="last_name" value="LastNameS"/>
+            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
+            <column name="created" value="2020-09-22 16:26:08"/>
+            <column name="updated" value="2020-09-22 16:26:10"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="tacher"/>
+            <column name="email" value="emailT@gmail.com"/>
+            <column name="first_name" value="FirstNameT"/>
+            <column name="last_name" value="LastNameT"/>
+            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
+            <column name="created" value="2020-09-22 16:26:08"/>
+            <column name="updated" value="2020-09-22 16:26:10"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="users">
+            <column name="username" value="admin"/>
+            <column name="email" value="emailA@gmail.com"/>
+            <column name="first_name" value="FirstNameA"/>
+            <column name="last_name" value="LastNameA"/>
+            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
+            <column name="created" value="2020-09-22 16:26:08"/>
+            <column name="updated" value="2020-09-22 16:26:10"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="3"/>
+        </insert>
+
+
+
+
+    </changeSet>
 
 </databaseChangeLog>

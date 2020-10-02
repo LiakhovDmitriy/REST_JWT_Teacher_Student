@@ -1,15 +1,13 @@
 package com.gmail.dimaliahov.model;
 
-
 import lombok.Data;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table (name = "users")
 @Data
 public class User extends BaseEntety {
 
@@ -28,18 +26,87 @@ public class User extends BaseEntety {
 	@Column (name = "password")
 	private String password;
 
-	@ManyToMany (fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable (name = "user_roles",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "role_id", referencedColumnName = "id")})
-	private List<Role> roles;
+	private List<Role> roles = new ArrayList<>();
 
 
-	@ManyToMany (fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable (name = "user_lessons",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "lessons_id", referencedColumnName = "id")})
-	private List<Lessons> lessons;
+	private List<Lessons> lessons = new ArrayList<>();
+
+	public User () {
+		super();
+	}
+
+	public void setRoleToUser (Role role) {
+		this.roles.add(role);
+	}
+
+	public void setLessonToUser (Lessons lessons) {
+		this.lessons.add(lessons);
+	}
+
+//	GETTER AND SETTER
+	public String getUsername () {
+		return username;
+	}
+
+	public User setUsername (String username) {
+		this.username = username;
+		return this;
+	}
+
+	public String getFirstName () {
+		return firstName;
+	}
+
+	public User setFirstName (String firstName) {
+		this.firstName = firstName;
+		return this;
+
+	}
+
+	public String getLastName () {
+		return lastName;
+	}
+
+	public User setLastName (String lastName) {
+		this.lastName = lastName;
+		return this;
+
+	}
+
+	public String getEmail () {
+		return email;
+	}
+
+	public User setEmail (String email) {
+		this.email = email;
+		return this;
+	}
+
+	public String getPassword () {
+		return password;
+	}
+
+	public User setPassword (String password) {
+		this.password = password;
+		return this;
+	}
 
 
+	@Override
+	public String toString () {
+		return "User{" +
+				"username='" + username + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				'}';
+	}
 }

@@ -6,6 +6,7 @@ import com.gmail.dimaliahov.dto.UserDto;
 import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
+import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +19,22 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 @RequestMapping (value = "/api/")
 @Slf4j
-public class Controller {
+public class LoginController {
 
 	private final UserService userService;
+
 	private final AuthenticationManager authenticationManager;
 	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
-	public Controller (UserService userService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+	public LoginController (UserService userService, AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
 		this.userService = userService;
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenProvider = jwtTokenProvider;
@@ -63,7 +66,7 @@ public class Controller {
 	}
 
 	@PostMapping ("login")
-	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDto requestDto) {
+	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDto requestDto, HttpSession session) {
 		try {
 			String username = requestDto.getUsername();
 			String password = requestDto.getPassword();
@@ -79,6 +82,11 @@ public class Controller {
 			Map<Object, Object> response = new HashMap<>();
 			response.put("username", username);
 			response.put("token", token);
+
+			User userForGetName = userService.findByUsername(username);
+			Long s = userForGetName.getId();
+			session.setAttribute("userID", s);
+
 			return ResponseEntity.ok(response);
 		} catch (AuthenticationException e){
 			throw new BadCredentialsException("Invalid username or password");

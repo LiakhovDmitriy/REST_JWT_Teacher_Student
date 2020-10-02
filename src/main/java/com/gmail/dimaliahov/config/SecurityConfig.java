@@ -16,6 +16,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String ADMIN_ENDPOINT = "/api/admin/**";
 	private static final String LOGIN_ENDPOINT = "/api/login";
+	private static final String REGISTRATION_ENDPOINT = "/api/registration";
+	private static final String STUDENT_ENDPOINT = "/api/student/**";
+	private static final String TEACHER_ENDPOINT = "/api/teacher/**";
 	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
@@ -35,10 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 				.httpBasic().disable()
 				.csrf().disable()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
 				.and()
 				.authorizeRequests()
 				.antMatchers(LOGIN_ENDPOINT).permitAll()
+				.antMatchers(REGISTRATION_ENDPOINT).permitAll()
+				.antMatchers(STUDENT_ENDPOINT).hasRole("STUDENT")
+				.antMatchers(TEACHER_ENDPOINT).hasRole("TEACHER")
 				.antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
 				.anyRequest().authenticated()
 				.and()

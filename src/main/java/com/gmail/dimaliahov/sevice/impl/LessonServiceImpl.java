@@ -32,21 +32,26 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	@Override
-	public List<Lessons> getAllLessonByStatusAndUser (Status status, Long id) {
-		List<Lessons> returnLessons = lessonsRepository.getAllByStatusAndId(status, id);
+	public List<Lessons> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher) {
+		List<Lessons> returnLessons = lessonsRepository.getAllByStatusAndIdTeacher(status, idTeacher);
 
 		return returnLessons;
 	}
 
 	@Override
 	public void changeStatusForLesson (Long idLessons, Status status) {
-		Lessons les = lessonsRepository.getOne(idLessons);
-		les.setStatus(status);
+		Lessons les = lessonsRepository.getById(idLessons);
+		lessonsRepository.changeStatusForLesson(idLessons,status);
 	}
 
 	@Override
 	public List<Lessons> getAllLessonByUserId (Long userId) {
 		return lessonsRepository.getAllById(userId);
+	}
+
+	@Override
+	public Lessons getLessonById (Long i) {
+		return 	lessonsRepository.getById(i);
 	}
 
 	@Override
