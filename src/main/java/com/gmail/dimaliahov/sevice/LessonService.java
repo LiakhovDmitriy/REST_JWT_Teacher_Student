@@ -7,19 +7,16 @@ import java.util.List;
 
 public interface LessonService {
 
-	Lessons createLesson(Lessons lessons);
+	Lessons createLesson (Lessons lessons);
 
-	List<Lessons> getAllLessonByStatusAndTeacherId(Status status, Long id);
+	List<Lessons> getAllLessonByStatusAndTeacherId (Status status, Long id);
 
-	void changeStatusForLesson(Long id, Status status);
+	void changeStatusForLesson (Long id, Status status);
 
 	List<Lessons> getAllLessonByUserId (Long id);
 
-	Lessons getLessonById(Long i);
+	Lessons getLessonById (Long i);
 
-	void delete(Long id);
-
-
-
+	void delete (Long id);
 
 }

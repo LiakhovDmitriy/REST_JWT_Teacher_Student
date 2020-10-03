@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 
 public final class JwtUserFactory {
 
-	public JwtUserFactory() {
+	public JwtUserFactory () {
 	}
 
-	public static JwtUser create(User user) {
+	public static JwtUser create (User user) {
 		return new JwtUser(
 				user.getId(),
 				user.getUsername(),
@@ -29,11 +29,10 @@ public final class JwtUserFactory {
 		);
 	}
 
-	private static List<GrantedAuthority> mapToGrantedAuthorities(List<Role> userRoles) {
+	private static List<GrantedAuthority> mapToGrantedAuthorities (List<Role> userRoles) {
 		return userRoles.stream()
 				.map(role ->
 						new SimpleGrantedAuthority(role.getName())
 				).collect(Collectors.toList());
 	}
-
 }

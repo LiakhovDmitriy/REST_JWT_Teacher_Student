@@ -3,6 +3,7 @@ package com.gmail.dimaliahov.security.jwt;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class JwtUser implements UserDetails {
 	private final Date lastPasswordResetDate;
 	private final Collection<? extends GrantedAuthority> authorities;
 
-	public JwtUser(
+	public JwtUser (
 			Long id,
 			String username,
 			String firstName,
@@ -41,63 +42,63 @@ public class JwtUser implements UserDetails {
 
 
 	@JsonIgnore
-	public Long getId() {
+	public Long getId () {
 		return id;
 	}
 
 	@Override
-	public String getUsername() {
+	public String getUsername () {
 		return username;
 	}
 
 	@JsonIgnore
 	@Override
-	public boolean isAccountNonExpired() {
+	public boolean isAccountNonExpired () {
 		return true;
 	}
 
 	@JsonIgnore
 	@Override
-	public boolean isAccountNonLocked() {
+	public boolean isAccountNonLocked () {
 		return true;
 	}
 
 	@JsonIgnore
 	@Override
-	public boolean isCredentialsNonExpired() {
+	public boolean isCredentialsNonExpired () {
 		return true;
 	}
 
-	public String getFirstname() {
+	public String getFirstname () {
 		return firstName;
 	}
 
-	public String getLastname() {
+	public String getLastname () {
 		return lastName;
 	}
 
-	public String getEmail() {
+	public String getEmail () {
 		return email;
 	}
 
 	@JsonIgnore
 	@Override
-	public String getPassword() {
+	public String getPassword () {
 		return password;
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	public Collection<? extends GrantedAuthority> getAuthorities () {
 		return authorities;
 	}
 
 	@Override
-	public boolean isEnabled() {
+	public boolean isEnabled () {
 		return enabled;
 	}
 
 	@JsonIgnore
-	public Date getLastPasswordResetDate() {
+	public Date getLastPasswordResetDate () {
 		return lastPasswordResetDate;
 	}
 }

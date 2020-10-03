@@ -6,7 +6,6 @@ import com.gmail.dimaliahov.dto.UserDto;
 import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
-import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ import java.util.Map;
 public class LoginController {
 
 	private final UserService userService;
-
 	private final AuthenticationManager authenticationManager;
 	private final JwtTokenProvider jwtTokenProvider;
 
@@ -52,7 +50,7 @@ public class LoginController {
 		boolean roleAdmin = false;
 		for (int i = 0; user.getRole().size() > i; i++) {
 			Role r = user.getRole().get(i);
-			if(r.getName().equals("ROLE_ADMIN")){
+			if (r.getName().equals("ROLE_ADMIN")) {
 				roleAdmin = true;
 				break;
 			}
@@ -61,7 +59,6 @@ public class LoginController {
 			AdminUserDto resultAdmin = AdminUserDto.fromUser(user);
 			return new ResponseEntity<>(resultAdmin, HttpStatus.OK);
 		}
-
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 

@@ -1,12 +1,16 @@
 package com.gmail.dimaliahov.model;
 
-
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "lesson")
-public class Lessons extends BaseEntety{
+public class Lessons extends BaseEntety {
 
 	@Column (name = "idTeacher")
 	private Long idTeacher;
@@ -20,21 +24,16 @@ public class Lessons extends BaseEntety{
 	@Column (name = "price")
 	private int price;
 
-	@ManyToMany(mappedBy = "lesson" )
-//	@JoinTable (name = "user_lessons",
-//			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
-//			inverseJoinColumns = {@JoinColumn (name = "lessons_id", referencedColumnName = "id")})
+	@ManyToMany (mappedBy = "lesson")
 	private Set<User> user = new HashSet<>();
 
 	public Lessons () {
 		super();
 	}
 
-	public void setUserToLesson(User user){
+	public void setUserToLesson (User user) {
 		this.user.add(user);
 	}
-
-
 
 	public Long getIdTeacher () {
 		return idTeacher;
@@ -81,7 +80,6 @@ public class Lessons extends BaseEntety{
 	public Lessons setUser (Set<User> users) {
 		this.user = users;
 		return this;
-
 	}
 
 	@Override

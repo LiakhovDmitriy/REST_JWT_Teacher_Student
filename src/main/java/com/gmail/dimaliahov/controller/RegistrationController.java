@@ -30,7 +30,6 @@ public class RegistrationController {
 	private final RoleRepository roleRepository;
 	private final UserRepository userRepository;
 
-
 	@Autowired
 	public RegistrationController (LessonService lessonService, UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
 		this.lessonService = lessonService;
@@ -38,8 +37,6 @@ public class RegistrationController {
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 	}
-
-
 
 	@PostMapping (value = "registration")
 	public ResponseEntity<Object> postChangeStatus (@RequestBody RegistrationDTO registrationDTO) {

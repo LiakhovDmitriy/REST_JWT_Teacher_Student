@@ -14,21 +14,15 @@ import java.util.List;
 @Repository
 public interface LessonsRepository extends JpaRepository<Lessons, Long> {
 
-	List<Lessons> getAllByStatusAndIdTeacher(Status status, Long idUser);
+	List<Lessons> getAllByStatusAndIdTeacher (Status status, Long idUser);
 
-	List<Lessons> getAllById(Long userId);
+	List<Lessons> getAllById (Long userId);
 
-	Lessons getById(Long id);
+	Lessons getById (Long id);
 
 	@Modifying
-	@Query("UPDATE Lessons c SET c.status = :name WHERE c.id = :id")
+	@Query ("UPDATE Lessons c SET c.status = :name WHERE c.id = :id")
 	@Transactional
-	void changeStatusForLesson(@Param("id") Long id, @Param("name") Status name);
+	void changeStatusForLesson (@Param ("id") Long id, @Param ("name") Status name);
 
-
-//	@Modifying
-//	@Query(
-//			value ="UPDATE Lessons SET status WHERE (:id) VALUES (:name)  ",
-//			nativeQuery = true)
-//	void changeStatusForLesson(@Param ("status") Status status, @Param ("id") Long id);
 }

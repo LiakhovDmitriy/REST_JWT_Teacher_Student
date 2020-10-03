@@ -111,7 +111,6 @@
         </createTable>
     </changeSet>
 
-
     <!-- user_roles - таблиця промежуточная  -->
     <changeSet id="1.0.3" author="dmitriy.liachov">
         <createTable tableName="role_user">
@@ -135,6 +134,7 @@
         </createTable>
     </changeSet>
 
+    <!-- user_roles - таблиця промежуточная  -->
     <changeSet id="1.0.5" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="role_user"
@@ -145,6 +145,7 @@
                                  referencedTableName="user"/>
     </changeSet>
 
+    <!-- user_roles - таблиця промежуточная  -->
     <changeSet id="1.0.6" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="role_user"
@@ -154,7 +155,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="role"/>
     </changeSet>
-
 
     <!-- user_lessons - настройка таблицы  -->
     <changeSet id="1.0.7" author="dmitriy.liachov">
@@ -177,11 +177,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="lesson"/>
     </changeSet>
-
-
-
-
-
 
     <!--Данные в таблицу записываем-->
     <changeSet id="1.0.9" author="dmitriy.liachov">

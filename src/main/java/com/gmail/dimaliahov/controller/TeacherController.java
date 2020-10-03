@@ -32,7 +32,7 @@ public class TeacherController {
 	@GetMapping (value = "consideration")
 	public ResponseEntity<Object> getAllByStatusConsideration (HttpSession session) {
 
-		List <Lessons> list = lessonService.getAllLessonByStatusAndTeacherId(Status.CONSIDERATION, (Long) session.getAttribute("userID"));
+		List<Lessons> list = lessonService.getAllLessonByStatusAndTeacherId(Status.CONSIDERATION, (Long) session.getAttribute("userID"));
 
 		Map<Object, Object> response = new HashMap<>();
 		response.put("msg", list);
@@ -46,7 +46,7 @@ public class TeacherController {
 		List<Long> listLessonId = statusList.getLessonId();
 
 		for (Long j : listLessonId) {
-			lessonService.changeStatusForLesson(j,statusList.getStatus());
+			lessonService.changeStatusForLesson(j, statusList.getStatus());
 			response.put("lesson " + j, "Now the status is this: " + statusList.getStatus());
 		}
 		return ResponseEntity.ok(response);

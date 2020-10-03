@@ -1,6 +1,5 @@
 package com.gmail.dimaliahov.sevice.impl;
 
-import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.repository.RoleRepository;
@@ -10,9 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

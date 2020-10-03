@@ -20,11 +20,11 @@ public class BaseEntety {
 	private Date created;
 
 	@LastModifiedDate
-	@Column(name = "updated")
+	@Column (name = "updated")
 	private Date updated;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "status")
+	@Enumerated (EnumType.STRING)
+	@Column (name = "status")
 	private Status status;
 
 }

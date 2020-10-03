@@ -18,12 +18,9 @@ public class Role extends BaseEntety {
 	private String name;
 
 	@ManyToMany
-//	@JoinTable (name = "user_roles",
-//			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
-//			inverseJoinColumns = {@JoinColumn (name = "role_id", referencedColumnName = "id")})
 	private List<User> user = new ArrayList<>();
 
-	public void setUserToRole (User user){
+	public void setUserToRole (User user) {
 		this.user.add(user);
 	}
 

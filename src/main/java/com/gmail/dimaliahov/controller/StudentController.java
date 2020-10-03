@@ -29,7 +29,6 @@ public class StudentController {
 	private final UserService userService;
 	private final UserRepository userRepository;
 
-
 	@Autowired
 	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository) {
 		this.lessonService = lessonService;
@@ -50,7 +49,6 @@ public class StudentController {
 		user.setLessonToUser(nLesson);
 		nLesson.setUserToLesson(user);
 		userRepository.save(user);
-
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 

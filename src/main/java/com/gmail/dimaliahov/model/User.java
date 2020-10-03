@@ -3,7 +3,10 @@ package com.gmail.dimaliahov.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table (name = "user")
@@ -25,14 +28,14 @@ public class User extends BaseEntety {
 	@Column (name = "password")
 	private String password;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable (name = "role_user",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "role_id", referencedColumnName = "id")})
 	private List<Role> role = new ArrayList<>();
 
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable (name = "user_lesson",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "lesson_id", referencedColumnName = "id")})
@@ -50,7 +53,7 @@ public class User extends BaseEntety {
 		this.lesson.add(lessons);
 	}
 
-//	GETTER AND SETTER
+	//	GETTER AND SETTER
 	public String getUsername () {
 		return username;
 	}

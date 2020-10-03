@@ -21,7 +21,6 @@ public class LessonServiceImpl implements LessonService {
 		this.lessonsRepository = lessonsRepository;
 	}
 
-
 	@Override
 	public Lessons createLesson (Lessons lessons) {
 		lessonsRepository.save(lessons);

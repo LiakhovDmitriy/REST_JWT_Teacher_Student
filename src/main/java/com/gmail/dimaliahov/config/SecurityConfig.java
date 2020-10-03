@@ -2,7 +2,6 @@ package com.gmail.dimaliahov.config;
 
 import com.gmail.dimaliahov.security.jwt.JwtConfigurer;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean () throws Exception {
 		return super.authenticationManagerBean();
 	}
-
 
 	@Override
 	protected void configure (HttpSecurity http) throws Exception {

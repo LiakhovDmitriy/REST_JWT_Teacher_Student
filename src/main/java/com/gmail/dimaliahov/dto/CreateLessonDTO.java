@@ -3,7 +3,6 @@ package com.gmail.dimaliahov.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gmail.dimaliahov.model.Lessons;
 import com.gmail.dimaliahov.model.Status;
-import liquibase.pro.packaged.D;
 import lombok.Data;
 
 import java.text.ParseException;
@@ -24,8 +23,8 @@ public class CreateLessonDTO {
 
 	public Lessons toLesson (CreateLessonDTO lessonDTO) throws ParseException {
 
-		Date dateS=new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(lessonDTO.getDateStart());
-		Date dateE=new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(lessonDTO.getDateEnd());
+		Date dateS = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(lessonDTO.getDateStart());
+		Date dateE = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(lessonDTO.getDateEnd());
 		Lessons lessons = new Lessons()
 				.setPrice(lessonDTO.getPrice())
 				.setDateEnd(dateS)
