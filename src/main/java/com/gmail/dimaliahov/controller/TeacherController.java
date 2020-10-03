@@ -1,6 +1,6 @@
 package com.gmail.dimaliahov.controller;
 
-import com.gmail.dimaliahov.dto.ChangeStatusList;
+import com.gmail.dimaliahov.dto.ChangeStatusListDTO;
 import com.gmail.dimaliahov.dto.TeacherSetAvailableTimeDTO;
 import com.gmail.dimaliahov.model.AvailableTime;
 import com.gmail.dimaliahov.model.Lessons;
@@ -52,10 +52,10 @@ public class TeacherController {
 
 // Вчитель вибирає що візьме. Змінить статусі на APPROVE якщо прийме предложение. REJECTED якщо відмовиться
 	@PostMapping (value = "offers")
-	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusList> statusList) {
+	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusListDTO> statusList) {
 		Map<Object, Object> response = new HashMap<>();
 
-		for ( ChangeStatusList list :statusList) {
+		for ( ChangeStatusListDTO list :statusList) {
 			List<Long> listLessonId = list.getLessonId();
 			for (Long j : listLessonId) {
 				lessonService.changeStatusForLesson(j, list.getStatus());

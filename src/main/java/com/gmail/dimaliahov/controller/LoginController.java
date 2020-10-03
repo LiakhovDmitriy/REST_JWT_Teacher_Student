@@ -1,8 +1,8 @@
 package com.gmail.dimaliahov.controller;
 
-import com.gmail.dimaliahov.dto.AdminUserDto;
-import com.gmail.dimaliahov.dto.AuthenticationRequestDto;
-import com.gmail.dimaliahov.dto.UserDto;
+import com.gmail.dimaliahov.dto.AdminUserDTO;
+import com.gmail.dimaliahov.dto.AuthenticationRequestDTO;
+import com.gmail.dimaliahov.dto.UserDTO;
 import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
@@ -45,7 +45,7 @@ public class LoginController {
 		if (user == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		UserDto result = UserDto.fromUser(user);
+		UserDTO result = UserDTO.fromUser(user);
 
 		boolean roleAdmin = false;
 		for (int i = 0; user.getRole().size() > i; i++) {
@@ -56,14 +56,14 @@ public class LoginController {
 			}
 		}
 		if (roleAdmin) {
-			AdminUserDto resultAdmin = AdminUserDto.fromUser(user);
+			AdminUserDTO resultAdmin = AdminUserDTO.fromUser(user);
 			return new ResponseEntity<>(resultAdmin, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@PostMapping ("login")
-	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDto requestDto, HttpSession session) {
+	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDTO requestDto, HttpSession session) {
 		try {
 			String username = requestDto.getUsername();
 			String password = requestDto.getPassword();

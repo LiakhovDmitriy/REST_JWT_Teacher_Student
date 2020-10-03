@@ -1,29 +1,27 @@
 package com.gmail.dimaliahov.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import lombok.Data;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class AdminUserDto {
+public class UserDTO {
 	private Long id;
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String status;
 
-	public static AdminUserDto fromUser (User user) {
-		AdminUserDto adminUserDto = new AdminUserDto();
-		adminUserDto.setId(user.getId());
-		adminUserDto.setUsername(user.getUsername());
-		adminUserDto.setFirstName(user.getFirstName());
-		adminUserDto.setLastName(user.getLastName());
-		adminUserDto.setEmail(user.getEmail());
-		adminUserDto.setStatus(user.getStatus().name());
-		return adminUserDto;
+	public static UserDTO fromUser (User user) {
+		UserDTO userDto = new UserDTO();
+		userDto.setId(user.getId());
+		userDto.setUsername(user.getUsername());
+		userDto.setFirstName(user.getFirstName());
+		userDto.setLastName(user.getLastName());
+		userDto.setEmail(user.getEmail());
+
+		return userDto;
 	}
 
 	public User toUser () {
@@ -33,19 +31,17 @@ public class AdminUserDto {
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
-		user.setStatus(Status.valueOf(status));
 		return user;
 	}
 
 	@Override
 	public String toString () {
-		return "AdminUserDto{" +
+		return "UserDto{" +
 				"id=" + id +
 				", username='" + username + '\'' +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
-				", status='" + status + '\'' +
 				'}';
 	}
 }
