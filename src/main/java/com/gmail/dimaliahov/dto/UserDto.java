@@ -33,4 +33,15 @@ public class UserDto {
 		user.setEmail(email);
 		return user;
 	}
+
+	@Override
+	public String toString () {
+		return "UserDto{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				'}';
+	}
 }

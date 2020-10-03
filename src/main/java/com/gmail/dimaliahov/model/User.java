@@ -1,6 +1,8 @@
 package com.gmail.dimaliahov.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.*;
@@ -8,6 +10,7 @@ import java.util.*;
 @Entity
 @Table (name = "user")
 @Data
+@ToString
 public class User extends BaseEntety {
 
 	@Column (name = "username")
@@ -38,6 +41,7 @@ public class User extends BaseEntety {
 			inverseJoinColumns = {@JoinColumn (name = "lesson_id", referencedColumnName = "id")})
 	private Set<Lessons> lesson = new HashSet<>();
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<AvailableTime> available = new HashSet<>();
 

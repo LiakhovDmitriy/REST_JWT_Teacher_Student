@@ -32,7 +32,7 @@ public class LessonServiceImpl implements LessonService {
 
 	@Override
 	public List<Lessons> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher) {
-		List<Lessons> returnLessons = lessonsRepository.getAllByStatusAndIdTeacher(status, idTeacher);
+		List<Lessons> returnLessons = lessonsRepository.getAllByIdTeacherAndAndStatus(idTeacher, status);
 
 		return returnLessons;
 	}

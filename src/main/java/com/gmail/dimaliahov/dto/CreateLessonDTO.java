@@ -36,4 +36,13 @@ public class CreateLessonDTO {
 		return lessons;
 	}
 
+	@Override
+	public String toString () {
+		return "CreateLessonDTO{" +
+				"dateStart='" + dateStart + '\'' +
+				", dateEnd='" + dateEnd + '\'' +
+				", price=" + price +
+				", idTeacher=" + idTeacher +
+				'}';
+	}
 }

@@ -14,7 +14,8 @@ import java.util.List;
 @Repository
 public interface LessonsRepository extends JpaRepository<Lessons, Long> {
 
-	List<Lessons> getAllByStatusAndIdTeacher (Status status, Long idUser);
+
+	List<Lessons> getAllByIdTeacherAndAndStatus (Long idTeacher, Status status);
 
 	List<Lessons> getAllById (Long userId);
 

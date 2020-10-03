@@ -1,24 +1,23 @@
 package com.gmail.dimaliahov.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.gmail.dimaliahov.model.AvailableTime;
 import com.gmail.dimaliahov.model.Status;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class ChangeStatusList {
+public class TeacherSetAvailableTimeDTO {
 
-	private List<Long> lessonId;
+	private String timeStart;
 
-	private Status status;
+	private String timeEnd;
 
 	@Override
 	public String toString () {
-		return "ChangeStatusList{" +
-				"lessonId=" + lessonId +
-				", status=" + status +
+		return "TeacherSetAvailableTime{" +
+				"timeStart='" + timeStart + '\'' +
+				", timeEnd='" + timeEnd + '\'' +
 				'}';
 	}
 }

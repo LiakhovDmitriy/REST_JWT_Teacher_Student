@@ -36,4 +36,16 @@ public class AdminUserDto {
 		user.setStatus(Status.valueOf(status));
 		return user;
 	}
+
+	@Override
+	public String toString () {
+		return "AdminUserDto{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", status='" + status + '\'' +
+				'}';
+	}
 }

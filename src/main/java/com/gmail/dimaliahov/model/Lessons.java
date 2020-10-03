@@ -1,5 +1,9 @@
 package com.gmail.dimaliahov.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -10,6 +14,8 @@ import java.util.Set;
 
 @Entity
 @Table (name = "lesson")
+@Data
+@ToString
 public class Lessons extends BaseEntety {
 
 	@Column (name = "idTeacher")
@@ -24,6 +30,7 @@ public class Lessons extends BaseEntety {
 	@Column (name = "price")
 	private int price;
 
+	@JsonBackReference
 	@ManyToMany (mappedBy = "lesson")
 	private Set<User> user = new HashSet<>();
 
@@ -85,7 +92,8 @@ public class Lessons extends BaseEntety {
 	@Override
 	public String toString () {
 		return "Lessons{" +
-				"dateStart=" + dateStart +
+				"idTeacher=" + idTeacher +
+				", dateStart=" + dateStart +
 				", dateEnd=" + dateEnd +
 				", price=" + price +
 				'}';
