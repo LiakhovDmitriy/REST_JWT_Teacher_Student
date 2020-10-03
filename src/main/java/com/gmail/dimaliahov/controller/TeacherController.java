@@ -29,26 +29,36 @@ public class TeacherController {
 		this.userService = userService;
 	}
 
-	@GetMapping (value = "consideration")
+//	Получить по статусу CONSIDERATION (розглядається),
+//	це всі задачі створені студентами які вибрали цього вчителя
+	@GetMapping (value = "offers")
 	public ResponseEntity<Object> getAllByStatusConsideration (HttpSession session) {
 
-		List<Lessons> list = lessonService.getAllLessonByStatusAndTeacherId(Status.CONSIDERATION, (Long) session.getAttribute("userID"));
+		List<Lessons> list = lessonService.getAllLessonByStatusAndTeacherId(
+				Status.CONSIDERATION,
+				(Long) session.getAttribute("userID")
+		);
 
 		Map<Object, Object> response = new HashMap<>();
 		response.put("msg", list);
 		return ResponseEntity.ok(response);
 	}
-
-	@PostMapping (value = "consideration")
-	public ResponseEntity<Object> postChangeStatus (@RequestBody ChangeStatusList statusList) {
+// Вчитель вибирає що візьме. Змінить статусі на APPROVE якщо прийме предложение. REJECTED якщо відмовиться
+	@PostMapping (value = "offers")
+	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusList> statusList) {
 		Map<Object, Object> response = new HashMap<>();
 
-		List<Long> listLessonId = statusList.getLessonId();
-
-		for (Long j : listLessonId) {
-			lessonService.changeStatusForLesson(j, statusList.getStatus());
-			response.put("lesson " + j, "Now the status is this: " + statusList.getStatus());
+		for ( ChangeStatusList list :statusList) {
+			List<Long> listLessonId = list.getLessonId();
+			for (Long j : listLessonId) {
+				lessonService.changeStatusForLesson(j, list.getStatus());
+				response.put("lesson " + j, "Now the status is this: " + list.getStatus());
+			}
 		}
 		return ResponseEntity.ok(response);
 	}
+
+
+
+
 }

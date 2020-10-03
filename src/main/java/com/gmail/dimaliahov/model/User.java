@@ -3,10 +3,7 @@ package com.gmail.dimaliahov.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table (name = "user")
@@ -41,19 +38,22 @@ public class User extends BaseEntety {
 			inverseJoinColumns = {@JoinColumn (name = "lesson_id", referencedColumnName = "id")})
 	private Set<Lessons> lesson = new HashSet<>();
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<AvailableTime> available = new HashSet<>();
+
 	public User () {
 		super();
-	}
-
-	public void setRoleToUser (Role role) {
-		this.role.add(role);
 	}
 
 	public void setLessonToUser (Lessons lessons) {
 		this.lesson.add(lessons);
 	}
+	public void setAvailableTimeToUser (AvailableTime available) {
+		this.available.add(available);
+		available.setUser(this);
+	}
 
-	//	GETTER AND SETTER
+	//	start GETTER AND SETTER
 	public String getUsername () {
 		return username;
 	}
@@ -101,6 +101,50 @@ public class User extends BaseEntety {
 		return this;
 	}
 
+	public List<Role> getRole () {
+		return role;
+	}
+
+	public void setRole (List<Role> role) {
+		this.role = role;
+	}
+
+	public Set<Lessons> getLesson () {
+		return lesson;
+	}
+
+	public void setLesson (Set<Lessons> lesson) {
+		this.lesson = lesson;
+	}
+
+	public Set<AvailableTime> getAvailable () {
+		return available;
+	}
+
+	public void setAvailable (Set<AvailableTime> available) {
+		this.available = available;
+	}
+
+	//	end GETTER AND SETTER
+
+
+	@Override
+	public boolean equals (Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		User user = (User) o;
+		return Objects.equals(username, user.username) &&
+				Objects.equals(firstName, user.firstName) &&
+				Objects.equals(lastName, user.lastName) &&
+				Objects.equals(email, user.email) &&
+				Objects.equals(password, user.password);
+	}
+
+	@Override
+	public int hashCode () {
+		return Objects.hash(super.hashCode(), username, firstName, lastName, email, password);
+	}
 
 	@Override
 	public String toString () {
@@ -109,8 +153,7 @@ public class User extends BaseEntety {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
+				", password='" + password + '\'' +
 				'}';
 	}
-
-
 }

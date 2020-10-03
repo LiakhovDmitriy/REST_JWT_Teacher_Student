@@ -25,6 +25,17 @@ import java.util.Map;
 @Slf4j
 public class StudentController {
 
+//	GET отримати всих вчителів та їх прайс
+
+//	Ще один GET можно подивиться час коли доступний викладач
+
+//	Потім студент можить створити зайняття з доступного -
+//	(також добавить перевірку чи входить час в рамки в методі createLessonDTOResponseEntity
+
+//	GET створених зайнять
+
+//	POST відмінити створене зайняття
+
 	private final LessonService lessonService;
 	private final UserService userService;
 	private final UserRepository userRepository;
@@ -47,7 +58,6 @@ public class StudentController {
 		lessonService.createLesson(nLesson);
 
 		user.setLessonToUser(nLesson);
-		nLesson.setUserToLesson(user);
 		userRepository.save(user);
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");

@@ -72,7 +72,7 @@
         </createTable>
     </changeSet>
 
-    <!--    Lessons table-->
+    <!--    LESSONS table-->
     <changeSet id="1.0.2" author="dmitriy.liachov">
         <createTable tableName="lesson">
 
@@ -93,6 +93,39 @@
             </column>
 
             <column name="dateEnd" type="TIMESTAMP">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="status" type="VARCHAR(25)" defaultValue="CONSIDERATION">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <!-- user_lessons_available - таблиця промежуточная  -->
+    <changeSet id="1.0.5" author="dmitriy.liachov">
+        <createTable tableName="user_available">
+
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="timeStart" type="TIMESTAMP">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="timeEnd" type="TIMESTAMP">
                 <constraints nullable="false" unique="false"/>
             </column>
 
@@ -134,8 +167,23 @@
         </createTable>
     </changeSet>
 
-    <!-- user_roles - таблиця промежуточная  -->
-    <changeSet id="1.0.5" author="dmitriy.liachov">
+
+
+
+    <!-- user_lessons_available - настройка таблицы  -->
+    <changeSet id="1.0.6" author="dmitriy.liachov">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_available"
+                                 constraintName="fk_available_user_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
+
+
+    <!-- user_roles - настройка таблицы  -->
+    <changeSet id="1.0.7" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="role_user"
                                  constraintName="fk_role_user_user"
@@ -145,8 +193,8 @@
                                  referencedTableName="user"/>
     </changeSet>
 
-    <!-- user_roles - таблиця промежуточная  -->
-    <changeSet id="1.0.6" author="dmitriy.liachov">
+    <!-- user_roles - настройка таблицы  -->
+    <changeSet id="1.0.8" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="role_user"
                                  constraintName="fk_role_user_role"
@@ -157,7 +205,7 @@
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.7" author="dmitriy.liachov">
+    <changeSet id="1.0.9" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_lesson"
                                  constraintName="fk_user_lesson_user"
@@ -168,7 +216,7 @@
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.8" author="dmitriy.liachov">
+    <changeSet id="1.0.10" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="lesson_id"
                                  baseTableName="user_lesson"
                                  constraintName="fk_user_lesson_lesson"
@@ -179,7 +227,7 @@
     </changeSet>
 
     <!--Данные в таблицу записываем-->
-    <changeSet id="1.0.9" author="dmitriy.liachov">
+    <changeSet id="1.0.11" author="dmitriy.liachov">
 
         <insert tableName="role">
             <column name="name" value="ROLE_STUDENT"/>
