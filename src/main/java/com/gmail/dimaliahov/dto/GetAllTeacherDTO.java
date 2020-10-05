@@ -13,14 +13,14 @@ public class GetAllTeacherDTO {
 	private String firstName;
 	private String lastName;
 
-	public GetAllTeacherDTO fromUserToDTO(User user){
+	public GetAllTeacherDTO fromUserToDTO (User user) {
 
 		GetAllTeacherDTO dto = new GetAllTeacherDTO();
 		dto.setIdTeacher(user.getId());
 		dto.setUsername(user.getUsername());
 		dto.setFirstName(user.getFirstName());
 		dto.setLastName(user.getLastName());
-		return  dto;
+		return dto;
 	}
 
 

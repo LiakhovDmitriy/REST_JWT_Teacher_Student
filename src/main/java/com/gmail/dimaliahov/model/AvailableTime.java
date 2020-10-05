@@ -18,9 +18,8 @@ public class AvailableTime extends BaseEntety {
 	private Date timeEnd;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn (name = "user_id")
 	private User user;
-
 
 	@Override
 	public boolean equals (Object o) {

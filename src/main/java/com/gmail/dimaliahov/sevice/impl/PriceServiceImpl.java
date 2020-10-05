@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 @Slf4j
 public class PriceServiceImpl implements PriceService {
+
 	private final PriceRepository priceRepository;
 
 	@Autowired
@@ -21,6 +23,6 @@ public class PriceServiceImpl implements PriceService {
 
 	@Override
 	public List<PriceListForTeacher> getAllPricesByUserId (Long id) {
-		return  new ArrayList<>(priceRepository.getAllByUser_Id(id));
+		return new ArrayList<>(priceRepository.getAllByUser_Id(id));
 	}
 }

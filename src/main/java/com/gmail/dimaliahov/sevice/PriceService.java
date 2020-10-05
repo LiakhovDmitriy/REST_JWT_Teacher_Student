@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PriceService {
 
-	List<PriceListForTeacher> getAllPricesByUserId(Long id);
+	List<PriceListForTeacher> getAllPricesByUserId (Long id);
 
 }

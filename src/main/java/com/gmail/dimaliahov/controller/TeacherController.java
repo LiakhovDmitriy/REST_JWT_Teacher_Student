@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping (value = "/api/teacher/")
@@ -129,7 +132,7 @@ public class TeacherController {
 	public ResponseEntity<Object> getPriseList (HttpServletRequest req) {
 		String token = req.getHeader("Authorization").substring(7);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
-		List <PriceListForTeacher> l = priceService.getAllPricesByUserId(user.getId());
+		List<PriceListForTeacher> l = priceService.getAllPricesByUserId(user.getId());
 
 		Map<Object, Object> response = new HashMap<>();
 		response.put("My username", user.getUsername());
@@ -137,14 +140,12 @@ public class TeacherController {
 		Map<Object, Object> date = new HashMap<>();
 
 		for (int i = 0; i < l.size(); i++) {
-			date.put("Price " + i, "Time " + l.get(i).getTime()+  " minutes; Price: " + l.get(i).getPrice());
+			date.put("Price " + i, "Time " + l.get(i).getTime() + " minutes; Price: " + l.get(i).getPrice());
 		}
-		response.put("Prices" , date);
+		response.put("Prices", date);
 
 		return ResponseEntity.ok(response);
 	}
-
-
 
 
 }

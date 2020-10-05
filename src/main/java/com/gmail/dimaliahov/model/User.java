@@ -45,11 +45,11 @@ public class User extends BaseEntety {
 	private Set<Lessons> lesson = new HashSet<>();
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<AvailableTime> available = new HashSet<>();
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<PriceListForTeacher> price = new HashSet<>();
 
 	public User () {
@@ -59,10 +59,12 @@ public class User extends BaseEntety {
 	public void setLessonToUser (Lessons lessons) {
 		this.lesson.add(lessons);
 	}
+
 	public void setAvailableTimeToUser (AvailableTime available) {
 		this.available.add(available);
 		available.setUser(this);
 	}
+
 	public void setPriceToUser (PriceListForTeacher price) {
 		this.price.add(price);
 		price.setUser(this);
@@ -156,7 +158,6 @@ public class User extends BaseEntety {
 		this.price = price;
 	}
 	//	end GETTER AND SETTER
-
 
 	@Override
 	public boolean equals (Object o) {

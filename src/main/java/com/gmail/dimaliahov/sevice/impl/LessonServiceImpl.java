@@ -44,7 +44,7 @@ public class LessonServiceImpl implements LessonService {
 
 	@Override
 	public Lessons getLessonById (Long i) {
-		return 	lessonsRepository.getById(i);
+		return lessonsRepository.getById(i);
 	}
 
 	@Override

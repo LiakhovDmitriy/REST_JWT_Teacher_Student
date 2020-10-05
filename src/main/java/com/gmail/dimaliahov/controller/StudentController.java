@@ -1,6 +1,5 @@
 package com.gmail.dimaliahov.controller;
 
-import com.gmail.dimaliahov.dto.ChangeStatusListDTO;
 import com.gmail.dimaliahov.dto.CreateLessonDTO;
 import com.gmail.dimaliahov.model.*;
 import com.gmail.dimaliahov.repository.LessonsRepository;
@@ -71,7 +70,6 @@ public class StudentController {
 	@GetMapping ("teacher")
 	public ResponseEntity<Object> getAllAvailableTeacher () {
 
-
 		Role r = roleRepository.findByName("ROLE_TEACHER");
 
 		List<User> user = userRepository.getByRole(r);
@@ -130,9 +128,9 @@ public class StudentController {
 		Map<Object, Object> response = new HashMap<>();
 		List<Lessons> l = lessonsRepository.getByUser(userService.findById(userID));
 
-		for (int i = 0; i < l.size() ; i++) {
+		for (int i = 0; i < l.size(); i++) {
 			if (list.contains(l.get(i).getId())) {
-				lessonsRepository.changeStatusForLesson( l.get(i).getId(), Status.NOT_ACTIVE );
+				lessonsRepository.changeStatusForLesson(l.get(i).getId(), Status.NOT_ACTIVE);
 				response.put("lesson " + l.get(i).getId(), "Now the status is this: " + Status.NOT_ACTIVE);
 			}
 		}
