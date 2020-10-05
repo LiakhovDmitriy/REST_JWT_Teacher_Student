@@ -293,20 +293,20 @@
             <column name="first_name" value="FirstNameS"/>
             <column name="last_name" value="LastNameS"/>
             <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
-            <column name="created" value="2020-09-22 16:26:08"/>
-            <column name="updated" value="2020-09-22 16:26:10"/>
+            <column name="created" value="2020-00-00 12:12:12"/>
+            <column name="updated" value="2020-00-00 12:12:12"/>
             <column name="status" value="ACTIVE"/>
         </insert>
 
         <insert tableName="user">
-            <column name="username" value="tacher"/>
+            <column name="username" value="teacher"/>
             <column name="money" value="0"/>
             <column name="email" value="emailT@gmail.com"/>
             <column name="first_name" value="FirstNameT"/>
             <column name="last_name" value="LastNameT"/>
             <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
-            <column name="created" value="2020-09-22 16:26:08"/>
-            <column name="updated" value="2020-09-22 16:26:10"/>
+            <column name="created" value="2020-00-00 12:12:12"/>
+            <column name="updated" value="2020-00-00 12:12:12"/>
             <column name="status" value="ACTIVE"/>
         </insert>
 
@@ -317,8 +317,8 @@
             <column name="first_name" value="FirstNameA"/>
             <column name="last_name" value="LastNameA"/>
             <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
-            <column name="created" value="2020-09-22 16:26:08"/>
-            <column name="updated" value="2020-09-22 16:26:10"/>
+            <column name="created" value="2020-00-00 12:12:12"/>
+            <column name="updated" value="2020-00-00 12:12:12"/>
             <column name="status" value="ACTIVE"/>
         </insert>
 
