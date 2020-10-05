@@ -14,6 +14,10 @@
                 <constraints nullable="false" unique="true"/>
             </column>
 
+            <column name="money" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
@@ -111,9 +115,9 @@
         </createTable>
     </changeSet>
 
-    <!-- user_lessons_available - таблиця промежуточная  -->
-    <changeSet id="1.0.5" author="dmitriy.liachov">
-        <createTable tableName="user_available">
+    <!-- available_time - таблиця промежуточная  -->
+    <changeSet id="1.0.3" author="dmitriy.liachov">
+        <createTable tableName="available_time">
 
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -144,8 +148,45 @@
         </createTable>
     </changeSet>
 
+    <!-- price_list - таблиця промежуточная  -->
+    <changeSet id="1.0.4" author="dmitriy.liachov">
+        <createTable tableName="price_list">
+
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="timeStart" type="TIMESTAMP">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="timeEnd" type="TIMESTAMP">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="price" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="status" type="VARCHAR(25)" defaultValue="CONSIDERATION">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
     <!-- user_roles - таблиця промежуточная  -->
-    <changeSet id="1.0.3" author="dmitriy.liachov">
+    <changeSet id="1.0.5" author="dmitriy.liachov">
         <createTable tableName="role_user">
             <column name="user_id" type="BIGINT">
             </column>
@@ -155,7 +196,7 @@
     </changeSet>
 
     <!-- user_lessons - таблиця промежуточная  -->
-    <changeSet id="1.0.4" author="dmitriy.liachov">
+    <changeSet id="1.0.6" author="dmitriy.liachov">
         <createTable tableName="user_lesson">
 
             <column name="user_id" type="BIGINT">
@@ -167,13 +208,21 @@
         </createTable>
     </changeSet>
 
-
-
+    <!-- price_list - настройка таблицы  -->
+    <changeSet id="1.0.7" author="dmitriy.liachov">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="price_list"
+                                 constraintName="fk_price_user_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"/>
+    </changeSet>
 
     <!-- user_lessons_available - настройка таблицы  -->
-    <changeSet id="1.0.6" author="dmitriy.liachov">
+    <changeSet id="1.0.8" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="user_available"
+                                 baseTableName="available_time"
                                  constraintName="fk_available_user_user"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
@@ -181,9 +230,8 @@
                                  referencedTableName="user"/>
     </changeSet>
 
-
     <!-- user_roles - настройка таблицы  -->
-    <changeSet id="1.0.7" author="dmitriy.liachov">
+    <changeSet id="1.0.9" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="role_user"
                                  constraintName="fk_role_user_user"
@@ -194,7 +242,7 @@
     </changeSet>
 
     <!-- user_roles - настройка таблицы  -->
-    <changeSet id="1.0.8" author="dmitriy.liachov">
+    <changeSet id="1.0.10" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="role_id"
                                  baseTableName="role_user"
                                  constraintName="fk_role_user_role"
@@ -205,7 +253,7 @@
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.9" author="dmitriy.liachov">
+    <changeSet id="1.0.11" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="user_lesson"
                                  constraintName="fk_user_lesson_user"
@@ -216,7 +264,7 @@
     </changeSet>
 
     <!-- user_lessons - настройка таблицы  -->
-    <changeSet id="1.0.10" author="dmitriy.liachov">
+    <changeSet id="1.0.12" author="dmitriy.liachov">
         <addForeignKeyConstraint baseColumnNames="lesson_id"
                                  baseTableName="user_lesson"
                                  constraintName="fk_user_lesson_lesson"
@@ -227,7 +275,7 @@
     </changeSet>
 
     <!--Данные в таблицу записываем-->
-    <changeSet id="1.0.11" author="dmitriy.liachov">
+    <changeSet id="1.0.13" author="dmitriy.liachov">
 
         <insert tableName="role">
             <column name="name" value="ROLE_STUDENT"/>
@@ -243,6 +291,7 @@
 
         <insert tableName="user">
             <column name="username" value="student"/>
+            <column name="money" value="0"/>
             <column name="email" value="emailS@gmail.com"/>
             <column name="first_name" value="FirstNameS"/>
             <column name="last_name" value="LastNameS"/>
@@ -254,6 +303,7 @@
 
         <insert tableName="user">
             <column name="username" value="tacher"/>
+            <column name="money" value="0"/>
             <column name="email" value="emailT@gmail.com"/>
             <column name="first_name" value="FirstNameT"/>
             <column name="last_name" value="LastNameT"/>
@@ -265,6 +315,7 @@
 
         <insert tableName="user">
             <column name="username" value="admin"/>
+            <column name="money" value="0"/>
             <column name="email" value="emailA@gmail.com"/>
             <column name="first_name" value="FirstNameA"/>
             <column name="last_name" value="LastNameA"/>
@@ -288,6 +339,7 @@
             <column name="user_id" value="3"/>
             <column name="role_id" value="3"/>
         </insert>
+
     </changeSet>
 
 </databaseChangeLog>

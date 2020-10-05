@@ -1,11 +1,10 @@
 package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.ChangeStatusListDTO;
+import com.gmail.dimaliahov.dto.CreateLessonDTO;
+import com.gmail.dimaliahov.dto.PriceListDTO;
 import com.gmail.dimaliahov.dto.TeacherSetAvailableTimeDTO;
-import com.gmail.dimaliahov.model.AvailableTime;
-import com.gmail.dimaliahov.model.Lessons;
-import com.gmail.dimaliahov.model.Status;
-import com.gmail.dimaliahov.model.User;
+import com.gmail.dimaliahov.model.*;
 import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
@@ -17,7 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping (value = "/api/teacher/")
@@ -35,7 +37,7 @@ public class TeacherController {
 		this.userRepository = userRepository;
 	}
 
-//	Получить по статусу CONSIDERATION (розглядається),
+	//	Получить по статусу CONSIDERATION (розглядається),
 //	це всі задачі створені студентами які вибрали цього вчителя
 	@GetMapping (value = "offers")
 	public ResponseEntity<Object> getAllByStatusConsideration (HttpSession session) {
@@ -50,12 +52,12 @@ public class TeacherController {
 	}
 
 
-// Вчитель вибирає що візьме. Змінить статусі на APPROVE якщо прийме предложение. REJECTED якщо відмовиться
+	// Вчитель вибирає що візьме. Змінить статусі на APPROVE якщо прийме предложение. REJECTED якщо відмовиться
 	@PostMapping (value = "offers")
 	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusListDTO> statusList) {
 		Map<Object, Object> response = new HashMap<>();
 
-		for ( ChangeStatusListDTO list :statusList) {
+		for (ChangeStatusListDTO list : statusList) {
 			List<Long> listLessonId = list.getLessonId();
 			for (Long j : listLessonId) {
 				lessonService.changeStatusForLesson(j, list.getStatus());
@@ -65,7 +67,7 @@ public class TeacherController {
 		return ResponseEntity.ok(response);
 	}
 
-//	Teacher can set available time
+	//	Teacher can set available time
 	@GetMapping (value = "add")
 	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpSession session) {
 		Long id = (Long) session.getAttribute("userID");
@@ -97,7 +99,39 @@ public class TeacherController {
 		return ResponseEntity.ok(response);
 	}
 
+//	Додає прайс, за певний проміжок часу якась ціна
+	@PostMapping (value = "addToPriceList")
+	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody PriceListDTO price, HttpSession session) throws ParseException {
+		Long id = (Long) session.getAttribute("userID");
+		User user = userService.findById(id);
+		Map<Object, Object> response = new HashMap<>();
 
+		PriceListForTeacher p = new PriceListForTeacher();
+		p.setPrice(price.getPrice());
+		Date dateS = null;
+		Date dateE = null;
+		try {
+			dateS = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(price.getTimeStart());
+			dateE = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(price.getTimeEnd());
+		} catch (ParseException e){
+			e.printStackTrace();
+		}
+		p.setTimeStart(dateS);
+		p.setTimeEnd(dateE);
+		p.setStatus(Status.ACTIVE);
+		p.setCreated(new Date());
+		p.setUpdated(new Date());
+
+		user.setPriceToUser(p);
+		userRepository.save(user);
+		response.put("price", price);
+		return ResponseEntity.ok(response);
+	}
+
+//	Получить прайс лист викладача, ще напевно відсортую по ціні
+	public ResponseEntity<Object> getPriseList(){
+
+	}
 
 
 }

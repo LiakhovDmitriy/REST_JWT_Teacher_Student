@@ -28,6 +28,9 @@ public class User extends BaseEntety {
 	@Column (name = "password")
 	private String password;
 
+	@Column (name = "money")
+	private int money;
+
 	@ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable (name = "role_user",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
@@ -45,6 +48,10 @@ public class User extends BaseEntety {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<AvailableTime> available = new HashSet<>();
 
+	@JsonManagedReference
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<PriceListForTeacher> price = new HashSet<>();
+
 	public User () {
 		super();
 	}
@@ -55,6 +62,10 @@ public class User extends BaseEntety {
 	public void setAvailableTimeToUser (AvailableTime available) {
 		this.available.add(available);
 		available.setUser(this);
+	}
+	public void setPriceToUser (PriceListForTeacher price) {
+		this.price.add(price);
+		price.setUser(this);
 	}
 
 	//	start GETTER AND SETTER
@@ -129,6 +140,21 @@ public class User extends BaseEntety {
 		this.available = available;
 	}
 
+	public int getMoney () {
+		return money;
+	}
+
+	public void setMoney (int money) {
+		this.money = money;
+	}
+
+	public Set<PriceListForTeacher> getPrice () {
+		return price;
+	}
+
+	public void setPrice (Set<PriceListForTeacher> price) {
+		this.price = price;
+	}
 	//	end GETTER AND SETTER
 
 
@@ -157,6 +183,7 @@ public class User extends BaseEntety {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", email='" + email + '\'' +
+				", money='" + money + '\'' +
 				", password='" + password + '\'' +
 				'}';
 	}

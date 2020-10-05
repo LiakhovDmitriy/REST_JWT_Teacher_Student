@@ -1,5 +1,6 @@
 package com.gmail.dimaliahov.repository;
 
+import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUsername (String username);
 
 	List<User> getAllByRole (String role);
+
+	List<User> getByRole (Role role);
+
+
 }

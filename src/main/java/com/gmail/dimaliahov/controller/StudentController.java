@@ -2,22 +2,22 @@ package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.CreateLessonDTO;
 import com.gmail.dimaliahov.model.Lessons;
+import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.User;
+import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,12 +39,15 @@ public class StudentController {
 	private final LessonService lessonService;
 	private final UserService userService;
 	private final UserRepository userRepository;
+	private final RoleRepository roleRepository;
+
 
 	@Autowired
-	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository) {
+	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository) {
 		this.lessonService = lessonService;
 		this.userService = userService;
 		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
 	}
 
 	@PostMapping (value = "create")
@@ -67,5 +70,20 @@ public class StudentController {
 		response.put("timeStart", format.format(nLesson.getDateStart()));
 		response.put("timeEnd", format.format(nLesson.getDateEnd()));
 		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping ("teacher")
+	public ResponseEntity<Object> getAllTeacher () {
+
+		Role r = roleRepository.findByName("ROLE_TEACHER");
+
+		List<User> user = userRepository.getByRole(r);
+
+		Map<Object, Object> returnMap = new HashMap<>();
+		for (User u : user) {
+			returnMap.put("Teacher " + u.getUsername(), "Id teacher - " + u.getId() + "; Price - " + u.getPrice());
+		}
+
+		return ResponseEntity.ok(returnMap);
 	}
 }

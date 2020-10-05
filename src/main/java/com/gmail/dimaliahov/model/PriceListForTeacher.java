@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table (name = "available_time")
+@Table (name = "price_list")
 @Data
-public class AvailableTime extends BaseEntety {
+public class PriceListForTeacher extends BaseEntety {
 
 	@Column (name = "timeStart")
 	private Date timeStart;
@@ -17,31 +17,35 @@ public class AvailableTime extends BaseEntety {
 	@Column (name = "timeEnd")
 	private Date timeEnd;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@Column (name = "price")
+	private int price;
 
+	@ManyToOne
+	@JoinColumn (name = "user_id")
+	private User user;
 
 	@Override
 	public boolean equals (Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		if (!super.equals(o)) return false;
-		AvailableTime that = (AvailableTime) o;
+		PriceListForTeacher that = (PriceListForTeacher) o;
 		return Objects.equals(timeStart, that.timeStart) &&
-				Objects.equals(timeEnd, that.timeEnd);
+				Objects.equals(timeEnd, that.timeEnd) &&
+				Objects.equals(price, that.price);
 	}
 
 	@Override
 	public int hashCode () {
-		return Objects.hash(super.hashCode(), timeStart, timeEnd, user);
+		return Objects.hash(super.hashCode(), timeStart, timeEnd, price);
 	}
 
 	@Override
 	public String toString () {
-		return "AvailableTime{" +
+		return "PriceListForTeacher{" +
 				"timeStart=" + timeStart +
 				", timeEnd=" + timeEnd +
+				", price=" + price +
 				'}';
 	}
 }
