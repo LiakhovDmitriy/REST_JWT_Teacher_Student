@@ -9,14 +9,8 @@ public interface UserService {
 
 	User registration (User user);
 
-	List<User> getAll ();
-
-	List<User> getAllByRole (String role);
-
 	User findByUsername (String username);
 
 	User findById (Long id);
-
-	void delete (Long id);
 
 }

@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
@@ -41,36 +39,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getAll () {
-		List<User> result = userRepository.findAll();
-		log.info("IN getAll - {} users found", result.size());
-		return result;
-	}
-
-	@Override
-	public List<User> getAllByRole (String role) {
-		List<User> returnAllUserByRole = userRepository.getAllByRole(role);
-		return returnAllUserByRole;
-	}
-
-	@Override
 	public User findByUsername (String username) {
-		User result = userRepository.findByUsername(username);
-		return result;
+		return userRepository.findByUsername(username);
 	}
 
 	@Override
 	public User findById (Long id) {
-		User result = userRepository.findById(id).orElse(null);
-		if (result == null) {
-			return null;
-		}
-		return result;
+		return userRepository.findById(id).orElse(null);
 	}
 
-	@Override
-	public void delete (Long id) {
-		userRepository.deleteById(id);
-		log.info("IN delete - user with id: {} successfully deleted");
-	}
 }

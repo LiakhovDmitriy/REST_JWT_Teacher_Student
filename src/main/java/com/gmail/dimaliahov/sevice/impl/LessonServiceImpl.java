@@ -35,18 +35,4 @@ public class LessonServiceImpl implements LessonService {
 		return lessonsRepository.getAllByIdTeacherAndAndStatus(idTeacher, status);
 	}
 
-	@Override
-	public List<Lessons> getAllLessonByUserId (Long userId) {
-		return lessonsRepository.getAllById(userId);
-	}
-
-	@Override
-	public Lessons getLessonById (Long i) {
-		return lessonsRepository.getById(i);
-	}
-
-	@Override
-	public void delete (Long id) {
-		lessonsRepository.deleteById(id);
-	}
 }
