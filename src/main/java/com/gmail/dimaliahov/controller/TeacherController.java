@@ -1,11 +1,11 @@
 package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.ChangeStatusListDTO;
-import com.gmail.dimaliahov.dto.CreateLessonDTO;
 import com.gmail.dimaliahov.dto.PriceListDTO;
 import com.gmail.dimaliahov.dto.TeacherSetAvailableTimeDTO;
 import com.gmail.dimaliahov.model.*;
 import com.gmail.dimaliahov.repository.UserRepository;
+import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
 import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,21 +30,23 @@ public class TeacherController {
 	private final LessonService lessonService;
 	private final UserService userService;
 	private final UserRepository userRepository;
+	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
-	public TeacherController (LessonService lessonService, UserService userService, UserRepository userRepository) {
+	public TeacherController (LessonService lessonService, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
 		this.lessonService = lessonService;
 		this.userService = userService;
 		this.userRepository = userRepository;
+		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	//	Получить по статусу CONSIDERATION (розглядається),
 //	це всі задачі створені студентами які вибрали цього вчителя
 	@GetMapping (value = "offers")
-	public ResponseEntity<Object> getAllByStatusConsideration (HttpSession session) {
-
+	public ResponseEntity<Object> getAllByStatusConsideration (HttpServletRequest req) {
+		String token = req.getHeader("Authorization").substring(7);
 		List<Lessons> list = lessonService.getAllLessonByStatusAndTeacherId(Status.CONSIDERATION,
-				(Long) session.getAttribute("userID")
+				Long.valueOf(jwtTokenProvider.getIdUsername(token))
 		);
 
 		Map<Object, Object> response = new HashMap<>();
@@ -69,9 +72,9 @@ public class TeacherController {
 
 	//	Teacher can set available time
 	@GetMapping (value = "add")
-	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpSession session) {
-		Long id = (Long) session.getAttribute("userID");
-		User user = userService.findById(id);
+	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req) {
+		String token = req.getHeader("Authorization").substring(7);
+		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		Map<Object, Object> response = new HashMap<>();
 		for (int i = 0; i < availableList.size(); i++) {
 			AvailableTime a = new AvailableTime();
@@ -101,9 +104,9 @@ public class TeacherController {
 
 //	Додає прайс, за певний проміжок часу якась ціна
 	@PostMapping (value = "addToPriceList")
-	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody PriceListDTO price, HttpSession session) throws ParseException {
-		Long id = (Long) session.getAttribute("userID");
-		User user = userService.findById(id);
+	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody PriceListDTO price, HttpServletRequest req) {
+		String token = req.getHeader("Authorization").substring(7);
+		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		Map<Object, Object> response = new HashMap<>();
 
 		PriceListForTeacher p = new PriceListForTeacher();
@@ -129,9 +132,9 @@ public class TeacherController {
 	}
 
 //	Получить прайс лист викладача, ще напевно відсортую по ціні
-	public ResponseEntity<Object> getPriseList(){
-
-	}
+//	public ResponseEntity<Object> getPriseList(){
+//
+//	}
 
 
 }

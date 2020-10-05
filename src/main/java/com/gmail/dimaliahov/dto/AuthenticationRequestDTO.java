@@ -7,6 +7,8 @@ import lombok.Data;
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class AuthenticationRequestDTO {
 
+	private Long id;
+
 	private String username;
 
 	private String password;

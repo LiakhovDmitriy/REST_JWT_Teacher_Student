@@ -43,10 +43,12 @@ public class JwtTokenProvider {
 		secret = Base64.getEncoder().encodeToString(secret.getBytes());
 	}
 
-	public String createToken (String username, List<Role> roles) {
+//	Создає токен
+	public String createToken (String username, List<Role> roles, long id) {
 
-		Claims claims = Jwts.claims().setSubject(username);
+		Claims claims = Jwts.claims().setSubject(username).setId(String.valueOf(id));
 		claims.put("roles", getRoleNames(roles));
+		claims.put("idUser", id);
 
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + validityInMilliseconds);
@@ -59,19 +61,26 @@ public class JwtTokenProvider {
 				.compact();
 	}
 
+//	Возвращає автентифікацію на основі токену
 	public Authentication getAuthentication (String token) {
 		UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
 		return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
 	}
 
+//	Вертає імя користувача по токену
 	public String getUsername (String token) {
 		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
 	}
 
+	public String getIdUsername (String token) {
+		return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getId();
+	}
+
+
 	public String resolveToken (HttpServletRequest req) {
 		String bearerToken = req.getHeader("Authorization");
 		if (bearerToken != null && bearerToken.startsWith("Bearer_")) {
-			return bearerToken.substring(7, bearerToken.length());
+			return bearerToken.substring(7);
 		}
 		return null;
 	}

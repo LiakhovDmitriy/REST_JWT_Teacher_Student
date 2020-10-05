@@ -6,6 +6,7 @@ import com.gmail.dimaliahov.model.Role;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
+import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
 import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,22 +42,24 @@ public class StudentController {
 	private final UserService userService;
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
+	private final JwtTokenProvider jwtTokenProvider;
 
 
 	@Autowired
-	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository) {
+	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider jwtTokenProvider) {
 		this.lessonService = lessonService;
 		this.userService = userService;
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
+		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	@PostMapping (value = "create")
-	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody CreateLessonDTO lesson, HttpSession session) throws ParseException {
-
+	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody CreateLessonDTO lesson, HttpServletRequest req) throws ParseException {
+		String token = req.getHeader("Authorization").substring(7);
 		Lessons nLesson = new CreateLessonDTO().toLesson(lesson);
 
-		Long userID = (Long) session.getAttribute("userID");
+		Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
 		User user = userService.findById(userID);
 
 		lessonService.createLesson(nLesson);

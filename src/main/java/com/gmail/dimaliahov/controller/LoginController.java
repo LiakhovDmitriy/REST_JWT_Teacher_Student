@@ -9,6 +9,8 @@ import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,8 +19,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.resource.HttpResource;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,26 +66,25 @@ public class LoginController {
 	}
 
 	@PostMapping ("login")
-	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDTO requestDto, HttpSession session) {
+	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDTO requestDto) {
+
+
 		try {
 			String username = requestDto.getUsername();
 			String password = requestDto.getPassword();
+
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			User user = userService.findByUsername(username);
 
 			if (user == null) {
 				throw new UsernameNotFoundException("User with username: " + username + " not found");
 			}
-
-			String token = jwtTokenProvider.createToken(username, user.getRole());
+			String token = jwtTokenProvider.createToken(username, user.getRole(), user.getId());
 
 			Map<Object, Object> response = new HashMap<>();
 			response.put("username", username);
 			response.put("token", token);
 
-			User userForGetName = userService.findByUsername(username);
-			Long s = userForGetName.getId();
-			session.setAttribute("userID", s);
 
 			return ResponseEntity.ok(response);
 		} catch (AuthenticationException e){
