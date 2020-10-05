@@ -5,6 +5,7 @@ import com.gmail.dimaliahov.dto.PriceListDTO;
 import com.gmail.dimaliahov.dto.TeacherSetAvailableTimeDTO;
 import com.gmail.dimaliahov.model.*;
 import com.gmail.dimaliahov.repository.LessonsRepository;
+import com.gmail.dimaliahov.repository.PriceRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
 import com.gmail.dimaliahov.sevice.LessonService;
@@ -34,15 +35,17 @@ public class TeacherController {
 	private final UserRepository userRepository;
 	private final JwtTokenProvider jwtTokenProvider;
 	private final PriceService priceService;
+	private final PriceRepository priceRepository;
 
 	@Autowired
-	public TeacherController (LessonService lessonService, LessonsRepository lessonsRepository, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService) {
+	public TeacherController (LessonService lessonService, LessonsRepository lessonsRepository, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, PriceRepository priceRepository) {
 		this.lessonService = lessonService;
 		this.lessonsRepository = lessonsRepository;
 		this.userService = userService;
 		this.userRepository = userRepository;
 		this.jwtTokenProvider = jwtTokenProvider;
 		this.priceService = priceService;
+		this.priceRepository = priceRepository;
 	}
 
 	//	Получить по статусу CONSIDERATION (розглядається),
@@ -128,7 +131,7 @@ public class TeacherController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping (value = "getMyPriceList")
+	@GetMapping (value = "myPriceList")
 	public ResponseEntity<Object> getPriseList (HttpServletRequest req) {
 		String token = req.getHeader("Authorization").substring(7);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
@@ -143,6 +146,23 @@ public class TeacherController {
 			date.put("Price " + i, "Time " + l.get(i).getTime() + " minutes; Price: " + l.get(i).getPrice());
 		}
 		response.put("Prices", date);
+
+		return ResponseEntity.ok(response);
+	}
+
+	@PostMapping (value = "myPriceList")
+	public ResponseEntity<Object> postDelitedPrice (@RequestBody List<Long> list, HttpServletRequest req) {
+		String token = req.getHeader("Authorization").substring(7);
+		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
+		List<PriceListForTeacher> l = priceRepository.getByUser(user);
+		Map<Object, Object> response = new HashMap<>();
+
+		for (int i = 0; i < l.size(); i++) {
+			if (list.contains(l.get(i).getId())) {
+				priceRepository.changeStatusForPrice(l.get(i).getId(), Status.NOT_ACTIVE);
+				response.put("Price " + l.get(i).getId(), "Now the status is this: " + Status.NOT_ACTIVE);
+			}
+		}
 
 		return ResponseEntity.ok(response);
 	}
