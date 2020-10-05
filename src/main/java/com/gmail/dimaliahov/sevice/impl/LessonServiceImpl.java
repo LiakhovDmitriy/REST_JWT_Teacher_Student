@@ -38,12 +38,6 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	@Override
-	public void changeStatusForLesson (Long idLessons, Status status) {
-		Lessons les = lessonsRepository.getById(idLessons);
-		lessonsRepository.changeStatusForLesson(idLessons,status);
-	}
-
-	@Override
 	public List<Lessons> getAllLessonByUserId (Long userId) {
 		return lessonsRepository.getAllById(userId);
 	}

@@ -11,8 +11,6 @@ public interface LessonService {
 
 	List<Lessons> getAllLessonByStatusAndTeacherId (Status status, Long id);
 
-	void changeStatusForLesson (Long id, Status status);
-
 	List<Lessons> getAllLessonByUserId (Long id);
 
 	Lessons getLessonById (Long i);

@@ -7,9 +7,7 @@ import lombok.Data;
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class PriceListDTO {
 
-	private String timeStart;
-
-	private String timeEnd;
+	private long time;
 
 	private int price;
 

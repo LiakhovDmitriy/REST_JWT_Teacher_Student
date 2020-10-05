@@ -2,6 +2,7 @@ package com.gmail.dimaliahov.repository;
 
 import com.gmail.dimaliahov.model.Lessons;
 import com.gmail.dimaliahov.model.Status;
+import com.gmail.dimaliahov.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +21,8 @@ public interface LessonsRepository extends JpaRepository<Lessons, Long> {
 	List<Lessons> getAllById (Long userId);
 
 	Lessons getById (Long id);
+
+	List<Lessons> getByUser(User user);
 
 	@Modifying
 	@Query ("UPDATE Lessons c SET c.status = :name WHERE c.id = :id")

@@ -6,7 +6,6 @@ import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
-import com.gmail.dimaliahov.sevice.LessonService;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +24,12 @@ import java.util.Map;
 @Slf4j
 public class RegistrationController {
 
-	private final LessonService lessonService;
 	private final UserService userService;
 	private final RoleRepository roleRepository;
 	private final UserRepository userRepository;
 
 	@Autowired
-	public RegistrationController (LessonService lessonService, UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
-		this.lessonService = lessonService;
+	public RegistrationController (UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
 		this.userService = userService;
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;

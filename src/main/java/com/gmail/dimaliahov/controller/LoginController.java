@@ -67,8 +67,6 @@ public class LoginController {
 
 	@PostMapping ("login")
 	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDTO requestDto) {
-
-
 		try {
 			String username = requestDto.getUsername();
 			String password = requestDto.getPassword();
@@ -84,7 +82,6 @@ public class LoginController {
 			Map<Object, Object> response = new HashMap<>();
 			response.put("username", username);
 			response.put("token", token);
-
 
 			return ResponseEntity.ok(response);
 		} catch (AuthenticationException e){
