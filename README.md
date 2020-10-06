@@ -45,16 +45,11 @@
 - Скачать репозиторий
 - Создать SQL базу
 - В файле application.properties внести зміни
-  - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
-            spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
-        б) spring.datasource.username=[SQL username]<br>
-            spring.liquibase.user=[SQL username]<br>
-        в) spring.datasource.password=[SQL password]<br>
-            spring.liquibase.password=[SQL password]<br>
-    P.S: База повинна бути пустою.<br>
-    
-- Item 1
-- Item 2
-  - Sub Item 1
-  - Sub Item 2
+  - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
+            spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
+  - spring.datasource.username=[SQL username]
+            spring.liquibase.user=[SQL username]
+  - spring.datasource.password=[SQL password]
+            spring.liquibase.password=[SQL password]
+  - P.S: База повинна бути пустою.
 
