@@ -51,5 +51,5 @@
             spring.liquibase.user=[SQL username]
   - spring.datasource.password=[SQL password]<br>
             spring.liquibase.password=[SQL password]
-  - P.S: База повинна бути пустою.
+- P.S: База повинна бути пустою.
 
