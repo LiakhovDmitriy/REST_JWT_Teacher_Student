@@ -66,8 +66,7 @@
  
  - Реєстрація
      - Тіло запиту, приклад:
-     <pre>
-        {
+    <pre>{
             "username":"Ivan",
             "firstName":"Ivanovich",
             "lastName":"Ivanov",
