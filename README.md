@@ -31,10 +31,10 @@
    - Maven 3.6.*
 
 # Технічна документація
- - Как зупустить проект?
-   - Скачать репозиторий
-   - Создать SQL базу
-   - В файле application.properties внести зміни
+## Як зупустить проект
+   - Скачать репозиторій
+   - Створити SQL базу
+   - В файлі application.properties внести зміни
      - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
      - spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
      - spring.datasource.username=[SQL username]
