@@ -66,12 +66,12 @@
  
  - Реєстрація
      - <pre>
-     {
-    "username":"Ivan",
-    "firstName":"Ivanovich",
-    "lastName":"Ivanov",
-    "email":"ivan007@gmail.com",
-    "password":"verySecurePassword",
-    "role":"STUDENT"
-    }
-</pre>
+            {
+            "username":"Ivan",
+            "firstName":"Ivanovich",
+            "lastName":"Ivanov",
+            "email":"ivan007@gmail.com",
+            "password":"verySecurePassword",
+            "role":"STUDENT"
+             }
+    </pre>
