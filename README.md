@@ -466,6 +466,7 @@
                    "updated":"2020-01-01 12:12:12",
                    "status":"ACTIVE"
                  },
+                 {
                    "username":"teacher",
                    "money":"0",
                    "email":"emailT@gmail.com",
@@ -476,6 +477,7 @@
                    "updated":"2020-01-01 12:12:12",
                    "status":"ACTIVE"
                  },
+                 {
                    "username":"admin",
                    "money":"0",
                    "email":"emailA@gmail.com",
