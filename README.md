@@ -62,3 +62,7 @@
             spring.liquibase.password=[SQL password]
 - P.S: База повинна бути пустою.
 
+ <h4>Запроси<br></h4>
+ 
+ - Реєстрація
+     - текст
