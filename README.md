@@ -67,7 +67,7 @@
  - Реєстрація
      - Тіло запиту, приклад:
      
-<pre>
+```json
     {
         "username":"Ivan",
         "firstName":"Ivanovich",
@@ -76,7 +76,7 @@
         "password":"verySecurePassword",
         "role":"STUDENT"
     }
-</pre>
+```
     - Відповідь:
     
 <pre>
