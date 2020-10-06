@@ -7,12 +7,6 @@
         <h1>TASK<br></h1>
     </li>
 </ul>
-<ul align="center">
-    <li>
-        <h1>Technical documentation<br></h1>
-    </li>
-</ul>
-
 <ul>
 Розробити Appointment API для онлайн університету, в якому буде 2 ролі: викладач та
 студент.<br>
@@ -37,7 +31,7 @@
 <h4>Технічний стек :<br></h4>
 1. Java 8<br>
 2. Spring Boot 2.2.* (Security, MVC, Data Jpa)<br>
-3. PostgreSQL 10.6<br>
+3. SQL<br>
 4. Maven 3.6.*<br>
 
 </ul>
@@ -48,5 +42,15 @@
 </ul>
 
 <ul>
-    test
+    <h4>Как зупустить проект?<br></h4>
+    1. Скачать репозиторий
+    2. Создать SQL базу
+    3. В файле application.properties внести зміни
+        а) spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
+            spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
+        б) spring.datasource.username=[SQL username]
+            spring.liquibase.user=[SQL username]
+        в) spring.datasource.password=[SQL password]
+            spring.liquibase.password=[SQL password]
+    P.S: База повинна бути пустою.
 </ul>
