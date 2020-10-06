@@ -65,7 +65,8 @@
  <h4>Запроси<br></h4>
  
  - Реєстрація
-     - <pre>
+     - Request body:
+     <pre>
           {
           "username":"Ivan",
           "firstName":"Ivanovich",
