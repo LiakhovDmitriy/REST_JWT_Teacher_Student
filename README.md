@@ -74,8 +74,7 @@
             "email":"ivan007@gmail.com",
             "password":"verySecurePassword",
             "role":"STUDENT"
-        }
-    </pre>
+        }</pre>
     - Відповідь:
      <pre>
         {
