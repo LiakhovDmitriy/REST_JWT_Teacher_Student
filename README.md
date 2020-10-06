@@ -65,11 +65,13 @@
  <h4>Запроси<br></h4>
  
  - Реєстрація
-     - <pre>{
+     - <pre>
+     {
     "username":"Ivan",
     "firstName":"Ivanovich",
     "lastName":"Ivanov",
     "email":"ivan007@gmail.com",
     "password":"verySecurePassword",
     "role":"STUDENT"
-}</pre>
+    }
+</pre>
