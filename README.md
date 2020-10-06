@@ -40,8 +40,6 @@
         <h1>Technical documentation<br></h1>
     </li>
 </ul>
-
-<ul>
     <h4>Как зупустить проект?<br></h4>
     * Скачать репозиторий
     * Создать SQL базу
@@ -53,4 +51,4 @@
         в) spring.datasource.password=[SQL password]<br>
             spring.liquibase.password=[SQL password]<br>
     P.S: База повинна бути пустою.<br>
-</ul>
+
