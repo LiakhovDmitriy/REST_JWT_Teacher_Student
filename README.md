@@ -456,37 +456,37 @@
    {
    "user":[
                  {
-                   "username":"student"
-                   "money":"0"
-                   "email":"emailS@gmail.com"
-                   "first_name":"FirstNameS"
-                   "last_name":"LastNameS"
-                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"
-                   "created":"2020-01-01 12:12:12"
-                   "updated":"2020-01-01 12:12:12"
+                   "username":"student",
+                   "money":"0",
+                   "email":"emailS@gmail.com",
+                   "first_name":"FirstNameS",
+                   "last_name":"LastNameS",
+                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO",
+                   "created":"2020-01-01 12:12:12",
+                   "updated":"2020-01-01 12:12:12",
                    "status":"ACTIVE"
                  },
-                   "username":"teacher"
-                   "money":"0"
-                   "email":"emailT@gmail.com"
-                   "first_name":"FirstNameT"
-                   "last_name":"LastNameT"
-                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"
-                   "created":"2020-01-01 12:12:12"
-                   "updated":"2020-01-01 12:12:12"
+                   "username":"teacher",
+                   "money":"0",
+                   "email":"emailT@gmail.com",
+                   "first_name":"FirstNameT",
+                   "last_name":"LastNameT",
+                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO",
+                   "created":"2020-01-01 12:12:12",
+                   "updated":"2020-01-01 12:12:12",
                    "status":"ACTIVE"
                  },
-                   "username":"admin"
-                   "money":"0"
-                   "email":"emailA@gmail.com"
-                   "first_name":"FirstNameA"
-                   "last_name":"LastNameA"
-                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"
-                   "created":"2020-01-01 12:12:12"
-                   "updated":"2020-01-01 12:12:12"
+                   "username":"admin",
+                   "money":"0",
+                   "email":"emailA@gmail.com",
+                   "first_name":"FirstNameA",
+                   "last_name":"LastNameA",
+                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO",
+                   "created":"2020-01-01 12:12:12",
+                   "updated":"2020-01-01 12:12:12",
                    "status":"ACTIVE"
                  }
-          ]
+          ],
    "role":[
                  {
                    "name":"ROLE_STUDENT",
@@ -497,7 +497,7 @@
                  {
                    "name":"ROLE_ADMIN",
                  }
-          ]
+          ],
    "role_user":[
                  {
                    "user_id":"1",
