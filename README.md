@@ -41,10 +41,10 @@
     </li>
 </ul>
     <h4>Как зупустить проект?<br></h4>
-* Скачать репозиторий
-    * Создать SQL базу
-* В файле application.properties внести зміни<br>
-        а) spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
+- Скачать репозиторий
+- Создать SQL базу
+- В файле application.properties внести зміни
+  - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
             spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
         б) spring.datasource.username=[SQL username]<br>
             spring.liquibase.user=[SQL username]<br>
