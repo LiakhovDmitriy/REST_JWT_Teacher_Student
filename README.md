@@ -83,6 +83,18 @@
     "token": "[token]"
 }
 ```
+ - Отриманий "token" потрібно буде додавати в "Header" в "Authorization" з додаванням в початок токену "Bearer_". Приклад "Header":
+ ```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
 ####  -  В якості ролі "ADMIN"
  - Метод Get
  - http://localhost:{yourPort}/api/{id}
