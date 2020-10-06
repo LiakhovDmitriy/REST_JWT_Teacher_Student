@@ -24,15 +24,13 @@ public class LessonServiceImpl implements LessonService {
 	@Override
 	public Lessons createLesson (Lessons lessons) {
 		lessonsRepository.save(lessons);
-
 		log.info("IN createLesson - lessons: {} successfully createLesson", lessons);
-
 		return lessons;
 	}
 
 	@Override
 	public List<Lessons> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher) {
-		return lessonsRepository.getAllByIdTeacherAndAndStatus(idTeacher, status);
+		return lessonsRepository.getAllByIdTeacherAndStatus(idTeacher, status);
 	}
 
 }

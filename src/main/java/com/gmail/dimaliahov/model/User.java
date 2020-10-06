@@ -70,7 +70,6 @@ public class User extends BaseEntety {
 		price.setUser(this);
 	}
 
-	//	start GETTER AND SETTER
 	public String getUsername () {
 		return username;
 	}
@@ -157,7 +156,6 @@ public class User extends BaseEntety {
 	public void setPrice (Set<PriceListForTeacher> price) {
 		this.price = price;
 	}
-	//	end GETTER AND SETTER
 
 	@Override
 	public boolean equals (Object o) {

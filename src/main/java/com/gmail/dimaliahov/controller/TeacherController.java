@@ -48,37 +48,35 @@ public class TeacherController {
 		this.priceRepository = priceRepository;
 	}
 
-	//	Получить по статусу CONSIDERATION (розглядається),
-//	це всі задачі створені студентами які вибрали цього вчителя
 	@GetMapping (value = "offers")
 	public ResponseEntity<Object> getAllByStatusConsideration (HttpServletRequest req) {
 		String token = req.getHeader("Authorization").substring(7);
 		List<Lessons> list = lessonService.getAllLessonByStatusAndTeacherId(Status.CONSIDERATION,
 				Long.valueOf(jwtTokenProvider.getIdUsername(token))
 		);
-
 		Map<Object, Object> response = new HashMap<>();
 		response.put("msg", list);
 		return ResponseEntity.ok(response);
 	}
 
-
-	// Вчитель вибирає що візьме. Змінить статусі на APPROVE якщо прийме предложение. REJECTED якщо відмовиться
 	@PostMapping (value = "offers")
-	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusListDTO> statusList) {
+	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusListDTO> statusList, HttpServletRequest req) {
+		String token = req.getHeader("Authorization").substring(7);
+		List<Lessons> l = lessonsRepository.getAllByIdTeacher(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		Map<Object, Object> response = new HashMap<>();
 
-		for (ChangeStatusListDTO list : statusList) {
-			List<Long> listLessonId = list.getLessonId();
-			for (Long j : listLessonId) {
-				lessonsRepository.changeStatusForLesson(j, list.getStatus());
-				response.put("lesson " + j, "Now the status is this: " + list.getStatus());
+		List<Long> list = statusList.get(0).getLessonId();
+		for (Lessons lessons : l) {
+			for (Long aLong : list) {
+				if (lessons.getId().equals(aLong)) {
+					lessonsRepository.changeStatusForLesson(lessons.getId(), Status.NOT_ACTIVE);
+					response.put("lesson " + lessons.getId(), "Now the status is: " + Status.NOT_ACTIVE);
+				}
 			}
 		}
 		return ResponseEntity.ok(response);
 	}
 
-	//	Teacher can set available time
 	@GetMapping (value = "add")
 	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req) {
 		String token = req.getHeader("Authorization").substring(7);
@@ -95,7 +93,6 @@ public class TeacherController {
 			} catch (ParseException e){
 				e.printStackTrace();
 			}
-
 			a.setTimeStart(dateS);
 			a.setTimeEnd(dateE);
 			a.setStatus(Status.ACTIVE);
@@ -106,12 +103,10 @@ public class TeacherController {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			response.put("interval " + i, "Start: " + format.format(a.getTimeStart()) + ";  End: " + format.format(a.getTimeEnd()));
 		}
-
 		response.put("msg", "Available time was add!");
 		return ResponseEntity.ok(response);
 	}
 
-	//	Додає прайс, за певний проміжок часу якась ціна
 	@PostMapping (value = "addToPriceList")
 	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody PriceListDTO price, HttpServletRequest req) {
 		String token = req.getHeader("Authorization").substring(7);
@@ -157,15 +152,13 @@ public class TeacherController {
 		List<PriceListForTeacher> l = priceRepository.getByUser(user);
 		Map<Object, Object> response = new HashMap<>();
 
-		for (int i = 0; i < l.size(); i++) {
-			if (list.contains(l.get(i).getId())) {
-				priceRepository.changeStatusForPrice(l.get(i).getId(), Status.NOT_ACTIVE);
-				response.put("Price " + l.get(i).getId(), "Now the status is this: " + Status.NOT_ACTIVE);
+		for (PriceListForTeacher priceListForTeacher : l) {
+			if (list.contains(priceListForTeacher.getId())) {
+				priceRepository.changeStatusForPrice(priceListForTeacher.getId(), Status.NOT_ACTIVE);
+				response.put("Price " + priceListForTeacher.getId(), "Now the status is this: " + Status.NOT_ACTIVE);
 			}
 		}
 
 		return ResponseEntity.ok(response);
 	}
-
-
 }

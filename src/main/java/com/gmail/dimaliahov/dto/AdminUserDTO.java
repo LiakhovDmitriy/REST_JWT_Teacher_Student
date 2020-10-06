@@ -8,11 +8,17 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class AdminUserDTO {
+
 	private Long id;
+
 	private String username;
+
 	private String firstName;
+
 	private String lastName;
+
 	private String email;
+
 	private String status;
 
 	public static AdminUserDTO fromUser (User user) {
@@ -24,17 +30,6 @@ public class AdminUserDTO {
 		adminUserDto.setEmail(user.getEmail());
 		adminUserDto.setStatus(user.getStatus().name());
 		return adminUserDto;
-	}
-
-	public User toUser () {
-		User user = new User();
-		user.setId(id);
-		user.setUsername(username);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		user.setStatus(Status.valueOf(status));
-		return user;
 	}
 
 	@Override

@@ -48,62 +48,64 @@ public class StudentController {
 	@PostMapping (value = "create")
 	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody CreateLessonDTO lesson, HttpServletRequest req) throws ParseException {
 		String token = req.getHeader("Authorization").substring(7);
-		Lessons nLesson = new CreateLessonDTO().toLesson(lesson);
-
-		Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
-		User user = userService.findById(userID);
-
-		lessonService.createLesson(nLesson);
-
-		user.setLessonToUser(nLesson);
-		userRepository.save(user);
-
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
 		Map<Object, Object> response = new HashMap<>();
-		response.put("msg", "The lesson was created by - " + user.getUsername() + "; he chose a teacher - " + userService.findById(nLesson.getIdTeacher()).getUsername());
-		response.put("timeStart", format.format(nLesson.getDateStart()));
-		response.put("timeEnd", format.format(nLesson.getDateEnd()));
-		return ResponseEntity.ok(response);
+		if (lesson.getDateStart().compareTo(lesson.getDateEnd()) < 0) {
+			Lessons nLesson = new CreateLessonDTO().toLesson(lesson);
+			Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
+			User user = userService.findById(userID);
+			lessonService.createLesson(nLesson);
+			user.setLessonToUser(nLesson);
+			userRepository.save(user);
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			response.put("msg", "The lesson was created by - " + user.getUsername() + "; he chose a teacher - " + userService.findById(nLesson.getIdTeacher()).getUsername());
+			response.put("timeStart", format.format(nLesson.getDateStart()));
+			response.put("timeEnd", format.format(nLesson.getDateEnd()));
+			return ResponseEntity.ok(response);
+		} else {
+			response = new HashMap<>();
+			response.put("msg", "Incorrect data entry, try to enter the correct time!");
+			return ResponseEntity.ok(response);
+		}
 	}
 
 	@GetMapping ("teacher")
 	public ResponseEntity<Object> getAllAvailableTeacher () {
 
 		Role r = roleRepository.findByName("ROLE_TEACHER");
-
 		List<User> user = userRepository.getByRole(r);
-
 		Map<Object, Object> returnMap = new HashMap<>();
 
 		for (User u : user) {
-			Map<Object, Object> price = new HashMap<>();
-			List<PriceListForTeacher> p = priceService.getAllPricesByUserId(u.getId());
-			for (int i = 0; i < p.size(); i++) {
-				price.put("Price " + i, "Time " + p.get(i).getTime() + " minutes; Price: " + p.get(i).getPrice());
-			}
-			returnMap.put("Price list '" + u.getUsername() + "', TeacherId " + u.getId(), price);
+			returnMap.put("Available teacher '" + u.getUsername() + "'", "His id: " + u.getId());
 		}
 		return ResponseEntity.ok(returnMap);
 	}
 
 	@GetMapping ("teacher/{id}")
 	public ResponseEntity<Object> getPriceTeacherById (@PathVariable String id) {
-		Role r = roleRepository.findByName("ROLE_TEACHER");
-
-		List<User> user = userRepository.getByRole(r);
 		Map<Object, Object> returnMap = new HashMap<>();
-		for (User u : user) {
-			if (u.getId() == Long.parseLong(id)) {
-				Map<Object, Object> price = new HashMap<>();
-				List<PriceListForTeacher> p = priceService.getAllPricesByUserId(u.getId());
-				for (int i = 0; i < p.size(); i++) {
-					price.put("Price " + i, "Time " + p.get(i).getTime() + " minutes; Price: " + p.get(i).getPrice());
+		int h = 0;
+		try {
+			h = Integer.parseInt(id);
+		} catch (NumberFormatException e){
+			log.warn("NumberFormatException " + e.getMessage());
+			returnMap.put("warn", "You entered text instead of a number. Please correct your request, and try again!");
+			return ResponseEntity.ok(returnMap);
+		}
+		if (h > 0) {
+			Role r = roleRepository.findByName("ROLE_TEACHER");
+			List<User> user = userRepository.getByRole(r);
+			for (User u : user) {
+				if (u.getId() == Long.parseLong(id)) {
+					Map<Object, Object> price = new HashMap<>();
+					List<PriceListForTeacher> p = priceService.getAllPricesByUserId(u.getId());
+					for (int i = 1; i - 1 < p.size(); i++) {
+						price.put("Price " + i, "Time " + p.get(i - 1).getTime() + " minutes; Price: " + p.get(i - 1).getPrice());
+					}
+					returnMap.put("Teacher: '" + u.getUsername() + "'; His id " + u.getId(), price);
 				}
-				returnMap.put("Price list '" + u.getUsername() + "', TeacherId " + u.getId(), price);
-				return ResponseEntity.ok(returnMap);
 			}
-
+			return ResponseEntity.ok(returnMap);
 		}
 		returnMap.put("msg", "There is no teacher with such Id");
 		return ResponseEntity.ok(returnMap);
@@ -128,10 +130,10 @@ public class StudentController {
 		Map<Object, Object> response = new HashMap<>();
 		List<Lessons> l = lessonsRepository.getByUser(userService.findById(userID));
 
-		for (int i = 0; i < l.size(); i++) {
-			if (list.contains(l.get(i).getId())) {
-				lessonsRepository.changeStatusForLesson(l.get(i).getId(), Status.NOT_ACTIVE);
-				response.put("lesson " + l.get(i).getId(), "Now the status is this: " + Status.NOT_ACTIVE);
+		for (Lessons lessons : l) {
+			if (list.contains(lessons.getId())) {
+				lessonsRepository.changeStatusForLesson(lessons.getId(), Status.NOT_ACTIVE);
+				response.put("lesson " + lessons.getId(), "Now the status is this: " + Status.NOT_ACTIVE);
 			}
 		}
 		return ResponseEntity.ok(response);

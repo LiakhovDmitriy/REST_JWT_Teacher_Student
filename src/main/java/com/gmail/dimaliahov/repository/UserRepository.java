@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	List<User> getByRole (Role role);
 
+	User getByIdAndRole(Long idUser, Role role);
+
 }

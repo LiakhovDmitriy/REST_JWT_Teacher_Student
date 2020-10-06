@@ -7,10 +7,15 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
 public class UserDTO {
+
 	private Long id;
+
 	private String username;
+
 	private String firstName;
+
 	private String lastName;
+
 	private String email;
 
 	public static UserDTO fromUser (User user) {
@@ -22,16 +27,6 @@ public class UserDTO {
 		userDto.setEmail(user.getEmail());
 
 		return userDto;
-	}
-
-	public User toUser () {
-		User user = new User();
-		user.setId(id);
-		user.setUsername(username);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		return user;
 	}
 
 	@Override

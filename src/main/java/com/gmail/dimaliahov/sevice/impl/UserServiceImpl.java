@@ -15,26 +15,20 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	private final RoleRepository roleRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserServiceImpl (UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+	public UserServiceImpl (UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
 		this.userRepository = userRepository;
-		this.roleRepository = roleRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
 	public User registration (User user) {
-
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setStatus(Status.ACTIVE);
-
 		User registeredUser = userRepository.save(user);
-
 		log.info("IN register - user: {} successfully registered", registeredUser);
-
 		return registeredUser;
 	}
 
