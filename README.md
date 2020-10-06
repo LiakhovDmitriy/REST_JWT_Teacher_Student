@@ -66,16 +66,17 @@
  
  - Реєстрація
      - Тіло запиту, приклад:
-    <pre>{
-            "username":"Ivan",
-            "firstName":"Ivanovich",
+<pre>
+    {
+        "username":"Ivan",
+        "firstName":"Ivanovich",
             "lastName":"Ivanov",
             "email":"ivan007@gmail.com",
             "password":"verySecurePassword",
             "role":"STUDENT"
         }</pre>
     - Відповідь:
-     <pre>
+<pre>
         {
             "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
         }
