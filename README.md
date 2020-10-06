@@ -74,7 +74,8 @@
         "email":"ivan007@gmail.com",
         "password":"verySecurePassword",
         "role":"STUDENT"
-    }</pre>
+    }
+</pre>
     - Відповідь:
 <pre>
     {
@@ -89,13 +90,15 @@
     {
         "username":"Ivan",
         "password":"verySecurePassword"
-    }</pre>
+    }
+</pre>
     - Відповідь:
 <pre>
     {
         "username": "Ivan",
         "token": "[token]"
-    }</pre>
+    }
+</pre>
     
  - В якості ролі "ADMIN"
      - Тіло запиту, приклад:
@@ -109,4 +112,5 @@
         "firstName": "FirstNameT",
         "lastName": "LastNameT",
         "email": "emailT@gmail.com"
-    }</pre>
+    }
+</pre>
