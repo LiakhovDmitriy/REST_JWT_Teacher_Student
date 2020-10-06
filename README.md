@@ -70,47 +70,43 @@
     {
         "username":"Ivan",
         "firstName":"Ivanovich",
-            "lastName":"Ivanov",
-            "email":"ivan007@gmail.com",
-            "password":"verySecurePassword",
-            "role":"STUDENT"
-        }</pre>
+        "lastName":"Ivanov",
+        "email":"ivan007@gmail.com",
+        "password":"verySecurePassword",
+        "role":"STUDENT"
+    }</pre>
     - Відповідь:
 <pre>
-        {
-            "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
-        }
-    </pre>
+    {
+        "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
+    }
+</pre>
  
  
  - Логін
      - Тіло запиту, приклад:
-     <pre>
-        {
-            "username":"Ivan",
-            "password":"verySecurePassword"
-        }
-    </pre>
+<pre>
+    {
+        "username":"Ivan",
+        "password":"verySecurePassword"
+    }</pre>
     - Відповідь:
-     <pre>
-        {
-            "username": "Ivan",
-            "token": "[token]"
-        }
-    </pre>
+<pre>
+    {
+        "username": "Ivan",
+        "token": "[token]"
+    }</pre>
     
  - В якості ролі "ADMIN"
      - Тіло запиту, приклад:
-     <pre>
-        Метод Get
-    </pre>
+<pre>
+        Метод Get</pre>
     - Відповідь:
-     <pre>
-        {
-            "id": 2,
-            "username": "teacher",
-            "firstName": "FirstNameT",
-            "lastName": "LastNameT",
-            "email": "emailT@gmail.com"
-        }
-    </pre>
+<pre>
+    {
+        "id": 2,
+        "username": "teacher",
+        "firstName": "FirstNameT",
+        "lastName": "LastNameT",
+        "email": "emailT@gmail.com"
+    }</pre>
