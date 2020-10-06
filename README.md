@@ -449,5 +449,71 @@
     "Price 1": "Now the status is this: NOT_ACTIVE"
 }
 ```
+####  -  Дані які вже є в базі
+ - При першому запуску, вони автоматично будуть додані як і таблиці.
+ ```xml
+<insert tableName="user">
+            <column name="username" value="student"/>
+            <column name="money" value="0"/>
+            <column name="email" value="emailS@gmail.com"/>
+            <column name="first_name" value="FirstNameS"/>
+            <column name="last_name" value="LastNameS"/>
+            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
+            <column name="created" value="2020-01-01 12:12:12"/>
+            <column name="updated" value="2020-01-01 12:12:12"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="user">
+            <column name="username" value="teacher"/>
+            <column name="money" value="0"/>
+            <column name="email" value="emailT@gmail.com"/>
+            <column name="first_name" value="FirstNameT"/>
+            <column name="last_name" value="LastNameT"/>
+            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
+            <column name="created" value="2020-01-01 12:12:12"/>
+            <column name="updated" value="2020-01-01 12:12:12"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="user">
+            <column name="username" value="admin"/>
+            <column name="money" value="0"/>
+            <column name="email" value="emailA@gmail.com"/>
+            <column name="first_name" value="FirstNameA"/>
+            <column name="last_name" value="LastNameA"/>
+            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
+            <column name="created" value="2020-01-01 12:12:12"/>
+            <column name="updated" value="2020-01-01 12:12:12"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="role">
+            <column name="name" value="ROLE_STUDENT"/>
+        </insert>
+
+        <insert tableName="role">
+            <column name="name" value="ROLE_TEACHER"/>
+        </insert>
+
+        <insert tableName="role">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+
+        <insert tableName="role_user">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+
+        <insert tableName="role_user">
+            <column name="user_id" value="2"/>
+            <column name="role_id" value="2"/>
+        </insert>
+
+        <insert tableName="role_user">
+            <column name="user_id" value="3"/>
+            <column name="role_id" value="3"/>
+        </insert>
+```
 ####  -  Залишилось додати
  - Перевірка тайм слотів на перетин між собою та на унікальність
