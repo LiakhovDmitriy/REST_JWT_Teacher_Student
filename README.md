@@ -46,7 +46,7 @@
 </ul>
 <ul align="center">
     <li>
-        <h1>Technical documentation<br></h1>
+        <h1>Технічна документація<br></h1>
     </li>
 </ul>
     <h4>Как зупустить проект?<br></h4>
@@ -97,5 +97,21 @@
         {
             "username": "Ivan",
             "token": "[token]"
+        }
+    </pre>
+    
+    - В якості ролі "ADMIN"
+     - Request body, example:
+     <pre>
+        Метод Get
+    </pre>
+    - Response body:
+     <pre>
+        {
+            "id": 2,
+            "username": "teacher",
+            "firstName": "FirstNameT",
+            "lastName": "LastNameT",
+            "email": "emailT@gmail.com"
         }
     </pre>
