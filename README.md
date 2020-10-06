@@ -451,69 +451,69 @@
 ```
 ####  -  Дані які будуть в базі після першого запуску
  - При першому запуску, вони автоматично будуть додані як і таблиці.
- ```xml
-<insert tableName="user">
-            <column name="username" value="student"/>
-            <column name="money" value="0"/>
-            <column name="email" value="emailS@gmail.com"/>
-            <column name="first_name" value="FirstNameS"/>
-            <column name="last_name" value="LastNameS"/>
-            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
-            <column name="created" value="2020-01-01 12:12:12"/>
-            <column name="updated" value="2020-01-01 12:12:12"/>
-            <column name="status" value="ACTIVE"/>
-        </insert>
-
-        <insert tableName="user">
-            <column name="username" value="teacher"/>
-            <column name="money" value="0"/>
-            <column name="email" value="emailT@gmail.com"/>
-            <column name="first_name" value="FirstNameT"/>
-            <column name="last_name" value="LastNameT"/>
-            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
-            <column name="created" value="2020-01-01 12:12:12"/>
-            <column name="updated" value="2020-01-01 12:12:12"/>
-            <column name="status" value="ACTIVE"/>
-        </insert>
-
-        <insert tableName="user">
-            <column name="username" value="admin"/>
-            <column name="money" value="0"/>
-            <column name="email" value="emailA@gmail.com"/>
-            <column name="first_name" value="FirstNameA"/>
-            <column name="last_name" value="LastNameA"/>
-            <column name="password" value="$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"/>
-            <column name="created" value="2020-01-01 12:12:12"/>
-            <column name="updated" value="2020-01-01 12:12:12"/>
-            <column name="status" value="ACTIVE"/>
-        </insert>
-
-        <insert tableName="role">
-            <column name="name" value="ROLE_STUDENT"/>
-        </insert>
-
-        <insert tableName="role">
-            <column name="name" value="ROLE_TEACHER"/>
-        </insert>
-
-        <insert tableName="role">
-            <column name="name" value="ROLE_ADMIN"/>
-        </insert>
-
-        <insert tableName="role_user">
-            <column name="user_id" value="1"/>
-            <column name="role_id" value="1"/>
-        </insert>
-
-        <insert tableName="role_user">
-            <column name="user_id" value="2"/>
-            <column name="role_id" value="2"/>
-        </insert>
-
-        <insert tableName="role_user">
-            <column name="user_id" value="3"/>
-            <column name="role_id" value="3"/>
-        </insert>
+ ```json
+ [
+   {
+   "user":[
+                 {
+                   "username":"student"
+                   "money":"0"
+                   "email":"emailS@gmail.com"
+                   "first_name":"FirstNameS"
+                   "last_name":"LastNameS"
+                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"
+                   "created":"2020-01-01 12:12:12"
+                   "updated":"2020-01-01 12:12:12"
+                   "status":"ACTIVE"
+                 },
+                   "username":"teacher"
+                   "money":"0"
+                   "email":"emailT@gmail.com"
+                   "first_name":"FirstNameT"
+                   "last_name":"LastNameT"
+                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"
+                   "created":"2020-01-01 12:12:12"
+                   "updated":"2020-01-01 12:12:12"
+                   "status":"ACTIVE"
+                 },
+                   "username":"admin"
+                   "money":"0"
+                   "email":"emailA@gmail.com"
+                   "first_name":"FirstNameA"
+                   "last_name":"LastNameA"
+                   "password":"$2b$10$mY8.DORMnmctP1g8Rc9TlOk9sucv2uDefMe11eN1d556EG7vCqMSO"
+                   "created":"2020-01-01 12:12:12"
+                   "updated":"2020-01-01 12:12:12"
+                   "status":"ACTIVE"
+                 }
+          ]
+   "role":[
+                 {
+                   "name":"ROLE_STUDENT",
+                 },
+                 {
+                   "name":"ROLE_TEACHER",
+                 },
+                 {
+                   "name":"ROLE_ADMIN",
+                 }
+          ]
+   "role_user":[
+                 {
+                   "user_id":"1",
+                   "role_id":"1",
+                 },
+                 {
+                   "user_id":"2",
+                   "role_id":"2",
+                 },
+                 {
+                   "user_id":"3",
+                   "role_id":"3",
+                 }
+          ]
+   }
+]
 ```
 ####  -  Залишилось додати
  - Перевірка тайм слотів на перетин між собою та на унікальність
