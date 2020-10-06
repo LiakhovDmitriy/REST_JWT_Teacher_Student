@@ -3,8 +3,8 @@
 [dimaliahov@gmail.com](mailto:dimaliahov@gmail.com)
 
 <ul>
-    <li>
-        <h1 align="center">TASK<br></h1>
+    <li align="center">
+        <h1 >TASK<br></h1>
     </li>
 </ul>
 
