@@ -67,14 +67,14 @@
  - Реєстрація
      - Request body:
      <pre>
-          {
-          "username":"Ivan",
-          "firstName":"Ivanovich",
-          "lastName":"Ivanov",
-          "email":"ivan007@gmail.com",
-          "password":"verySecurePassword",
-         "role":"STUDENT"
-          }
+        {
+            "username":"Ivan",
+            "firstName":"Ivanovich",
+            "lastName":"Ivanov",
+            "email":"ivan007@gmail.com",
+            "password":"verySecurePassword",
+            "role":"STUDENT"
+        }
     </pre>
     - Response body:
      <pre>
