@@ -51,4 +51,9 @@
         в) spring.datasource.password=[SQL password]<br>
             spring.liquibase.password=[SQL password]<br>
     P.S: База повинна бути пустою.<br>
+    
+- Item 1
+- Item 2
+  - Sub Item 1
+  - Sub Item 2
 
