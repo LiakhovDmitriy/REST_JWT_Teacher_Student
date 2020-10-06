@@ -45,8 +45,9 @@
 
 ## Запити
 ####  -  Реєстрація
+ - Метод POST
+ - http://localhost:{your port}/api/registration
  - Тіло запиту, приклад:
-     
 ```json
 {
     "username":"Ivan",
@@ -65,8 +66,9 @@
 }
 ```
 ####  -  Логін
+ - Метод POST
+ - http://localhost:{your port}/api/login
  - Тіло запиту, приклад:
-     
 ```json
 {
     "username":"Ivan",
@@ -75,7 +77,6 @@
 ```
 - Відповідь:
     
-    
 ```json
 {
     "username": "Ivan",
@@ -83,10 +84,8 @@
 }
 ```
 ####  -  В якості ролі "ADMIN"
- - Тіло запиту, приклад:
-```
-        Метод Get
-```
+ - Метод Get
+ - http://localhost:{your port}/api/{id}
  - Відповідь:
 ```json
 {
@@ -95,5 +94,202 @@
     "firstName": "FirstNameT",
     "lastName": "LastNameT",
     "email": "emailT@gmail.com"
+}
+```
+####  -  В якості ролі "STUDENT"
+###### Створити запит на індивідуальне зайняття
+ - Метод POST
+ - http://localhost:{your port}/api/student/create
+ - Тіло запиту, приклад:
+```json
+{
+    "dateStart":"2020-01-24 00:00",
+    "dateEnd":"2020-01-24 00:01",
+    "price":"24",
+    "idTeacher":"2"
+}
+```
+- Відповідь:
+    
+```json
+{
+    "msg": "The lesson was created by - Ivan; he chose a teacher - teacher",
+    "timeEnd": "2020-01-24 00:00",
+    "timeStart": "2020-01-24 00:01"
+}
+```
+###### Подивитися всі свої запити на індивідуальні зайняття
+ - Метод Get
+ - http://localhost:{your port}/api/student/myLessons
+ - Відповідь:
+```json
+{
+    "msg": [
+        {
+            "id": 1,
+            "created": "2020-01-23 00:00",
+            "updated": "2020-01-23 00:00",
+            "status": "ACTIVE",
+            "idTeacher": 2,
+            "dateStart": "2020-01-24 00:00",
+            "dateEnd": "2020-01-24 00:01",
+            "price": 24
+        }
+    ]
+}
+```
+###### Видалити (змінити статус) запит на індивідуальне зайняття
+ - Метод POST
+ - http://localhost:{your port}/api/student/myLessons
+ - Тіло запиту, приклад:
+```json
+[
+    1,
+    2
+]
+```
+- Відповідь:
+    
+```json
+{
+    "lesson 1": "Now the status is this: NOT_ACTIVE",
+    "lesson 2": "Now the status is this: NOT_ACTIVE"
+}
+```
+###### Подивитися всих вчителів
+ - Метод Get
+ - http://localhost:{your port}/api/student/teacher
+ - Відповідь:
+```json
+{
+    "Available teacher 'teacher'": "His id: 2"
+}
+```
+###### Подивитися вчителя та його прайс по "id" вчителя
+ - Метод Get
+ - http://localhost:{your port}/api/student/teacher/{id}
+ - Відповідь:
+```json
+{
+    "Teacher: 'teacher'; His id 2": {
+        "Price 1": "Time 60 minutes; Price: 55"
+    }
+}
+```
+####  -  В якості ролі "TEACHER"
+###### Подивитися пропозиції на індивідуальні зайняття
+ - Метод Get
+ - http://localhost:{your port}/api/teacher/offers
+ - Відповідь:
+```json
+{
+    "msg": [
+        {
+            "id": 6,
+            "created": "2020-01-24 00:00",
+            "updated": "2020-01-24 00:00",
+            "status": "CONSIDERATION",
+            "idTeacher": 2,
+            "dateStart": "2020-01-25 00:00",
+            "dateEnd": "2020-01-25 00:01",
+            "price": 24
+        }
+    ]
+}
+```
+###### Прийняти та відмінити зайняття
+ - Метод POST
+ - http://localhost:{your port}/api/teacher/offers
+ - Тіло запиту, приклад:
+```json
+[
+    {
+        "lessonId":[
+           1,
+           2
+        ],
+        "status": "CONSIDERATION"
+    }
+]
+```
+- Відповідь:
+    
+```json
+{
+    "lesson 1": "Now the status is: NOT_ACTIVE",
+    "lesson 2": "Now the status is: NOT_ACTIVE"
+}
+```
+###### Додати час коли вільний
+ - Метод POST
+ - http://localhost:{your port}/api/teacher/add
+ - Тіло запиту, приклад:
+```json
+[
+    {
+        "timeStart": "2020-01-24 08:30",
+        "timeEnd": "2020-01-24 09:00"
+    },
+    {
+        "timeStart": "2020-01-25 08:30",
+        "timeEnd": "2020-01-25 09:00"
+    }
+]
+```
+- Відповідь:
+    
+```json
+{
+    "msg": "Available time was add!",
+    "interval 0": "Start: 2020-01-24 08:30;  End: 2020-01-24 09:00",
+    "interval 1": "Start: 2020-01-25 08:30;  End: 2020-01-25 09:00"
+}
+```
+###### Додати ціну за певний проміжок часу (Прайс-лист)
+ - Метод POST
+ - http://localhost:{your port}/api/teacher/addToPriceList
+ - Тіло запиту, приклад:
+```json
+{
+    "time":"60",
+    "price":"100"
+}
+```
+- Відповідь:
+    
+```json
+{
+    "price": {
+        "time": 60,
+        "price": 100
+    }
+}
+```
+###### Подивитися свій прайс-лист
+ - Метод Get
+ - http://localhost:{your port}/api/teacher/myPriceList
+ - Відповідь:
+```json
+{
+    "Prices": {
+        "Price 0": "Time 60 minutes; Price: 100",
+    },
+    "My username": "teacher"
+}
+```
+###### Видалити щось з прайс-листу
+ - Метод POST
+ - http://localhost:{your port}/api/teacher/myPriceList
+ - Тіло запиту, приклад:
+```json
+[
+    1
+]
+```
+- Відповідь:
+    
+```json
+{
+    "Price 1": "Now the status is this: NOT_ACTIVE"
 }
 ```
