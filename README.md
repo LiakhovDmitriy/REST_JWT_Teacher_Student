@@ -31,10 +31,10 @@
    - Maven 3.6.*
 
 # Технічна документація
-## Як зупустить проект
-   - Скачать репозиторій
-   - Створити SQL базу
-   - В файлі application.properties внести зміни
+ - Как зупустить проект?
+   - Скачать репозиторий
+   - Создать SQL базу
+   - В файле application.properties внести зміни
      - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
      - spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
      - spring.datasource.username=[SQL username]
@@ -86,6 +86,18 @@
 ####  -  В якості ролі "ADMIN"
  - Метод Get
  - http://localhost:{yourPort}/api/{id}
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Відповідь:
 ```json
 {
@@ -100,6 +112,18 @@
 ###### Створити запит на індивідуальне зайняття
  - Метод POST
  - http://localhost:{yourPort}/api/student/create
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Тіло запиту, приклад:
 ```json
 {
@@ -121,6 +145,18 @@
 ###### Подивитися всі свої запити на індивідуальні зайняття
  - Метод Get
  - http://localhost:{yourPort}/api/student/myLessons
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Відповідь:
 ```json
 {
@@ -141,6 +177,18 @@
 ###### Видалити (змінити статус) запит на індивідуальне зайняття
  - Метод POST
  - http://localhost:{yourPort}/api/student/myLessons
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Тіло запиту, приклад:
 ```json
 [
@@ -159,6 +207,18 @@
 ###### Подивитися всих вчителів
  - Метод Get
  - http://localhost:{yourPort}/api/student/teacher
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Відповідь:
 ```json
 {
@@ -168,6 +228,18 @@
 ###### Подивитися вчителя та його прайс по "id" вчителя
  - Метод Get
  - http://localhost:{yourPort}/api/student/teacher/{id}
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Відповідь:
 ```json
 {
@@ -180,6 +252,18 @@
 ###### Подивитися пропозиції на індивідуальні зайняття
  - Метод Get
  - http://localhost:{yourPort}/api/teacher/offers
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Відповідь:
 ```json
 {
@@ -200,6 +284,18 @@
 ###### Прийняти та відмінити зайняття
  - Метод POST
  - http://localhost:{yourPort}/api/teacher/offers
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Тіло запиту, приклад:
 ```json
 [
@@ -223,6 +319,18 @@
 ###### Додати час коли вільний
  - Метод POST
  - http://localhost:{yourPort}/api/teacher/add
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Тіло запиту, приклад:
 ```json
 [
@@ -248,6 +356,18 @@
 ###### Додати ціну за певний проміжок часу (Прайс-лист)
  - Метод POST
  - http://localhost:{yourPort}/api/teacher/addToPriceList
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Тіло запиту, приклад:
 ```json
 {
@@ -268,6 +388,18 @@
 ###### Подивитися свій прайс-лист
  - Метод Get
  - http://localhost:{yourPort}/api/teacher/myPriceList
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Відповідь:
 ```json
 {
@@ -280,6 +412,18 @@
 ###### Видалити щось з прайс-листу
  - Метод POST
  - http://localhost:{yourPort}/api/teacher/myPriceList
+ - Header:
+```json
+[
+    {
+        "key":"Authorization",
+        "value":"Bearer_[token]",
+        "description":"",
+        "type":"text",
+        "enabled":true
+    }
+]
+```
  - Тіло запиту, приклад:
 ```json
 [
