@@ -2,9 +2,9 @@
 [_**Dmitriy Liakhov**_](https://www.linkedin.com/in/dmitiy-liakhov-82388a183/)<br>
 [dimaliahov@gmail.com](mailto:dimaliahov@gmail.com)
 
-<ul>
-    <li align="center">
-        <h1 >TASK<br></h1>
+<ul align="center">
+    <li>
+        <h1>TASK<br></h1>
     </li>
 </ul>
 
