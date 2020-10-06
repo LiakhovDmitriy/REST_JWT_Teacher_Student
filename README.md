@@ -31,73 +31,69 @@
    - Maven 3.6.*
 
 # Технічна документація
-    <h4>Как зупустить проект?<br></h4>
-    
-- Скачать репозиторий
-- Создать SQL базу
-- В файле application.properties внести зміни
-  - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
-            spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
-  - spring.datasource.username=[SQL username]<br>
-            spring.liquibase.user=[SQL username]
-  - spring.datasource.password=[SQL password]<br>
-            spring.liquibase.password=[SQL password]
-- P.S: База повинна бути пустою.
+ - Как зупустить проект?
+   - Скачать репозиторий
+   - Создать SQL базу
+   - В файле application.properties внести зміни
+     - spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
+     - spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
+     - spring.datasource.username=[SQL username]
+     - spring.liquibase.user=[SQL username]
+     - spring.datasource.password=[SQL password]<br>
+     - spring.liquibase.password=[SQL password]
+   - P.S: База повинна бути пустою.
 
- <h4>Запити<br></h4>
- 
- - Реєстрація
-     - Тіло запиту, приклад:
-     
-```json{
-"username":"Ivan",
-"firstName":"Ivanovich",
-"lastName":"Ivanov",
-"email":"ivan007@gmail.com",
-        "password":"verySecurePassword",
-        "role":"STUDENT"
-    }
-    ```
-     - Відповідь:
+#### Запити
+#####  -  Реєстрація
+ - Тіло запиту, приклад:
      
 ```json
-    {
-        "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
-    }
+{
+    "username":"Ivan",
+    "firstName":"Ivanovich",
+    "lastName":"Ivanov",
+    "email":"ivan007@gmail.com",
+    "password":"verySecurePassword",
+    "role":"STUDENT"
+}
 ```
- 
- - Логін
-     - Тіло запиту, приклад:
+- Відповідь:
      
 ```json
-    {
-        "username":"Ivan",
-        "password":"verySecurePassword"
-    }
+{
+    "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
+}
 ```
-
-
-    - Відповідь:
+#####  -  Логін
+ - Тіло запиту, приклад:
+     
+```json
+{
+    "username":"Ivan",
+    "password":"verySecurePassword"
+}
+```
+- Відповідь:
     
     
 ```json
-    {
-        "username": "Ivan",
-        "token": "[token]"
-    }
+{
+    "username": "Ivan",
+    "token": "[token]"
+}
 ```
- - В якості ролі "ADMIN"
-     - Тіло запиту, приклад:
-```json
-        Метод Get</pre>
+#####  -  В якості ролі "ADMIN"
+ - Тіло запиту, приклад:
 ```
-    - Відповідь:
+        Метод Get
+```
+ - Відповідь:
 ```json
-    {
-        "id": 2,
-        "username": "teacher",
-        "firstName": "FirstNameT",
-        "lastName": "LastNameT",
-        "email": "emailT@gmail.com"
-    }
+{
+    "id": 2,
+    "username": "teacher",
+    "firstName": "FirstNameT",
+    "lastName": "LastNameT",
+    "email": "emailT@gmail.com"
+}
 ```
