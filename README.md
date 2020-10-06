@@ -46,7 +46,7 @@
 ## Запити
 ####  -  Реєстрація
  - Метод POST
- - http://localhost:{your port}/api/registration
+ - http://localhost:{yourPort}/api/registration
  - Тіло запиту, приклад:
 ```json
 {
@@ -67,7 +67,7 @@
 ```
 ####  -  Логін
  - Метод POST
- - http://localhost:{your port}/api/login
+ - http://localhost:{yourPort}/api/login
  - Тіло запиту, приклад:
 ```json
 {
@@ -85,7 +85,7 @@
 ```
 ####  -  В якості ролі "ADMIN"
  - Метод Get
- - http://localhost:{your port}/api/{id}
+ - http://localhost:{yourPort}/api/{id}
  - Відповідь:
 ```json
 {
@@ -99,7 +99,7 @@
 ####  -  В якості ролі "STUDENT"
 ###### Створити запит на індивідуальне зайняття
  - Метод POST
- - http://localhost:{your port}/api/student/create
+ - http://localhost:{yourPort}/api/student/create
  - Тіло запиту, приклад:
 ```json
 {
@@ -120,7 +120,7 @@
 ```
 ###### Подивитися всі свої запити на індивідуальні зайняття
  - Метод Get
- - http://localhost:{your port}/api/student/myLessons
+ - http://localhost:{yourPort}/api/student/myLessons
  - Відповідь:
 ```json
 {
@@ -140,7 +140,7 @@
 ```
 ###### Видалити (змінити статус) запит на індивідуальне зайняття
  - Метод POST
- - http://localhost:{your port}/api/student/myLessons
+ - http://localhost:{yourPort}/api/student/myLessons
  - Тіло запиту, приклад:
 ```json
 [
@@ -158,7 +158,7 @@
 ```
 ###### Подивитися всих вчителів
  - Метод Get
- - http://localhost:{your port}/api/student/teacher
+ - http://localhost:{yourPort}/api/student/teacher
  - Відповідь:
 ```json
 {
@@ -167,7 +167,7 @@
 ```
 ###### Подивитися вчителя та його прайс по "id" вчителя
  - Метод Get
- - http://localhost:{your port}/api/student/teacher/{id}
+ - http://localhost:{yourPort}/api/student/teacher/{id}
  - Відповідь:
 ```json
 {
@@ -179,7 +179,7 @@
 ####  -  В якості ролі "TEACHER"
 ###### Подивитися пропозиції на індивідуальні зайняття
  - Метод Get
- - http://localhost:{your port}/api/teacher/offers
+ - http://localhost:{yourPort}/api/teacher/offers
  - Відповідь:
 ```json
 {
@@ -199,7 +199,7 @@
 ```
 ###### Прийняти та відмінити зайняття
  - Метод POST
- - http://localhost:{your port}/api/teacher/offers
+ - http://localhost:{yourPort}/api/teacher/offers
  - Тіло запиту, приклад:
 ```json
 [
@@ -222,7 +222,7 @@
 ```
 ###### Додати час коли вільний
  - Метод POST
- - http://localhost:{your port}/api/teacher/add
+ - http://localhost:{yourPort}/api/teacher/add
  - Тіло запиту, приклад:
 ```json
 [
@@ -247,7 +247,7 @@
 ```
 ###### Додати ціну за певний проміжок часу (Прайс-лист)
  - Метод POST
- - http://localhost:{your port}/api/teacher/addToPriceList
+ - http://localhost:{yourPort}/api/teacher/addToPriceList
  - Тіло запиту, приклад:
 ```json
 {
@@ -267,7 +267,7 @@
 ```
 ###### Подивитися свій прайс-лист
  - Метод Get
- - http://localhost:{your port}/api/teacher/myPriceList
+ - http://localhost:{yourPort}/api/teacher/myPriceList
  - Відповідь:
 ```json
 {
@@ -279,7 +279,7 @@
 ```
 ###### Видалити щось з прайс-листу
  - Метод POST
- - http://localhost:{your port}/api/teacher/myPriceList
+ - http://localhost:{yourPort}/api/teacher/myPriceList
  - Тіло запиту, приклад:
 ```json
 [
