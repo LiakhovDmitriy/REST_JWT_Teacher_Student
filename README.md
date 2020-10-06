@@ -43,14 +43,14 @@
 
 <ul>
     <h4>Как зупустить проект?<br></h4>
-    1. Скачать репозиторий
-    2. Создать SQL базу
-    3. В файле application.properties внести зміни
-        а) spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
-            spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC
-        б) spring.datasource.username=[SQL username]
-            spring.liquibase.user=[SQL username]
-        в) spring.datasource.password=[SQL password]
-            spring.liquibase.password=[SQL password]
-    P.S: База повинна бути пустою.
+    1. Скачать репозиторий<br>
+    2. Создать SQL базу<br>
+    3. В файле application.properties внести зміни<br>
+        а) spring.datasource.url =jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
+            spring.liquibase.url=jdbc:mysql://localhost:3306/[імя SQL бази]?serverTimezone=UTC<br>
+        б) spring.datasource.username=[SQL username]<br>
+            spring.liquibase.user=[SQL username]<br>
+        в) spring.datasource.password=[SQL password]<br>
+            spring.liquibase.password=[SQL password]<br>
+    P.S: База повинна бути пустою.<br>
 </ul>
