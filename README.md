@@ -77,6 +77,7 @@
     }
 </pre>
     - Відповідь:
+    
 <pre>
     {
         "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
