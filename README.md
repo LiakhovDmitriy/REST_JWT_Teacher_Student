@@ -4,7 +4,7 @@
 
 <ul align="center">
     <li>
-        <h1>TASK<br></h1>
+        <h1>Завдання<br></h1>
     </li>
 </ul>
 <ul>
@@ -62,10 +62,10 @@
             spring.liquibase.password=[SQL password]
 - P.S: База повинна бути пустою.
 
- <h4>Запроси<br></h4>
+ <h4>Запити<br></h4>
  
  - Реєстрація
-     - Request body:
+     - Request body, example:
      <pre>
         {
             "username":"Ivan",
@@ -85,7 +85,7 @@
  
  
  - Логін
-     - Request body:
+     - Request body, example:
      <pre>
         {
             "username":"Ivan",
