@@ -100,7 +100,7 @@
         }
     </pre>
     
-    - В якості ролі "ADMIN"
+ - В якості ролі "ADMIN"
      - Request body, example:
      <pre>
         Метод Get
