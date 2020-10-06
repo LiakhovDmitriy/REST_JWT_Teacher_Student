@@ -31,14 +31,17 @@
 - Збереження даних в БД<br>
 
 <h4>Мінімально необхідні валідації даних:<br></h4>
-- Чи поля об’єкта не пусті<br>
-- Чи dateFrom < dateTo<br>
-- і т.д.<br>
+
+- Чи поля об’єкта не пусті
+- Чи dateFrom < dateTo
+- і т.д.
+
 <h4>Технічний стек :<br></h4>
-1. Java 8<br>
-2. Spring Boot 2.2.* (Security, MVC, Data Jpa)<br>
-3. SQL<br>
-4. Maven 3.6.*<br>
+
+- Java 8
+- Spring Boot 2.2.* (Security, MVC, Data Jpa)
+- SQL
+- Maven 3.6.*
 
 </ul>
 <ul align="center">
