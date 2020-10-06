@@ -66,7 +66,6 @@
  
  - Реєстрація
      - Тіло запиту, приклад:
-     
 ```json
     {
         "username":"Ivan",
@@ -77,39 +76,36 @@
         "role":"STUDENT"
     }
 ```
-    - Відповідь:
-    
-<pre>
+     - Відповідь:
+```json
     {
         "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
     }
-</pre>
- 
+```
  
  - Логін
      - Тіло запиту, приклад:
      
-<pre>
+```json
     {
         "username":"Ivan",
         "password":"verySecurePassword"
     }
-</pre>
+```
     - Відповідь:
-    
-<pre>
+```json
     {
         "username": "Ivan",
         "token": "[token]"
     }
-</pre>
-    
+```
  - В якості ролі "ADMIN"
      - Тіло запиту, приклад:
-<pre>
+```json
         Метод Get</pre>
+```
     - Відповідь:
-<pre>
+```json
     {
         "id": 2,
         "username": "teacher",
@@ -117,4 +113,4 @@
         "lastName": "LastNameT",
         "email": "emailT@gmail.com"
     }
-</pre>
+```
