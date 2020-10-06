@@ -65,7 +65,7 @@
  <h4>Запити<br></h4>
  
  - Реєстрація
-     - Request body, example:
+     - Тіло запиту, приклад:
      <pre>
         {
             "username":"Ivan",
@@ -76,7 +76,7 @@
             "role":"STUDENT"
         }
     </pre>
-    - Response body:
+    - Відповідь:
      <pre>
         {
             "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
@@ -85,14 +85,14 @@
  
  
  - Логін
-     - Request body, example:
+     - Тіло запиту, приклад:
      <pre>
         {
             "username":"Ivan",
             "password":"verySecurePassword"
         }
     </pre>
-    - Response body:
+    - Відповідь:
      <pre>
         {
             "username": "Ivan",
@@ -101,11 +101,11 @@
     </pre>
     
  - В якості ролі "ADMIN"
-     - Request body, example:
+     - Тіло запиту, приклад:
      <pre>
         Метод Get
     </pre>
-    - Response body:
+    - Відповідь:
      <pre>
         {
             "id": 2,
