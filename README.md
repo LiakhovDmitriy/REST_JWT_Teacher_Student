@@ -4,15 +4,11 @@
 
 <ul>
     <li>
-        <h1>TASK<br></h1>
+        <h1 style="text-align:center">TASK<br></h1>
     </li>
 </ul>
 
 <ul>
-    <li>
-        <h3>Task<br></h3>
-    </li>
-    
 Розробити Appointment API для онлайн університету, в якому буде 2 ролі: викладач та
 студент.<br>
 <h4>Викладач :<br></h4>
