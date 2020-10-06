@@ -66,17 +66,17 @@
  
  - Реєстрація
      - Тіло запиту, приклад:
-```json
-    {
-        "username":"Ivan",
-        "firstName":"Ivanovich",
-        "lastName":"Ivanov",
-        "email":"ivan007@gmail.com",
+     
+```json{
+"username":"Ivan",
+"firstName":"Ivanovich",
+"lastName":"Ivanov",
+"email":"ivan007@gmail.com",
         "password":"verySecurePassword",
         "role":"STUDENT"
-    }
-```
+    }```
      - Відповідь:
+     
 ```json
     {
         "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
@@ -92,7 +92,11 @@
         "password":"verySecurePassword"
     }
 ```
+
+
     - Відповідь:
+    
+    
 ```json
     {
         "username": "Ivan",
