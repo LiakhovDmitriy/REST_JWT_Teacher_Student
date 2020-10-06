@@ -76,3 +76,12 @@
          "role":"STUDENT"
           }
     </pre>
+    
+ - Логін
+     - Request body:
+     <pre>
+          {
+            "username":"Ivan",
+            "password":"verySecurePassword"
+          }
+    </pre>
