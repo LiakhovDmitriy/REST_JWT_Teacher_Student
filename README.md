@@ -4,7 +4,7 @@
 
 <ul>
     <li>
-        <h1 style="text-align:center">TASK<br></h1>
+        <h1 align="center">TASK<br></h1>
     </li>
 </ul>
 
