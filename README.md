@@ -85,3 +85,10 @@
             "password":"verySecurePassword"
           }
     </pre>
+    - Response body:
+     <pre>
+          {
+            "username": "Ivan",
+            "token": "[token]"
+          }
+    </pre>
