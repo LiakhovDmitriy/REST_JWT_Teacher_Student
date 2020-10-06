@@ -7,6 +7,11 @@
         <h1>TASK<br></h1>
     </li>
 </ul>
+<ul align="center">
+    <li>
+        <h1>Technical documentation<br></h1>
+    </li>
+</ul>
 
 <ul>
 Розробити Appointment API для онлайн університету, в якому буде 2 ролі: викладач та
