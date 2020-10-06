@@ -43,8 +43,8 @@
      - spring.liquibase.password=[SQL password]
    - P.S: База повинна бути пустою.
 
-#### Запити
-#####  -  Реєстрація
+## Запити
+####  -  Реєстрація
  - Тіло запиту, приклад:
      
 ```json
@@ -64,7 +64,7 @@
     "user Ivan": "Registration successful: User{username='Ivan', firstName='Ivanovich', lastName='Ivanov', email='ivan007@gmail.com', money='0', password='[password for encryption via bcrypt]'}"
 }
 ```
-#####  -  Логін
+####  -  Логін
  - Тіло запиту, приклад:
      
 ```json
@@ -82,7 +82,7 @@
     "token": "[token]"
 }
 ```
-#####  -  В якості ролі "ADMIN"
+####  -  В якості ролі "ADMIN"
  - Тіло запиту, приклад:
 ```
         Метод Get
