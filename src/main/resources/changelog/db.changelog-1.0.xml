@@ -274,18 +274,6 @@
     <!--Данные в таблицу записываем-->
     <changeSet id="1.0.13" author="dmitriy.liachov">
 
-        <insert tableName="role">
-            <column name="name" value="ROLE_STUDENT"/>
-        </insert>
-
-        <insert tableName="role">
-            <column name="name" value="ROLE_TEACHER"/>
-        </insert>
-
-        <insert tableName="role">
-            <column name="name" value="ROLE_ADMIN"/>
-        </insert>
-
         <insert tableName="user">
             <column name="username" value="student"/>
             <column name="money" value="0"/>
@@ -320,6 +308,18 @@
             <column name="created" value="2020-01-01 12:12:12"/>
             <column name="updated" value="2020-01-01 12:12:12"/>
             <column name="status" value="ACTIVE"/>
+        </insert>
+
+        <insert tableName="role">
+            <column name="name" value="ROLE_STUDENT"/>
+        </insert>
+
+        <insert tableName="role">
+            <column name="name" value="ROLE_TEACHER"/>
+        </insert>
+
+        <insert tableName="role">
+            <column name="name" value="ROLE_ADMIN"/>
         </insert>
 
         <insert tableName="role_user">

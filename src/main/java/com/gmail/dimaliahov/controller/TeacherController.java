@@ -77,7 +77,7 @@ public class TeacherController {
 		return ResponseEntity.ok(response);
 	}
 
-	@GetMapping (value = "add")
+	@PostMapping (value = "add")
 	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req) {
 		String token = req.getHeader("Authorization").substring(7);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
