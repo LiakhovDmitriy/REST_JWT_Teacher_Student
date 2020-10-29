@@ -2,6 +2,7 @@ package com.gmail.dimaliahov.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -12,11 +13,12 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@EqualsAndHashCode (callSuper = true)
 @Entity
 @Table (name = "lesson")
 @Data
 @ToString
-public class Lessons extends BaseEntety {
+public class Lesson extends BaseEntity {
 
 	@Column (name = "idTeacher")
 	private Long idTeacher;
@@ -32,21 +34,19 @@ public class Lessons extends BaseEntety {
 
 	@JsonBackReference
 	@ManyToMany (mappedBy = "lesson")
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	private Set<User> user = new HashSet<>();
 
-	public Lessons () {
+	public Lesson () {
 		super();
-	}
-
-	public void setUserToLesson (User user) {
-		this.user.add(user);
 	}
 
 	public Long getIdTeacher () {
 		return idTeacher;
 	}
 
-	public Lessons setIdTeacher (Long idTeacher) {
+	public Lesson setIdTeacher (Long idTeacher) {
 		this.idTeacher = idTeacher;
 		return this;
 	}
@@ -55,7 +55,7 @@ public class Lessons extends BaseEntety {
 		return dateStart;
 	}
 
-	public Lessons setDateStart (Date dateStart) {
+	public Lesson setDateStart (Date dateStart) {
 		this.dateStart = dateStart;
 		return this;
 	}
@@ -64,17 +64,13 @@ public class Lessons extends BaseEntety {
 		return dateEnd;
 	}
 
-	public Lessons setDateEnd (Date dateEnd) {
+	public Lesson setDateEnd (Date dateEnd) {
 		this.dateEnd = dateEnd;
 		return this;
 
 	}
 
-	public int getPrice () {
-		return price;
-	}
-
-	public Lessons setPrice (int price) {
+	public Lesson setPrice (int price) {
 		this.price = price;
 		return this;
 
@@ -84,18 +80,8 @@ public class Lessons extends BaseEntety {
 		return user;
 	}
 
-	public Lessons setUser (Set<User> users) {
+	public Lesson setUser (Set<User> users) {
 		this.user = users;
 		return this;
-	}
-
-	@Override
-	public String toString () {
-		return "Lessons{" +
-				"idTeacher=" + idTeacher +
-				", dateStart=" + dateStart +
-				", dateEnd=" + dateEnd +
-				", price=" + price +
-				'}';
 	}
 }

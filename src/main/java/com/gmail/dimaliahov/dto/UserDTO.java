@@ -28,15 +28,4 @@ public class UserDTO {
 
 		return userDto;
 	}
-
-	@Override
-	public String toString () {
-		return "UserDto{" +
-				"id=" + id +
-				", username='" + username + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				'}';
-	}
 }

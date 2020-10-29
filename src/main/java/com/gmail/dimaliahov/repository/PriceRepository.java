@@ -17,7 +17,7 @@ public interface PriceRepository extends JpaRepository<PriceListForTeacher, Long
 
 	List<PriceListForTeacher> getAllByUser_Id (Long id);
 
-	List<PriceListForTeacher> getByUser(User user);
+	List<PriceListForTeacher> getByUser (User user);
 
 	@Modifying
 	@Query ("UPDATE PriceListForTeacher c SET c.status = :name WHERE c.id = :id")

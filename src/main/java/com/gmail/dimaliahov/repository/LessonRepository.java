@@ -1,6 +1,6 @@
 package com.gmail.dimaliahov.repository;
 
-import com.gmail.dimaliahov.model.Lessons;
+import com.gmail.dimaliahov.model.Lesson;
 import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface LessonsRepository extends JpaRepository<Lessons, Long> {
+public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
-	List<Lessons> getAllByIdTeacherAndStatus (Long idTeacher, Status status);
+	List<Lesson> getAllByIdTeacherAndStatus (Long idTeacher, Status status);
 
-	List<Lessons> getAllByIdTeacher(Long idTeacher);
+	List<Lesson> getAllByIdTeacher (Long idTeacher);
 
-	List<Lessons> getByUser (User user);
+	List<Lesson> getByUser (User user);
 
 	@Modifying
-	@Query ("UPDATE Lessons c SET c.status = :name WHERE c.id = :id")
+	@Query ("UPDATE Lesson c SET c.status = :name WHERE c.id = :id")
 	@Transactional
 	void changeStatusForLesson (@Param ("id") Long id, @Param ("name") Status name);
 

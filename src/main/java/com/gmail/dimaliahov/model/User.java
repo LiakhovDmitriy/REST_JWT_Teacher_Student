@@ -2,16 +2,29 @@ package com.gmail.dimaliahov.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+@EqualsAndHashCode (callSuper = true)
 @Entity
 @Table (name = "user")
 @Data
 @ToString
-public class User extends BaseEntety {
+public class User extends BaseEntity {
 
 	@Column (name = "username")
 	private String username;
@@ -35,6 +48,8 @@ public class User extends BaseEntety {
 	@JoinTable (name = "role_user",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "role_id", referencedColumnName = "id")})
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	private List<Role> role = new ArrayList<>();
 
 
@@ -42,7 +57,9 @@ public class User extends BaseEntety {
 	@JoinTable (name = "user_lesson",
 			joinColumns = {@JoinColumn (name = "user_id", referencedColumnName = "id")},
 			inverseJoinColumns = {@JoinColumn (name = "lesson_id", referencedColumnName = "id")})
-	private Set<Lessons> lesson = new HashSet<>();
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
+	private Set<Lesson> lesson = new HashSet<>();
 
 	@JsonManagedReference
 	@OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
@@ -50,14 +67,16 @@ public class User extends BaseEntety {
 
 	@JsonManagedReference
 	@OneToMany (mappedBy = "user", cascade = CascadeType.ALL)
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	private Set<PriceListForTeacher> price = new HashSet<>();
 
 	public User () {
 		super();
 	}
 
-	public void setLessonToUser (Lessons lessons) {
-		this.lesson.add(lessons);
+	public void setLessonToUser (Lesson lesson) {
+		this.lesson.add(lesson);
 	}
 
 	public void setAvailableTimeToUser (AvailableTime available) {
@@ -125,11 +144,11 @@ public class User extends BaseEntety {
 		this.role = role;
 	}
 
-	public Set<Lessons> getLesson () {
+	public Set<Lesson> getLesson () {
 		return lesson;
 	}
 
-	public void setLesson (Set<Lessons> lesson) {
+	public void setLesson (Set<Lesson> lesson) {
 		this.lesson = lesson;
 	}
 
@@ -157,33 +176,4 @@ public class User extends BaseEntety {
 		this.price = price;
 	}
 
-	@Override
-	public boolean equals (Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-		User user = (User) o;
-		return Objects.equals(username, user.username) &&
-				Objects.equals(firstName, user.firstName) &&
-				Objects.equals(lastName, user.lastName) &&
-				Objects.equals(email, user.email) &&
-				Objects.equals(password, user.password);
-	}
-
-	@Override
-	public int hashCode () {
-		return Objects.hash(super.hashCode(), username, firstName, lastName, email, password);
-	}
-
-	@Override
-	public String toString () {
-		return "User{" +
-				"username='" + username + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", money='" + money + '\'' +
-				", password='" + password + '\'' +
-				'}';
-	}
 }

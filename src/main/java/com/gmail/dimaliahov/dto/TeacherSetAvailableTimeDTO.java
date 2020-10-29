@@ -11,11 +11,4 @@ public class TeacherSetAvailableTimeDTO {
 
 	private String timeEnd;
 
-	@Override
-	public String toString () {
-		return "TeacherSetAvailableTime{" +
-				"timeStart='" + timeStart + '\'' +
-				", timeEnd='" + timeEnd + '\'' +
-				'}';
-	}
 }

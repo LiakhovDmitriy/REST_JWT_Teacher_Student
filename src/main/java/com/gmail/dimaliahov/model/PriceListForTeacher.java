@@ -1,14 +1,20 @@
 package com.gmail.dimaliahov.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import javax.persistence.*;
-import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@EqualsAndHashCode (callSuper = true)
 @Entity
 @Table (name = "price_list")
 @Data
-public class PriceListForTeacher extends BaseEntety {
+public class PriceListForTeacher extends BaseEntity {
 
 	@Column (name = "time")
 	private long time;
@@ -18,29 +24,8 @@ public class PriceListForTeacher extends BaseEntety {
 
 	@ManyToOne
 	@JoinColumn (name = "user_id")
+	@ToString.Exclude
+	@EqualsAndHashCode.Exclude
 	private User user;
 
-	@Override
-	public boolean equals (Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-		PriceListForTeacher that = (PriceListForTeacher) o;
-		return time == that.time &&
-				price == that.price &&
-				Objects.equals(user, that.user);
-	}
-
-	@Override
-	public int hashCode () {
-		return Objects.hash(super.hashCode(), time, price);
-	}
-
-	@Override
-	public String toString () {
-		return "PriceListForTeacher{" +
-				"time=" + time +
-				", price=" + price +
-				'}';
-	}
 }

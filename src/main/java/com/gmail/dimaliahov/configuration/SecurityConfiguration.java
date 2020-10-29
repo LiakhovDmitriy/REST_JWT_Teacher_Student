@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.config;
+package com.gmail.dimaliahov.configuration;
 
 import com.gmail.dimaliahov.security.jwt.JwtConfigurer;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
@@ -11,17 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final String ADMIN_ENDPOINT = "/api/admin/**";
 	private static final String LOGIN_ENDPOINT = "/api/login";
 	private static final String REGISTRATION_ENDPOINT = "/api/registration";
 	private static final String STUDENT_ENDPOINT = "/api/student/**";
 	private static final String TEACHER_ENDPOINT = "/api/teacher/**";
+
 	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
-	public SecurityConfig (JwtTokenProvider jwtTokenProvider) {
+	public SecurityConfiguration (JwtTokenProvider jwtTokenProvider) {
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 

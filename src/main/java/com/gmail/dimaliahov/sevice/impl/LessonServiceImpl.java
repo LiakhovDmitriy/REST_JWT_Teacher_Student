@@ -1,8 +1,8 @@
 package com.gmail.dimaliahov.sevice.impl;
 
-import com.gmail.dimaliahov.model.Lessons;
+import com.gmail.dimaliahov.model.Lesson;
 import com.gmail.dimaliahov.model.Status;
-import com.gmail.dimaliahov.repository.LessonsRepository;
+import com.gmail.dimaliahov.repository.LessonRepository;
 import com.gmail.dimaliahov.sevice.LessonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +14,22 @@ import java.util.List;
 @Slf4j
 public class LessonServiceImpl implements LessonService {
 
-	private final LessonsRepository lessonsRepository;
+	private final LessonRepository lessonRepository;
 
 	@Autowired
-	public LessonServiceImpl (LessonsRepository lessonsRepository) {
-		this.lessonsRepository = lessonsRepository;
+	public LessonServiceImpl (LessonRepository lessonRepository) {
+		this.lessonRepository = lessonRepository;
 	}
 
 	@Override
-	public Lessons createLesson (Lessons lessons) {
-		lessonsRepository.save(lessons);
-		log.info("IN createLesson - lessons: {} successfully createLesson", lessons);
-		return lessons;
+	public void createLesson (Lesson lesson) {
+		lessonRepository.save(lesson);
+		log.info("IN createLesson - lessons: {} successfully createLesson", lesson);
 	}
 
 	@Override
-	public List<Lessons> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher) {
-		return lessonsRepository.getAllByIdTeacherAndStatus(idTeacher, status);
+	public List<Lesson> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher) {
+		return lessonRepository.getAllByIdTeacherAndStatus(idTeacher, status);
 	}
 
 }

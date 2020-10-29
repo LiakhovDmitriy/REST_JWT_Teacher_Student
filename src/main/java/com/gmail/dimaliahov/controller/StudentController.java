@@ -1,8 +1,12 @@
 package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.CreateLessonDTO;
-import com.gmail.dimaliahov.model.*;
-import com.gmail.dimaliahov.repository.LessonsRepository;
+import com.gmail.dimaliahov.model.Lesson;
+import com.gmail.dimaliahov.model.PriceListForTeacher;
+import com.gmail.dimaliahov.model.Role;
+import com.gmail.dimaliahov.model.Status;
+import com.gmail.dimaliahov.model.User;
+import com.gmail.dimaliahov.repository.LessonRepository;
 import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
@@ -12,7 +16,12 @@ import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -26,33 +35,35 @@ import java.util.Map;
 @Slf4j
 public class StudentController {
 
+	private final static int TOKEN_START = 7;
+
 	private final LessonService lessonService;
 	private final UserService userService;
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
 	private final JwtTokenProvider jwtTokenProvider;
 	private final PriceService priceService;
-	private final LessonsRepository lessonsRepository;
+	private final LessonRepository lessonRepository;
 
 	@Autowired
-	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, LessonsRepository lessonsRepository) {
+	public StudentController (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, LessonRepository lessonRepository) {
 		this.lessonService = lessonService;
 		this.userService = userService;
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 		this.jwtTokenProvider = jwtTokenProvider;
 		this.priceService = priceService;
-		this.lessonsRepository = lessonsRepository;
+		this.lessonRepository = lessonRepository;
 	}
 
 	@PostMapping (value = "create")
 	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody CreateLessonDTO lesson, HttpServletRequest req) throws ParseException {
-		String token = req.getHeader("Authorization").substring(7);
+		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Map<Object, Object> response = new HashMap<>();
 		if (lesson.getDateStart().compareTo(lesson.getDateEnd()) < 0) {
-			Lessons nLesson = new CreateLessonDTO().toLesson(lesson);
-			Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
-			User user = userService.findById(userID);
+			Lesson nLesson = new CreateLessonDTO().toLesson(lesson);
+			Long userId = Long.valueOf(jwtTokenProvider.getIdUsername(token));
+			User user = userService.findById(userId);
 			lessonService.createLesson(nLesson);
 			user.setLessonToUser(nLesson);
 			userRepository.save(user);
@@ -113,10 +124,10 @@ public class StudentController {
 
 	@GetMapping (value = "myLessons")
 	public ResponseEntity<Object> getAllMyLessons (HttpServletRequest req) {
-		String token = req.getHeader("Authorization").substring(7);
+		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
 
-		List<Lessons> l = lessonsRepository.getByUser(userService.findById(userID));
+		List<Lesson> l = lessonRepository.getByUser(userService.findById(userID));
 
 		Map<Object, Object> response = new HashMap<>();
 		response.put("msg", l);
@@ -125,15 +136,15 @@ public class StudentController {
 
 	@PostMapping (value = "myLessons")
 	public ResponseEntity<Object> postDeleteLesson (@RequestBody List<Long> list, HttpServletRequest req) {
-		String token = req.getHeader("Authorization").substring(7);
+		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
 		Map<Object, Object> response = new HashMap<>();
-		List<Lessons> l = lessonsRepository.getByUser(userService.findById(userID));
+		List<Lesson> l = lessonRepository.getByUser(userService.findById(userID));
 
-		for (Lessons lessons : l) {
-			if (list.contains(lessons.getId())) {
-				lessonsRepository.changeStatusForLesson(lessons.getId(), Status.NOT_ACTIVE);
-				response.put("lesson " + lessons.getId(), "Now the status is this: " + Status.NOT_ACTIVE);
+		for (Lesson lesson : l) {
+			if (list.contains(lesson.getId())) {
+				lessonRepository.changeStatusForLesson(lesson.getId(), Status.NOT_ACTIVE);
+				response.put("lesson " + lesson.getId(), "Now the status is this: " + Status.NOT_ACTIVE);
 			}
 		}
 		return ResponseEntity.ok(response);

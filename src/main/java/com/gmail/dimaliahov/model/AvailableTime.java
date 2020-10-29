@@ -1,15 +1,21 @@
 package com.gmail.dimaliahov.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.util.Date;
-import java.util.Objects;
 
+@EqualsAndHashCode (callSuper = true)
 @Entity
 @Table (name = "available_time")
 @Data
-public class AvailableTime extends BaseEntety {
+public class AvailableTime extends BaseEntity {
 
 	@Column (name = "timeStart")
 	private Date timeStart;
@@ -19,28 +25,8 @@ public class AvailableTime extends BaseEntety {
 
 	@ManyToOne
 	@JoinColumn (name = "user_id")
+	@EqualsAndHashCode.Exclude
+	@ToString.Exclude
 	private User user;
 
-	@Override
-	public boolean equals (Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		if (!super.equals(o)) return false;
-		AvailableTime that = (AvailableTime) o;
-		return Objects.equals(timeStart, that.timeStart) &&
-				Objects.equals(timeEnd, that.timeEnd);
-	}
-
-	@Override
-	public int hashCode () {
-		return Objects.hash(super.hashCode(), timeStart, timeEnd, user);
-	}
-
-	@Override
-	public String toString () {
-		return "AvailableTime{" +
-				"timeStart=" + timeStart +
-				", timeEnd=" + timeEnd +
-				'}';
-	}
 }

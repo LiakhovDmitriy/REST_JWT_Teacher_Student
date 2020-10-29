@@ -2,7 +2,6 @@ package com.gmail.dimaliahov.sevice.impl;
 
 import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
-import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.sevice.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +23,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User registration (User user) {
+	public void registration (User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setStatus(Status.ACTIVE);
 		User registeredUser = userRepository.save(user);
 		log.info("IN register - user: {} successfully registered", registeredUser);
-		return registeredUser;
 	}
 
 	@Override

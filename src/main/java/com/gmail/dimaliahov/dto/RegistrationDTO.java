@@ -19,13 +19,5 @@ public class RegistrationDTO {
 
 	private String role;
 
-	@Override
-	public String toString () {
-		return "RegistrationDTO{" +
-				"username='" + username + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				'}';
-	}
+
 }

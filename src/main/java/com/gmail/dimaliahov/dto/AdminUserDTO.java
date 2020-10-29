@@ -1,9 +1,9 @@
 package com.gmail.dimaliahov.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
@@ -32,15 +32,4 @@ public class AdminUserDTO {
 		return adminUserDto;
 	}
 
-	@Override
-	public String toString () {
-		return "AdminUserDto{" +
-				"id=" + id +
-				", username='" + username + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", email='" + email + '\'' +
-				", status='" + status + '\'' +
-				'}';
-	}
 }

@@ -1,15 +1,22 @@
 package com.gmail.dimaliahov.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @MappedSuperclass
 @Data
-public class BaseEntety {
+public class BaseEntity {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -25,14 +32,7 @@ public class BaseEntety {
 
 	@Enumerated (EnumType.STRING)
 	@Column (name = "status")
+	@ToString.Exclude
 	private Status status;
 
-	@Override
-	public String toString () {
-		return "BaseEntety{" +
-				"id=" + id +
-				", created=" + created +
-				", updated=" + updated +
-				'}';
-	}
 }

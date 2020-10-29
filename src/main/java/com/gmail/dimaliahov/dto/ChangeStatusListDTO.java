@@ -14,11 +14,4 @@ public class ChangeStatusListDTO {
 
 	private Status status;
 
-	@Override
-	public String toString () {
-		return "ChangeStatusList{" +
-				"lessonId=" + lessonId +
-				", status=" + status +
-				'}';
-	}
 }
