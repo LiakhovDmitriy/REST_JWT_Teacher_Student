@@ -1,7 +1,7 @@
 package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.AuthenticationRequestDTO;
-import com.gmail.dimaliahov.sevice.controllerService.LoginControllerService;
+import com.gmail.dimaliahov.sevice.serviceForController.LoginControllerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

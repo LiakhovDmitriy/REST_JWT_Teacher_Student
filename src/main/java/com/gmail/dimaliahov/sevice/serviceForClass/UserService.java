@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.sevice.controllerClass;
+package com.gmail.dimaliahov.sevice.serviceForClass;
 
 import com.gmail.dimaliahov.model.User;
 

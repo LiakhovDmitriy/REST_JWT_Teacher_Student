@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.sevice.controllerService;
+package com.gmail.dimaliahov.sevice.serviceForController;
 
 import com.gmail.dimaliahov.dto.ChangeStatusListDTO;
 import com.gmail.dimaliahov.dto.PriceListDTO;

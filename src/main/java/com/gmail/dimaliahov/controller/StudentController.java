@@ -1,7 +1,7 @@
 package com.gmail.dimaliahov.controller;
 
 import com.gmail.dimaliahov.dto.CreateLessonDTO;
-import com.gmail.dimaliahov.sevice.controllerService.StudentControllerService;
+import com.gmail.dimaliahov.sevice.serviceForController.StudentControllerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

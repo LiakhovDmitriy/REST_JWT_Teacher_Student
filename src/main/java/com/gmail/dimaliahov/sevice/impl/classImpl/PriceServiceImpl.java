@@ -2,7 +2,7 @@ package com.gmail.dimaliahov.sevice.impl.classImpl;
 
 import com.gmail.dimaliahov.model.PriceListForTeacher;
 import com.gmail.dimaliahov.repository.PriceRepository;
-import com.gmail.dimaliahov.sevice.controllerClass.PriceService;
+import com.gmail.dimaliahov.sevice.serviceForClass.PriceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

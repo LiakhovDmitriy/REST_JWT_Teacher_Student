@@ -3,7 +3,7 @@ package com.gmail.dimaliahov.sevice.impl.classImpl;
 import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.repository.UserRepository;
-import com.gmail.dimaliahov.sevice.controllerClass.UserService;
+import com.gmail.dimaliahov.sevice.serviceForClass.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
