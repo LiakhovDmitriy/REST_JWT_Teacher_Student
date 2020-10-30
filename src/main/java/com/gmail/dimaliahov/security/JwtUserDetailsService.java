@@ -3,7 +3,7 @@ package com.gmail.dimaliahov.security;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.security.jwt.JwtUser;
 import com.gmail.dimaliahov.security.jwt.JwtUserFactory;
-import com.gmail.dimaliahov.sevice.UserService;
+import com.gmail.dimaliahov.sevice.controllerClass.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,11 +27,11 @@ public class JwtUserDetailsService implements UserDetailsService {
 		User user = userService.findByUsername(username);
 
 		if (user == null) {
-			throw new UsernameNotFoundException("User with username: " + username + " not found");
+			throw new UsernameNotFoundException("User with userName: " + username + " not found");
 		}
 
 		JwtUser jwtUser = JwtUserFactory.create(user);
-		log.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
+		log.info("IN loadUserByUserName - user with username: {} successfully loaded", username);
 		return jwtUser;
 	}
 

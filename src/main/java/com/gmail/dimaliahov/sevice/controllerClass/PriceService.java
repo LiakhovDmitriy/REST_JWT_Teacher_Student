@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.sevice;
+package com.gmail.dimaliahov.sevice.controllerClass;
 
 import com.gmail.dimaliahov.model.PriceListForTeacher;
 
