@@ -15,7 +15,8 @@ import java.util.Date;
 @Entity
 @Table (name = "available_time")
 @Data
-public class AvailableTime extends BaseEntity {
+public class AvailableTime extends BaseEntity
+{
 
 	@Column (name = "timeStart")
 	private Date timeStart;

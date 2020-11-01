@@ -6,7 +6,8 @@ import lombok.ToString;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class AuthenticationRequestDTO {
+public class AuthenticationRequestDTO
+{
 
 	@ToString.Exclude
 	private Long id;

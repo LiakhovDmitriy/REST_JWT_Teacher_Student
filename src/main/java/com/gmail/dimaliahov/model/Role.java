@@ -15,7 +15,8 @@ import java.util.List;
 @Entity
 @Table (name = "role")
 @Data
-public class Role extends BaseEntity {
+public class Role extends BaseEntity
+{
 
 	@Column (name = "name")
 	private String name;
@@ -24,7 +25,8 @@ public class Role extends BaseEntity {
 	@ToString.Exclude
 	private List<User> user = new ArrayList<>();
 
-	public void setUserToRole (User user) {
+	public void setUserToRole (User user)
+	{
 		this.user.add(user);
 	}
 

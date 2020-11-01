@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class RegistrationDTO {
+public class RegistrationDTO
+{
 
 	private String username;
 

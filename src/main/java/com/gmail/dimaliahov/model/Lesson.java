@@ -18,7 +18,8 @@ import java.util.Set;
 @Table (name = "lesson")
 @Data
 @ToString
-public class Lesson extends BaseEntity {
+public class Lesson extends BaseEntity
+{
 
 	@Column (name = "idTeacher")
 	private Long idTeacher;
@@ -38,49 +39,59 @@ public class Lesson extends BaseEntity {
 	@EqualsAndHashCode.Exclude
 	private Set<User> user = new HashSet<>();
 
-	public Lesson () {
+	public Lesson ()
+	{
 		super();
 	}
 
-	public Long getIdTeacher () {
+	public Long getIdTeacher ()
+	{
 		return idTeacher;
 	}
 
-	public Lesson setIdTeacher (Long idTeacher) {
+	public Lesson setIdTeacher (Long idTeacher)
+	{
 		this.idTeacher = idTeacher;
 		return this;
 	}
 
-	public Date getDateStart () {
+	public Date getDateStart ()
+	{
 		return dateStart;
 	}
 
-	public Lesson setDateStart (Date dateStart) {
+	public Lesson setDateStart (Date dateStart)
+	{
 		this.dateStart = dateStart;
 		return this;
 	}
 
-	public Date getDateEnd () {
+	public Date getDateEnd ()
+	{
 		return dateEnd;
 	}
 
-	public Lesson setDateEnd (Date dateEnd) {
+	public Lesson setDateEnd (Date dateEnd)
+	{
 		this.dateEnd = dateEnd;
 		return this;
 
 	}
 
-	public Lesson setPrice (int price) {
+	public Lesson setPrice (int price)
+	{
 		this.price = price;
 		return this;
 
 	}
 
-	public Set<User> getUser () {
+	public Set<User> getUser ()
+	{
 		return user;
 	}
 
-	public Lesson setUser (Set<User> users) {
+	public Lesson setUser (Set<User> users)
+	{
 		this.user = users;
 		return this;
 	}

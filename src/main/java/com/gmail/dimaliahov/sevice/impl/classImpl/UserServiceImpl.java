@@ -11,19 +11,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService
+{
 
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserServiceImpl (UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+	public UserServiceImpl (UserRepository userRepository, BCryptPasswordEncoder passwordEncoder)
+	{
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
-	public void registration (User user) {
+	public void registration (User user)
+	{
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setStatus(Status.ACTIVE);
 		User registeredUser = userRepository.save(user);
@@ -31,12 +34,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByUsername (String username) {
+	public User findByUsername (String username)
+	{
 		return userRepository.findByUsername(username);
 	}
 
 	@Override
-	public User findById (Long id) {
+	public User findById (Long id)
+	{
 		return userRepository.findById(id).orElse(null);
 	}
 

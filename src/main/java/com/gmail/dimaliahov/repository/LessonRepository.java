@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface LessonRepository extends JpaRepository<Lesson, Long> {
+public interface LessonRepository extends JpaRepository<Lesson, Long>
+{
 
 	List<Lesson> getAllByIdTeacherAndStatus (Long idTeacher, Status status);
 

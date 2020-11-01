@@ -7,7 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Date;
 
-public class JwtUser implements UserDetails {
+public class JwtUser implements UserDetails
+{
 
 	private final Long id;
 	private final String userName;
@@ -28,7 +29,8 @@ public class JwtUser implements UserDetails {
 			String password, Collection<? extends GrantedAuthority> authorities,
 			boolean enabled,
 			Date lastPasswordResetDate
-	) {
+	)
+	{
 		this.id = id;
 		this.userName = userName;
 		this.firstName = firstName;
@@ -42,63 +44,75 @@ public class JwtUser implements UserDetails {
 
 
 	@JsonIgnore
-	public Long getId () {
+	public Long getId ()
+	{
 		return id;
 	}
 
 	@Override
-	public String getUsername () {
+	public String getUsername ()
+	{
 		return userName;
 	}
 
 	@JsonIgnore
 	@Override
-	public boolean isAccountNonExpired () {
+	public boolean isAccountNonExpired ()
+	{
 		return true;
 	}
 
 	@JsonIgnore
 	@Override
-	public boolean isAccountNonLocked () {
+	public boolean isAccountNonLocked ()
+	{
 		return true;
 	}
 
 	@JsonIgnore
 	@Override
-	public boolean isCredentialsNonExpired () {
+	public boolean isCredentialsNonExpired ()
+	{
 		return true;
 	}
 
-	public String getFirstName () {
+	public String getFirstName ()
+	{
 		return firstName;
 	}
 
-	public String getLastName () {
+	public String getLastName ()
+	{
 		return lastName;
 	}
 
-	public String getEmail () {
+	public String getEmail ()
+	{
 		return email;
 	}
 
 	@JsonIgnore
 	@Override
-	public String getPassword () {
+	public String getPassword ()
+	{
 		return password;
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities () {
+	public Collection<? extends GrantedAuthority> getAuthorities ()
+	{
 		return authorities;
 	}
 
 	@Override
-	public boolean isEnabled () {
+	public boolean isEnabled ()
+	{
 		return enabled;
 	}
 
 	@JsonIgnore
-	public Date getLastPasswordResetDate () {
+	public Date getLastPasswordResetDate ()
+	{
 		return lastPasswordResetDate;
 	}
 }

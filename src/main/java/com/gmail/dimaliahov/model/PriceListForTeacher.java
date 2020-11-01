@@ -14,7 +14,8 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "price_list")
 @Data
-public class PriceListForTeacher extends BaseEntity {
+public class PriceListForTeacher extends BaseEntity
+{
 
 	@Column (name = "time")
 	private long time;

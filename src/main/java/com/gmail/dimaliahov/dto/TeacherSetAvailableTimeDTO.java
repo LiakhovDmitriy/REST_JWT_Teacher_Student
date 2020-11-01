@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class TeacherSetAvailableTimeDTO {
+public class TeacherSetAvailableTimeDTO
+{
 
 	private String timeStart;
 

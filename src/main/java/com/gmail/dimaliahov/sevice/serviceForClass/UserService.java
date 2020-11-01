@@ -3,7 +3,8 @@ package com.gmail.dimaliahov.sevice.serviceForClass;
 import com.gmail.dimaliahov.model.User;
 
 
-public interface UserService {
+public interface UserService
+{
 
 	void registration (User user);
 

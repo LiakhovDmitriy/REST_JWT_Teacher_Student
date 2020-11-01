@@ -16,7 +16,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith (SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-class DimaliahovApplicationTests {
+class DimaLiahovApplicationTests
+{
 
 	@Autowired
 	private MockMvc mockMvc;

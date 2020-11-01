@@ -11,7 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter
+{
 
 	private static final String ADMIN_ENDPOINT = "/api/admin/**";
 	private static final String LOGIN_ENDPOINT = "/api/login";
@@ -22,18 +23,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
-	public SecurityConfiguration (JwtTokenProvider jwtTokenProvider) {
+	public SecurityConfiguration (JwtTokenProvider jwtTokenProvider)
+	{
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	@Bean
 	@Override
-	public AuthenticationManager authenticationManagerBean () throws Exception {
+	public AuthenticationManager authenticationManagerBean () throws Exception
+	{
 		return super.authenticationManagerBean();
 	}
 
 	@Override
-	protected void configure (HttpSecurity http) throws Exception {
+	protected void configure (HttpSecurity http) throws Exception
+	{
 		http
 				.httpBasic().disable()
 				.csrf().disable()

@@ -19,21 +19,24 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class RegistrationControllerServiceImpl implements RegistrationControllerService {
+public class RegistrationControllerServiceImpl implements RegistrationControllerService
+{
 
 	private final UserService userService;
 	private final RoleRepository roleRepository;
 	private final UserRepository userRepository;
 
 	@Autowired
-	public RegistrationControllerServiceImpl (UserService userService, RoleRepository roleRepository, UserRepository userRepository) {
+	public RegistrationControllerServiceImpl (UserService userService, RoleRepository roleRepository, UserRepository userRepository)
+	{
 		this.userService = userService;
 		this.roleRepository = roleRepository;
 		this.userRepository = userRepository;
 	}
 
 	@Override
-	public ResponseEntity<Object> postChangeStatus (RegistrationDTO registrationDTO) {
+	public ResponseEntity<Object> postChangeStatus (RegistrationDTO registrationDTO)
+	{
 		User user = new User()
 				.setEmail(registrationDTO.getEmail())
 				.setFirstName(registrationDTO.getFirstName())

@@ -27,7 +27,8 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class LoginControllerServiceImpl implements LoginControllerService {
+public class LoginControllerServiceImpl implements LoginControllerService
+{
 
 	private final static int TOKEN_START = 7;
 
@@ -38,7 +39,8 @@ public class LoginControllerServiceImpl implements LoginControllerService {
 	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
-	public LoginControllerServiceImpl (RoleRepository roleRepository, AuthenticationManager authenticationManager, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
+	public LoginControllerServiceImpl (RoleRepository roleRepository, AuthenticationManager authenticationManager, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider)
+	{
 		this.roleRepository = roleRepository;
 		this.authenticationManager = authenticationManager;
 		this.userService = userService;
@@ -47,26 +49,32 @@ public class LoginControllerServiceImpl implements LoginControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> getUserById (Long id, HttpServletRequest req) {
+	public ResponseEntity<Object> getUserById (Long id, HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Role g = roleRepository.findByName("ROLE_ADMIN");
 		User userEnter = userRepository.getByIdAndRole(Long.valueOf(jwtTokenProvider.getIdUsername(token)), g);
 
-		if (userEnter != null) {
+		if (userEnter != null)
+		{
 			User user = userService.findById(id);
-			if (user == null) {
+			if (user == null)
+			{
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			UserDTO result = UserDTO.fromUser(user);
 			boolean roleAdmin = false;
-			for (int i = 0; user.getRole().size() > i; i++) {
+			for (int i = 0; user.getRole().size() > i; i++)
+			{
 				Role r = user.getRole().get(i);
-				if (r.getName().equals("ROLE_ADMIN")) {
+				if (r.getName().equals("ROLE_ADMIN"))
+				{
 					roleAdmin = true;
 					break;
 				}
 			}
-			if (roleAdmin) {
+			if (roleAdmin)
+			{
 				AdminUserDTO resultAdmin = AdminUserDTO.fromUser(user);
 				return new ResponseEntity<>(resultAdmin, HttpStatus.OK);
 			}
@@ -78,15 +86,18 @@ public class LoginControllerServiceImpl implements LoginControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> login (AuthenticationRequestDTO requestDto) {
-		try {
+	public ResponseEntity<Object> login (AuthenticationRequestDTO requestDto)
+	{
+		try
+		{
 			String username = requestDto.getUsername();
 			String password = requestDto.getPassword();
 
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 			User user = userService.findByUsername(username);
 
-			if (user == null) {
+			if (user == null)
+			{
 				throw new UsernameNotFoundException("User with username: " + username + " not found");
 			}
 
@@ -98,7 +109,8 @@ public class LoginControllerServiceImpl implements LoginControllerService {
 
 			return ResponseEntity.ok(response);
 
-		} catch (AuthenticationException e){
+		} catch (AuthenticationException e)
+		{
 			throw new BadCredentialsException("Invalid username or password");
 		}
 	}

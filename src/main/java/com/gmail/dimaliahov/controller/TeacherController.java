@@ -19,42 +19,50 @@ import java.util.List;
 @RestController
 @RequestMapping (value = "/api/teacher/")
 @Slf4j
-public class TeacherController {
+public class TeacherController
+{
 
 	private final TeacherControllerService controllerService;
 
 	@Autowired
-	public TeacherController (TeacherControllerService controllerService) {
+	public TeacherController (TeacherControllerService controllerService)
+	{
 		this.controllerService = controllerService;
 	}
 
 	@GetMapping (value = "offers")
-	public ResponseEntity<Object> getAllByStatusConsideration (HttpServletRequest req) {
+	public ResponseEntity<Object> getAllByStatusConsideration (HttpServletRequest req)
+	{
 		return controllerService.getAllByStatusConsideration(req);
 	}
 
 	@PostMapping (value = "offers")
-	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusListDTO> statusList, HttpServletRequest req) {
+	public ResponseEntity<Object> postChangeStatus (@RequestBody List<ChangeStatusListDTO> statusList, HttpServletRequest req)
+	{
 		return controllerService.postChangeStatus(statusList, req);
 	}
 
 	@PostMapping (value = "add")
-	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req) {
+	public ResponseEntity<Object> addFreeTimeToTeacher (@RequestBody List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req)
+	{
 		return controllerService.addFreeTimeToTeacher(availableList, req);
 	}
 
 	@PostMapping (value = "addToPriceList")
-	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody PriceListDTO price, HttpServletRequest req) {
+	public ResponseEntity<Object> createLessonDTOResponseEntity (@RequestBody PriceListDTO price, HttpServletRequest req)
+	{
 		return controllerService.createLessonDTOResponseEntity(price, req);
 	}
 
 	@GetMapping (value = "myPriceList")
-	public ResponseEntity<Object> getPriseList (HttpServletRequest req) {
+	public ResponseEntity<Object> getPriseList (HttpServletRequest req)
+	{
 		return controllerService.getPriseList(req);
 	}
 
 	@PostMapping (value = "myPriceList")
-	public ResponseEntity<Object> postDeletePrice (@RequestBody List<Long> list, HttpServletRequest req) {
+	public ResponseEntity<Object> postDeletePrice (@RequestBody List<Long> list, HttpServletRequest req)
+	{
 		return controllerService.postDeletePrice(list, req);
 	}
 }

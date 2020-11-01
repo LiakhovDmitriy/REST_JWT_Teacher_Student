@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface PriceRepository extends JpaRepository<PriceListForTeacher, Long> {
+public interface PriceRepository extends JpaRepository<PriceListForTeacher, Long>
+{
 
 	List<PriceListForTeacher> getAllByUser_Id (Long id);
 

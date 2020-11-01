@@ -5,7 +5,8 @@ import com.gmail.dimaliahov.model.Status;
 
 import java.util.List;
 
-public interface LessonService {
+public interface LessonService
+{
 
 	void createLesson (Lesson lesson);
 

@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class GetAllTeacherDTO {
+public class GetAllTeacherDTO
+{
 
 	private Long idTeacher;
 

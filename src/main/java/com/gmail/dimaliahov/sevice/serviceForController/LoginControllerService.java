@@ -5,9 +5,10 @@ import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface LoginControllerService {
+public interface LoginControllerService
+{
 
-	ResponseEntity<Object> getUserById(Long id, HttpServletRequest req);
+	ResponseEntity<Object> getUserById (Long id, HttpServletRequest req);
 
-	ResponseEntity<Object> login(AuthenticationRequestDTO requestDto);
+	ResponseEntity<Object> login (AuthenticationRequestDTO requestDto);
 }

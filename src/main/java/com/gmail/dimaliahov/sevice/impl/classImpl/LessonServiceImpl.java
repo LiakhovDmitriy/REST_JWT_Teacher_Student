@@ -12,23 +12,27 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class LessonServiceImpl implements LessonService {
+public class LessonServiceImpl implements LessonService
+{
 
 	private final LessonRepository lessonRepository;
 
 	@Autowired
-	public LessonServiceImpl (LessonRepository lessonRepository) {
+	public LessonServiceImpl (LessonRepository lessonRepository)
+	{
 		this.lessonRepository = lessonRepository;
 	}
 
 	@Override
-	public void createLesson (Lesson lesson) {
+	public void createLesson (Lesson lesson)
+	{
 		lessonRepository.save(lesson);
 		log.info("IN createLesson - lessons: {} successfully createLesson", lesson);
 	}
 
 	@Override
-	public List<Lesson> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher) {
+	public List<Lesson> getAllLessonByStatusAndTeacherId (Status status, Long idTeacher)
+	{
 		return lessonRepository.getAllByIdTeacherAndStatus(idTeacher, status);
 	}
 

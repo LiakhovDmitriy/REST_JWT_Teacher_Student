@@ -17,22 +17,26 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping (value = "/api/")
 @Slf4j
-public class LoginController {
+public class LoginController
+{
 
 	private final LoginControllerService controllerService;
 
 	@Autowired
-	public LoginController (LoginControllerService controllerService) {
+	public LoginController (LoginControllerService controllerService)
+	{
 		this.controllerService = controllerService;
 	}
 
 	@GetMapping (value = "{id}")
-	public ResponseEntity<Object> getUserById (@PathVariable (name = "id") Long id, HttpServletRequest req) {
+	public ResponseEntity<Object> getUserById (@PathVariable (name = "id") Long id, HttpServletRequest req)
+	{
 		return controllerService.getUserById(id, req);
 	}
 
 	@PostMapping ("login")
-	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDTO requestDto) {
+	public ResponseEntity<Object> login (@RequestBody AuthenticationRequestDTO requestDto)
+	{
 		return controllerService.login(requestDto);
 	}
 }

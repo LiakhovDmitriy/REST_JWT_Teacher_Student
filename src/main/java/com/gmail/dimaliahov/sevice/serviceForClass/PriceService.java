@@ -4,7 +4,8 @@ import com.gmail.dimaliahov.model.PriceListForTeacher;
 
 import java.util.List;
 
-public interface PriceService {
+public interface PriceService
+{
 
 	List<PriceListForTeacher> getAllPricesByUserId (Long id);
 

@@ -11,7 +11,8 @@ import java.util.Date;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class CreateLessonDTO {
+public class CreateLessonDTO
+{
 
 	private String dateStart;
 
@@ -21,7 +22,8 @@ public class CreateLessonDTO {
 
 	private Long idTeacher;
 
-	public Lesson toLesson (CreateLessonDTO lessonDTO) throws ParseException {
+	public Lesson toLesson (CreateLessonDTO lessonDTO) throws ParseException
+	{
 
 		Date dateS = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(lessonDTO.getDateStart());
 		Date dateE = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(lessonDTO.getDateEnd());

@@ -13,17 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping (value = "/api/")
 @Slf4j
-public class RegistrationController {
+public class RegistrationController
+{
 
 	private final RegistrationControllerService controllerService;
 
 	@Autowired
-	public RegistrationController (RegistrationControllerService controllerService) {
+	public RegistrationController (RegistrationControllerService controllerService)
+	{
 		this.controllerService = controllerService;
 	}
 
 	@PostMapping (value = "registration")
-	public ResponseEntity<Object> postChangeStatus (@RequestBody RegistrationDTO registrationDTO) {
+	public ResponseEntity<Object> postChangeStatus (@RequestBody RegistrationDTO registrationDTO)
+	{
 		return controllerService.postChangeStatus(registrationDTO);
 	}
 }

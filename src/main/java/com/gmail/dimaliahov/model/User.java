@@ -24,7 +24,8 @@ import java.util.Set;
 @Table (name = "user")
 @Data
 @ToString
-public class User extends BaseEntity {
+public class User extends BaseEntity
+{
 
 	@Column (name = "username")
 	private String username;
@@ -71,108 +72,132 @@ public class User extends BaseEntity {
 	@EqualsAndHashCode.Exclude
 	private Set<PriceListForTeacher> price = new HashSet<>();
 
-	public User () {
+	public User ()
+	{
 		super();
 	}
 
-	public void setLessonToUser (Lesson lesson) {
+	public void setLessonToUser (Lesson lesson)
+	{
 		this.lesson.add(lesson);
 	}
 
-	public void setAvailableTimeToUser (AvailableTime available) {
+	public void setAvailableTimeToUser (AvailableTime available)
+	{
 		this.available.add(available);
 		available.setUser(this);
 	}
 
-	public void setPriceToUser (PriceListForTeacher price) {
+	public void setPriceToUser (PriceListForTeacher price)
+	{
 		this.price.add(price);
 		price.setUser(this);
 	}
 
-	public String getUsername () {
+	public String getUsername ()
+	{
 		return username;
 	}
 
-	public User setUsername (String username) {
+	public User setUsername (String username)
+	{
 		this.username = username;
 		return this;
 	}
 
-	public String getFirstName () {
+	public String getFirstName ()
+	{
 		return firstName;
 	}
 
-	public User setFirstName (String firstName) {
+	public User setFirstName (String firstName)
+	{
 		this.firstName = firstName;
 		return this;
 
 	}
 
-	public String getLastName () {
+	public String getLastName ()
+	{
 		return lastName;
 	}
 
-	public User setLastName (String lastName) {
+	public User setLastName (String lastName)
+	{
 		this.lastName = lastName;
 		return this;
 
 	}
 
-	public String getEmail () {
+	public String getEmail ()
+	{
 		return email;
 	}
 
-	public User setEmail (String email) {
+	public User setEmail (String email)
+	{
 		this.email = email;
 		return this;
 	}
 
-	public String getPassword () {
+	public String getPassword ()
+	{
 		return password;
 	}
 
-	public User setPassword (String password) {
+	public User setPassword (String password)
+	{
 		this.password = password;
 		return this;
 	}
 
-	public List<Role> getRole () {
+	public List<Role> getRole ()
+	{
 		return role;
 	}
 
-	public void setRole (List<Role> role) {
+	public void setRole (List<Role> role)
+	{
 		this.role = role;
 	}
 
-	public Set<Lesson> getLesson () {
+	public Set<Lesson> getLesson ()
+	{
 		return lesson;
 	}
 
-	public void setLesson (Set<Lesson> lesson) {
+	public void setLesson (Set<Lesson> lesson)
+	{
 		this.lesson = lesson;
 	}
 
-	public Set<AvailableTime> getAvailable () {
+	public Set<AvailableTime> getAvailable ()
+	{
 		return available;
 	}
 
-	public void setAvailable (Set<AvailableTime> available) {
+	public void setAvailable (Set<AvailableTime> available)
+	{
 		this.available = available;
 	}
 
-	public int getMoney () {
+	public int getMoney ()
+	{
 		return money;
 	}
 
-	public void setMoney (int money) {
+	public void setMoney (int money)
+	{
 		this.money = money;
 	}
 
-	public Set<PriceListForTeacher> getPrice () {
+	public Set<PriceListForTeacher> getPrice ()
+	{
 		return price;
 	}
 
-	public void setPrice (Set<PriceListForTeacher> price) {
+	public void setPrice (Set<PriceListForTeacher> price)
+	{
 		this.price = price;
 	}
 

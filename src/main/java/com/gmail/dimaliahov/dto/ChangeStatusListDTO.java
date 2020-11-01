@@ -8,7 +8,8 @@ import java.util.List;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class ChangeStatusListDTO {
+public class ChangeStatusListDTO
+{
 
 	private List<Long> lessonId;
 

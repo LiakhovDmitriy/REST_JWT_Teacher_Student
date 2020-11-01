@@ -28,7 +28,8 @@ import java.util.Map;
 
 @Service
 @Slf4j
-public class StudentControllerServiceImpl implements StudentControllerService {
+public class StudentControllerServiceImpl implements StudentControllerService
+{
 
 	private final static int TOKEN_START = 7;
 
@@ -41,7 +42,8 @@ public class StudentControllerServiceImpl implements StudentControllerService {
 	private final LessonRepository lessonRepository;
 
 	@Autowired
-	public StudentControllerServiceImpl (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, LessonRepository lessonRepository) {
+	public StudentControllerServiceImpl (LessonService lessonService, UserService userService, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, LessonRepository lessonRepository)
+	{
 		this.lessonService = lessonService;
 		this.userService = userService;
 		this.userRepository = userRepository;
@@ -52,10 +54,12 @@ public class StudentControllerServiceImpl implements StudentControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> createLessonDTOResponseEntity (CreateLessonDTO lesson, HttpServletRequest req) throws ParseException {
+	public ResponseEntity<Object> createLessonDTOResponseEntity (CreateLessonDTO lesson, HttpServletRequest req) throws ParseException
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Map<Object, Object> response = new HashMap<>();
-		if (lesson.getDateStart().compareTo(lesson.getDateEnd()) < 0) {
+		if (lesson.getDateStart().compareTo(lesson.getDateEnd()) < 0)
+		{
 			Lesson nLesson = new CreateLessonDTO().toLesson(lesson);
 			Long userId = Long.valueOf(jwtTokenProvider.getIdUsername(token));
 			User user = userService.findById(userId);
@@ -67,7 +71,8 @@ public class StudentControllerServiceImpl implements StudentControllerService {
 			response.put("timeStart", format.format(nLesson.getDateStart()));
 			response.put("timeEnd", format.format(nLesson.getDateEnd()));
 			return ResponseEntity.ok(response);
-		} else {
+		} else
+		{
 			response = new HashMap<>();
 			response.put("msg", "Incorrect data entry, try to enter the correct time!");
 			return ResponseEntity.ok(response);
@@ -75,36 +80,45 @@ public class StudentControllerServiceImpl implements StudentControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> getAllAvailableTeacher () {
+	public ResponseEntity<Object> getAllAvailableTeacher ()
+	{
 		Role r = roleRepository.findByName("ROLE_TEACHER");
 		List<User> user = userRepository.getByRole(r);
 		Map<Object, Object> returnMap = new HashMap<>();
 
-		for (User u : user) {
+		for (User u : user)
+		{
 			returnMap.put("Available teacher '" + u.getUsername() + "'", "His id: " + u.getId());
 		}
 		return ResponseEntity.ok(returnMap);
 	}
 
 	@Override
-	public ResponseEntity<Object> getPriceTeacherById (String id) {
+	public ResponseEntity<Object> getPriceTeacherById (String id)
+	{
 		Map<Object, Object> returnMap = new HashMap<>();
 		int h;
-		try {
+		try
+		{
 			h = Integer.parseInt(id);
-		} catch (NumberFormatException e){
+		} catch (NumberFormatException e)
+		{
 			log.warn("NumberFormatException " + e.getMessage());
 			returnMap.put("warn", "You entered text instead of a number. Please correct your request, and try again!");
 			return ResponseEntity.ok(returnMap);
 		}
-		if (h > 0) {
+		if (h > 0)
+		{
 			Role r = roleRepository.findByName("ROLE_TEACHER");
 			List<User> user = userRepository.getByRole(r);
-			for (User u : user) {
-				if (u.getId() == Long.parseLong(id)) {
+			for (User u : user)
+			{
+				if (u.getId() == Long.parseLong(id))
+				{
 					Map<Object, Object> price = new HashMap<>();
 					List<PriceListForTeacher> p = priceService.getAllPricesByUserId(u.getId());
-					for (int i = 1; i - 1 < p.size(); i++) {
+					for (int i = 1; i - 1 < p.size(); i++)
+					{
 						price.put("Price " + i, "Time " + p.get(i - 1).getTime() + " minutes; Price: " + p.get(i - 1).getPrice());
 					}
 					returnMap.put("Teacher: '" + u.getUsername() + "'; His id " + u.getId(), price);
@@ -117,7 +131,8 @@ public class StudentControllerServiceImpl implements StudentControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> getAllMyLessons (HttpServletRequest req) {
+	public ResponseEntity<Object> getAllMyLessons (HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
 
@@ -129,14 +144,17 @@ public class StudentControllerServiceImpl implements StudentControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> postDeleteLesson (List<Long> list, HttpServletRequest req) {
+	public ResponseEntity<Object> postDeleteLesson (List<Long> list, HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		Long userID = Long.valueOf(jwtTokenProvider.getIdUsername(token));
 		Map<Object, Object> response = new HashMap<>();
 		List<Lesson> l = lessonRepository.getByUser(userService.findById(userID));
 
-		for (Lesson lesson : l) {
-			if (list.contains(lesson.getId())) {
+		for (Lesson lesson : l)
+		{
+			if (list.contains(lesson.getId()))
+			{
 				lessonRepository.changeStatusForLesson(lesson.getId(), Status.NOT_ACTIVE);
 				response.put("lesson " + lesson.getId(), "Now the status is this: " + Status.NOT_ACTIVE);
 			}

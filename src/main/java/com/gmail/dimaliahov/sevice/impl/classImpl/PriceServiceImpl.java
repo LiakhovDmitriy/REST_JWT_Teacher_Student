@@ -12,17 +12,20 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class PriceServiceImpl implements PriceService {
+public class PriceServiceImpl implements PriceService
+{
 
 	private final PriceRepository priceRepository;
 
 	@Autowired
-	public PriceServiceImpl (PriceRepository priceRepository) {
+	public PriceServiceImpl (PriceRepository priceRepository)
+	{
 		this.priceRepository = priceRepository;
 	}
 
 	@Override
-	public List<PriceListForTeacher> getAllPricesByUserId (Long id) {
+	public List<PriceListForTeacher> getAllPricesByUserId (Long id)
+	{
 		return new ArrayList<>(priceRepository.getAllByUser_Id(id));
 	}
 }

@@ -3,11 +3,11 @@ package com.gmail.dimaliahov.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gmail.dimaliahov.model.User;
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class AdminUserDTO {
+public class AdminUserDTO
+{
 
 	private Long id;
 
@@ -21,7 +21,8 @@ public class AdminUserDTO {
 
 	private String status;
 
-	public static AdminUserDTO fromUser (User user) {
+	public static AdminUserDTO fromUser (User user)
+	{
 		AdminUserDTO adminUserDto = new AdminUserDTO();
 		adminUserDto.setId(user.getId());
 		adminUserDto.setUsername(user.getUsername());

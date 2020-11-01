@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties (ignoreUnknown = true)
-public class PriceListDTO {
+public class PriceListDTO
+{
 
 	private long time;
 

@@ -31,7 +31,8 @@ import java.util.Map;
 
 @Slf4j
 @Service
-public class TeacherControllerServiceImpl implements TeacherControllerService {
+public class TeacherControllerServiceImpl implements TeacherControllerService
+{
 
 	private final static int TOKEN_START = 7;
 
@@ -44,7 +45,8 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	private final PriceRepository priceRepository;
 
 	@Autowired
-	public TeacherControllerServiceImpl (LessonService lessonService, LessonRepository lessonRepository, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, PriceRepository priceRepository) {
+	public TeacherControllerServiceImpl (LessonService lessonService, LessonRepository lessonRepository, UserService userService, UserRepository userRepository, JwtTokenProvider jwtTokenProvider, PriceService priceService, PriceRepository priceRepository)
+	{
 		this.lessonService = lessonService;
 		this.lessonRepository = lessonRepository;
 		this.userService = userService;
@@ -55,7 +57,8 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> getAllByStatusConsideration (HttpServletRequest req) {
+	public ResponseEntity<Object> getAllByStatusConsideration (HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		List<Lesson> list = lessonService.getAllLessonByStatusAndTeacherId(Status.CONSIDERATION,
 				Long.valueOf(jwtTokenProvider.getIdUsername(token))
@@ -66,15 +69,19 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> postChangeStatus (List<ChangeStatusListDTO> statusList, HttpServletRequest req) {
+	public ResponseEntity<Object> postChangeStatus (List<ChangeStatusListDTO> statusList, HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		List<Lesson> l = lessonRepository.getAllByIdTeacher(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		Map<Object, Object> response = new HashMap<>();
 
 		List<Long> list = statusList.get(0).getLessonId();
-		for (Lesson lesson : l) {
-			for (Long aLong : list) {
-				if (lesson.getId().equals(aLong)) {
+		for (Lesson lesson : l)
+		{
+			for (Long aLong : list)
+			{
+				if (lesson.getId().equals(aLong))
+				{
 					lessonRepository.changeStatusForLesson(lesson.getId(), Status.NOT_ACTIVE);
 					response.put("lesson " + lesson.getId(), "Now the status is: " + Status.NOT_ACTIVE);
 				}
@@ -84,19 +91,23 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> addFreeTimeToTeacher (List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req) {
+	public ResponseEntity<Object> addFreeTimeToTeacher (List<TeacherSetAvailableTimeDTO> availableList, HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		Map<Object, Object> response = new HashMap<>();
-		for (int i = 0; i < availableList.size(); i++) {
+		for (int i = 0; i < availableList.size(); i++)
+		{
 			AvailableTime a = new AvailableTime();
 
 			Date dateS = null;
 			Date dateE = null;
-			try {
+			try
+			{
 				dateS = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(availableList.get(i).getTimeStart());
 				dateE = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(availableList.get(i).getTimeEnd());
-			} catch (ParseException e){
+			} catch (ParseException e)
+			{
 				e.printStackTrace();
 			}
 			a.setTimeStart(dateS);
@@ -114,7 +125,8 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> createLessonDTOResponseEntity (PriceListDTO price, HttpServletRequest req) {
+	public ResponseEntity<Object> createLessonDTOResponseEntity (PriceListDTO price, HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		Map<Object, Object> response = new HashMap<>();
@@ -133,7 +145,8 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> getPriseList (HttpServletRequest req) {
+	public ResponseEntity<Object> getPriseList (HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		List<PriceListForTeacher> l = priceService.getAllPricesByUserId(user.getId());
@@ -143,7 +156,8 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 
 		Map<Object, Object> date = new HashMap<>();
 
-		for (int i = 0; i < l.size(); i++) {
+		for (int i = 0; i < l.size(); i++)
+		{
 			date.put("Price " + i, "Time " + l.get(i).getTime() + " minutes; Price: " + l.get(i).getPrice());
 		}
 		response.put("Prices", date);
@@ -152,14 +166,17 @@ public class TeacherControllerServiceImpl implements TeacherControllerService {
 	}
 
 	@Override
-	public ResponseEntity<Object> postDeletePrice (List<Long> list, HttpServletRequest req) {
+	public ResponseEntity<Object> postDeletePrice (List<Long> list, HttpServletRequest req)
+	{
 		String token = req.getHeader("Authorization").substring(TOKEN_START);
 		User user = userService.findById(Long.valueOf(jwtTokenProvider.getIdUsername(token)));
 		List<PriceListForTeacher> l = priceRepository.getByUser(user);
 		Map<Object, Object> response = new HashMap<>();
 
-		for (PriceListForTeacher priceListForTeacher : l) {
-			if (list.contains(priceListForTeacher.getId())) {
+		for (PriceListForTeacher priceListForTeacher : l)
+		{
+			if (list.contains(priceListForTeacher.getId()))
+			{
 				priceRepository.changeStatusForPrice(priceListForTeacher.getId(), Status.NOT_ACTIVE);
 				response.put("Price " + priceListForTeacher.getId(), "Now the status is this: " + Status.NOT_ACTIVE);
 			}
