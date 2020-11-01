@@ -3,7 +3,7 @@ package com.gmail.dimaliahov.controller;
 import com.gmail.dimaliahov.dto.ChangeStatusListDTO;
 import com.gmail.dimaliahov.dto.PriceListDTO;
 import com.gmail.dimaliahov.dto.TeacherSetAvailableTimeDTO;
-import com.gmail.dimaliahov.sevice.serviceForController.TeacherControllerService;
+import com.gmail.dimaliahov.service.serviceForController.TeacherControllerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

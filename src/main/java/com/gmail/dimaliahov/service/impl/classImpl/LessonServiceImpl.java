@@ -1,9 +1,9 @@
-package com.gmail.dimaliahov.sevice.impl.classImpl;
+package com.gmail.dimaliahov.service.impl.classImpl;
 
 import com.gmail.dimaliahov.model.Lesson;
 import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.repository.LessonRepository;
-import com.gmail.dimaliahov.sevice.serviceForClass.LessonService;
+import com.gmail.dimaliahov.service.serviceForClass.LessonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

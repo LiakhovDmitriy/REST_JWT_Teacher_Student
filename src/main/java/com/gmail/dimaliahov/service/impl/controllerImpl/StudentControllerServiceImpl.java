@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.sevice.impl.controllerImpl;
+package com.gmail.dimaliahov.service.impl.controllerImpl;
 
 import com.gmail.dimaliahov.dto.CreateLessonDTO;
 import com.gmail.dimaliahov.model.Lesson;
@@ -10,10 +10,10 @@ import com.gmail.dimaliahov.repository.LessonRepository;
 import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
 import com.gmail.dimaliahov.security.jwt.JwtTokenProvider;
-import com.gmail.dimaliahov.sevice.serviceForClass.LessonService;
-import com.gmail.dimaliahov.sevice.serviceForClass.PriceService;
-import com.gmail.dimaliahov.sevice.serviceForClass.UserService;
-import com.gmail.dimaliahov.sevice.serviceForController.StudentControllerService;
+import com.gmail.dimaliahov.service.serviceForClass.LessonService;
+import com.gmail.dimaliahov.service.serviceForClass.PriceService;
+import com.gmail.dimaliahov.service.serviceForClass.UserService;
+import com.gmail.dimaliahov.service.serviceForController.StudentControllerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

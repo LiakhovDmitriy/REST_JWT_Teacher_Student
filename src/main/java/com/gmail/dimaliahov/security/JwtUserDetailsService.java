@@ -3,7 +3,7 @@ package com.gmail.dimaliahov.security;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.security.jwt.JwtUser;
 import com.gmail.dimaliahov.security.jwt.JwtUserFactory;
-import com.gmail.dimaliahov.sevice.serviceForClass.UserService;
+import com.gmail.dimaliahov.service.serviceForClass.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

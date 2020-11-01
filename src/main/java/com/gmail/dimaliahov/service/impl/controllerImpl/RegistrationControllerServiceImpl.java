@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.sevice.impl.controllerImpl;
+package com.gmail.dimaliahov.service.impl.controllerImpl;
 
 import com.gmail.dimaliahov.dto.RegistrationDTO;
 import com.gmail.dimaliahov.model.Role;
@@ -6,8 +6,8 @@ import com.gmail.dimaliahov.model.Status;
 import com.gmail.dimaliahov.model.User;
 import com.gmail.dimaliahov.repository.RoleRepository;
 import com.gmail.dimaliahov.repository.UserRepository;
-import com.gmail.dimaliahov.sevice.serviceForClass.UserService;
-import com.gmail.dimaliahov.sevice.serviceForController.RegistrationControllerService;
+import com.gmail.dimaliahov.service.serviceForClass.UserService;
+import com.gmail.dimaliahov.service.serviceForController.RegistrationControllerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

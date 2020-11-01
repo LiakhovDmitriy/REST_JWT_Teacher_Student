@@ -1,4 +1,4 @@
-package com.gmail.dimaliahov.sevice.serviceForController;
+package com.gmail.dimaliahov.service.serviceForController;
 
 import com.gmail.dimaliahov.dto.AuthenticationRequestDTO;
 import org.springframework.http.ResponseEntity;
